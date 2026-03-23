@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  # 数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: 23579
+      MYSQL_DATABASE: cultural_museum
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 23579
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./chinese-national-culture-museum/cultural_museum.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  # 文化遗产数据库管理系统
+  index:
+    build:
+      context: .
+      dockerfile: Dockerfile.index
+    container_name: index-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 23579
+      MYSQL_DATABASE: cultural_museum
+    restart: always
+
+  # AI文化对话系统
+  ai_chat:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai_chat
+    container_name: ai-chat-service
+    ports:
+      - "8000:8000"
+    environment:
+      BIGMODEL_API_KEY: ${BIGMODEL_API_KEY}
+      BIGMODEL_BASE_URL: ${BIGMODEL_BASE_URL:-https://open.bigmodel.cn/api/paas/v4}
+      VISION_MODEL: ${VISION_MODEL:-glm-4.1v-thinking-flash}
+      CHAT_MODEL: ${CHAT_MODEL:-glm-4.1v-thinking-flash}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
+      HEIMORI_API_URL: ${HEIMORI_API_URL:-https://api.xmor.cn/v1/chat/translation}
+      HEIMORI_API_KEY: ${HEIMORI_API_KEY}
+      HEIMORI_API_KEY_HEADER: ${HEIMORI_API_KEY_HEADER:-Authorization}
+      HEIMORI_TIMEOUT_SECONDS: ${HEIMORI_TIMEOUT_SECONDS:-30}
+      HEIMORI_TRANSLATION_MODEL: ${HEIMORI_TRANSLATION_MODEL:-tengri-t1-pro}
+      HEIMORI_AUTH_PREFIX: ${HEIMORI_AUTH_PREFIX:-Bearer}
+    restart: always
+
+  # 中华民族文化博物馆
+  chinese-national-culture-museum:
+    build:
+      context: .
+      dockerfile: Dockerfile.chinese-national-culture-museum
+    container_name: chinese-national-culture-museum-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cultural_museum
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 23579
+    restart: always
+
+volumes:
+  mysql-data:

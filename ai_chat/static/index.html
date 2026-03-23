@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 文化对话系统</title>
+  <style>
+    @font-face {
+      font-family: 'MLD8102';
+      src: url('/static/MLD8102.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 45%, #0f3460 100%);
+      --panel: rgba(255, 255, 255, 0.95);
+      --text: #1a1a2e;
+      --accent: #e94560;
+      --accent-secondary: #0f3460;
+      --border: rgba(15, 52, 96, 0.15);
+      --dock-bg: rgba(26, 26, 46, 0.9);
+      --dock-hover: rgba(233, 69, 96, 0.15);
+      --dock-item-bg: rgba(255, 255, 255, 0.08);
+      --dock-item-hover: rgba(233, 69, 96, 0.2);
+      --dock-text: #ffffff;
+      --dock-text-muted: rgba(255, 255, 255, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans SC", "Source Han Sans SC", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      display: flex;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 26, 46, 0.3);
+      backdrop-filter: blur(8px);
+      z-index: -1;
+    }
+
+    .dock {
+      width: 260px;
+      height: 100vh;
+      background: var(--dock-bg);
+      backdrop-filter: blur(25px);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .dock-header {
+      padding: 30px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .dock-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-family: "Noto Sans SC", sans-serif;
+    }
+
+    .dock-subtitle {
+      font-size: 13px;
+      color: var(--dock-text-muted);
+      font-weight: 500;
+    }
+
+    .dock-nav {
+      flex: 1;
+      padding: 20px 16px;
+      overflow-y: auto;
+    }
+
+    .dock-item {
+      width: 100%;
+      height: 56px;
+      border-radius: 12px;
+      background: transparent;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 8px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      padding: 0 20px;
+      gap: 14px;
+      color: var(--dock-text);
+    }
+
+    .dock-item:hover {
+      background: var(--dock-item-hover);
+      border-color: rgba(233, 69, 96, 0.3);
+      transform: translateX(4px);
+    }
+
+    .dock-item.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+    }
+
+    .dock-item-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .dock-item-text {
+      font-size: 15px;
+      font-weight: 600;
+      font-family: "Noto Sans SC", sans-serif;
+    }
+
+    .dock-footer {
+      padding: 20px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .language-option {
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .language-option:hover {
+      background: rgba(233, 69, 96, 0.25);
+    }
+
+    /* 传统蒙古文模式 - 全局字体 */
+    .lang-mw,
+    .lang-mw * {
+      font-family: 'MLD8102', 'Noto Sans SC', 'Source Han Sans SC', sans-serif !important;
+    }
+
+    /* 传统蒙古文竖排样式 */
+    .lang-mw h2,
+    .lang-mw p,
+    .lang-mw label,
+    .lang-mw pre,
+    .lang-mw span,
+    .lang-mw strong,
+    .lang-mw li,
+    .lang-mw h3,
+    .lang-mw h4,
+    .lang-mw h5,
+    .lang-mw .dock-item-text,
+    .lang-mw .dock-logo,
+    .lang-mw .dock-subtitle,
+    .lang-mw input,
+    .lang-mw textarea,
+    .lang-mw button,
+    .lang-mw select,
+    .lang-mw option,
+    .lang-mw #chatHistory,
+    .lang-mw #translateResult,
+    .lang-mw .language-option {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* 传统蒙古文模式下的输入框和按钮样式 */
+    .lang-mw input[type="file"],
+    .lang-mw textarea,
+    .lang-mw button,
+    .lang-mw select {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+      height: 150px;
+      width: auto;
+      margin: 10px 0;
+    }
+
+    /* 传统蒙古文模式下的标签样式 */
+    .lang-mw label {
+      margin: 10px 0;
+      padding: 5px;
+    }
+
+    /* 确保容器保持水平布局 */
+    .lang-mw .shell,
+    .lang-mw .card,
+    .lang-mw .feature-section {
+      writing-mode: horizontal-tb;
+      direction: ltr;
+    }
+
+    /* 传统蒙古文模式下的卡片布局 */
+    .lang-mw .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    /* 传统蒙古文模式下的容器内元素 */
+    .lang-mw .card>div {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+      margin: 10px 0;
+    }
+
+    /* 传统蒙古文模式下的聊天历史 */
+    .lang-mw #chatHistory {
+      height: 400px;
+      width: 200px;
+      margin: 10px 0;
+    }
+
+    /* 传统蒙古文模式下的表单元素容器 */
+    .lang-mw .card form,
+    .lang-mw .card>div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 传统蒙古文模式下的翻译页面布局 */
+    .lang-mw #translate-section .card {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 20px;
+      writing-mode: horizontal-tb;
+      height: 100%;
+      min-height: calc(100vh - 48px);
+    }
+
+    /* 左侧列 - 语言选择区域 */
+    .lang-mw #translate-section .left-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      writing-mode: horizontal-tb;
+      flex-shrink: 0;
+    }
+
+    /* 传统蒙古文模式下的翻译页面元素 */
+    .lang-mw #translate-section h2 {
+      margin: 0;
+      padding: 10px;
+      border-bottom: 2px solid rgba(158, 79, 32, 0.2);
+      text-align: center;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #translate-section .source-language,
+    .lang-mw #translate-section .target-language {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 右侧列 - 文本区域 */
+    .lang-mw #translate-section .text-section {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      writing-mode: horizontal-tb;
+      gap: 15px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* 文本输入区域 */
+    .lang-mw #translate-section .text-input-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      writing-mode: horizontal-tb;
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* 文本结果区域 */
+    .lang-mw #translate-section .text-result-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      writing-mode: horizontal-tb;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .lang-mw #translate-section label {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: var(--accent);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #translate-section select {
+      height: 100px;
+      width: 100%;
+      max-width: 100px;
+      margin-bottom: 8px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #translate-section textarea {
+      height: calc(100vh - 200px);
+      min-height: 200px;
+      max-height: 500px;
+      min-width: 80px;
+      max-width: 100%;
+      width: 100%;
+      resize: both;
+      margin-bottom: 10px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #translate-section button {
+      height: 80px;
+      width: 100%;
+      max-width: 100px;
+      margin-bottom: 10px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #translate-section pre {
+      height: calc(100vh - 200px);
+      min-height: 200px;
+      max-height: 500px;
+      min-width: 80px;
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+      overflow-y: auto;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    /* 传统蒙古文模式下的shell调整 */
+    .lang-mw .shell {
+      padding: 10px;
+    }
+
+    /* 传统蒙古文模式下的卡片高度调整 */
+    .lang-mw .card {
+      min-height: calc(100vh - 20px);
+    }
+
+    /* 传统蒙古文模式下的文化对话页面布局 */
+    .lang-mw #chat-section .card {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 20px;
+      gap: 20px;
+      writing-mode: horizontal-tb;
+      height: 100%;
+      min-height: calc(100vh - 48px);
+    }
+
+    /* 传统蒙古文模式下的聊天列 */
+    .lang-mw #chat-section .chat-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      writing-mode: horizontal-tb;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 15px;
+      height: 100%;
+    }
+
+    .lang-mw #chat-section .chat-column-1 {
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .lang-mw #chat-section .chat-column-2 {
+      flex: 3;
+      min-width: 0;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .lang-mw #chat-section .chat-column-3 {
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* 传统蒙古文模式下的聊天历史 */
+    .lang-mw #chat-section #chatHistory {
+      flex: 1;
+      height: 100%;
+      min-height: 300px;
+      max-height: none;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 15px 0;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #chat-section label {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: var(--accent);
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #chat-section input[type="file"] {
+      height: 120px;
+      width: 100%;
+      max-width: 180px;
+      margin-bottom: 15px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    .lang-mw #chat-section button {
+      height: 120px;
+      width: 100%;
+      max-width: 150px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    /* 传统蒙古文模式下的聊天输入包装器 */
+    .lang-mw #chat-section .chat-input-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      height: 100%;
+      gap: 10px;
+    }
+
+    /* 传统蒙古文模式下的聊天输入区域 */
+    .lang-mw #chat-section .chat-input-area {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex: 1;
+      min-width: 0;
+      gap: 15px;
+      height: 100%;
+    }
+
+    /* 传统蒙古文模式下的聊天历史在左侧 */
+    .lang-mw #chat-section #chatHistory {
+      flex: 1;
+      height: 100%;
+      min-height: 0;
+      max-height: none;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    /* 传统蒙古文模式下的问题输入框在右侧 */
+    .lang-mw #chat-section .chat-input-area textarea {
+      flex: 1;
+      height: 100%;
+      min-height: 0;
+      max-height: none;
+      min-width: 100px;
+      max-width: none;
+      width: 100%;
+      resize: both;
+      margin: 0;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    /* 传统蒙古文模式下的文件选择框完整显示 */
+    .lang-mw #chat-section input[type="file"] {
+      height: 150px;
+      width: 100%;
+      max-width: 220px;
+      margin-bottom: 15px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      direction: ltr;
+    }
+
+    /* 恢复其他语言的横排样式 */
+    .lang-zh,
+    .lang-en {
+      writing-mode: horizontal-tb;
+      direction: ltr;
+    }
+
+    .lang-zh .shell,
+    .lang-zh .card,
+    .lang-zh .feature-section,
+    .lang-zh h2,
+    .lang-zh p,
+    .lang-zh label,
+    .lang-zh input,
+    .lang-zh textarea,
+    .lang-zh button,
+    .lang-zh pre,
+    .lang-zh div {
+      writing-mode: horizontal-tb;
+      direction: ltr;
+    }
+
+    .lang-en .shell,
+    .lang-en .card,
+    .lang-en .feature-section,
+    .lang-en h2,
+    .lang-en p,
+    .lang-en label,
+    .lang-en input,
+    .lang-en textarea,
+    .lang-en button,
+    .lang-en pre,
+    .lang-en div {
+      writing-mode: horizontal-tb;
+      direction: ltr;
+    }
+
+    .shell {
+      flex: 1;
+      margin: 0 0 0 260px;
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      min-height: 100vh;
+    }
+
+    .card {
+      background: var(--panel);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+    }
+
+    .feature-section {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 600px;
+    }
+
+    .feature-section .card {
+      width: 100%;
+      height: 100%;
+      min-height: 600px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 700;
+      color: var(--accent-secondary);
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      width: 100%;
+      font: inherit;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      background: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      margin-top: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #d63850;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(233, 69, 96, 0.4);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(15, 52, 96, 0.05);
+      border-radius: 14px;
+      padding: 14px;
+      min-height: 120px;
+      border: 1px solid rgba(15, 52, 96, 0.1);
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="dock">
+    <div class="dock-header">
+      <div class="dock-logo" data-i18n="dockLogo">AI 文化对话系统</div>
+      <div class="dock-subtitle" data-i18n="dockSubtitle">AI Cultural Dialogue System</div>
+    </div>
+    <div class="dock-nav">
+      <div class="dock-item" onclick="window.location.href='http://127.0.0.1:5000'">
+        <span class="dock-item-icon">←</span>
+        <span class="dock-item-text" data-i18n="navBack">返回主页</span>
+      </div>
+      <div class="dock-item active">
+        <span class="dock-item-icon">🌐</span>
+        <span class="dock-item-text" data-i18n="navTranslate">语言翻译</span>
+      </div>
+      <div class="dock-item">
+        <span class="dock-item-icon">💬</span>
+        <span class="dock-item-text" data-i18n="navChat">文化对话</span>
+      </div>
+    </div>
+    <div class="dock-footer">
+      <div class="dock-item" id="languageSelector">
+        <span class="dock-item-icon">🌍</span>
+        <span class="dock-item-text" data-i18n="navLanguage">语言选择</span>
+      </div>
+    </div>
+    <div id="languageDropdown"
+      style="position: absolute; bottom: 120px; left: 20px; background: rgba(26, 26, 46, 0.98); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 16px; padding: 8px; display: none; z-index: 1001; min-width: 200px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+      <div class="language-option" data-lang="zh" data-i18n="optionZh"
+        style="padding: 14px 18px; font-weight: 500; border-radius: 10px; color: white; transition: all 0.3s ease;">中文
+      </div>
+      <div class="language-option" data-lang="en" data-i18n="optionEn"
+        style="padding: 14px 18px; font-weight: 500; border-radius: 10px; color: white; transition: all 0.3s ease;">
+        English</div>
+      <div class="language-option" data-lang="mw" data-i18n="optionMw"
+        style="padding: 14px 18px; font-weight: 500; border-radius: 10px; color: white; transition: all 0.3s ease;">
+        蒙古文（中国）</div>
+    </div>
+  </nav>
+  <main class="shell">
+
+
+    <!-- 语言翻译功能 -->
+    <section id="translate-section" class="feature-section">
+      <article class="card">
+        <div class="left-column">
+          <h2 data-i18n="translateTitle">民族语言翻译</h2>
+          <div class="source-language">
+            <label for="sourceLang" data-i18n="sourceLang">源语言</label>
+            <select id="sourceLang">
+              <option value="auto" data-i18n="auto">自动识别</option>
+              <option value="zh" data-i18n="zh">中文</option>
+              <option value="en" data-i18n="en">英文</option>
+              <option value="xle_mw" data-i18n="xle_mw">西里尔蒙古文</option>
+              <option value="mw" data-i18n="mw">传统蒙古文</option>
+              <option value="es" data-i18n="es">西班牙语</option>
+              <option value="fr" data-i18n="fr">法语</option>
+              <option value="de" data-i18n="de">德语</option>
+              <option value="ja" data-i18n="ja">日语</option>
+              <option value="ko" data-i18n="ko">韩语</option>
+              <option value="ru" data-i18n="ru">俄语</option>
+              <option value="pt" data-i18n="pt">葡萄牙语</option>
+              <option value="ar" data-i18n="ar">阿拉伯语</option>
+              <option value="hi" data-i18n="hi">印地语</option>
+              <option value="id" data-i18n="id">印尼语</option>
+              <option value="yue" data-i18n="yue">粤语</option>
+            </select>
+          </div>
+          <div class="target-language">
+            <label for="targetLang" data-i18n="targetLang">目标语言</label>
+            <select id="targetLang">
+              <option value="ja" data-i18n="ja">日语</option>
+              <option value="zh" data-i18n="zh">中文</option>
+              <option value="en" data-i18n="en">英文</option>
+              <option value="xle_mw" data-i18n="xle_mw">西里尔蒙古文</option>
+              <option value="mw" data-i18n="mw">传统蒙古文</option>
+              <option value="es" data-i18n="es">西班牙语</option>
+              <option value="fr" data-i18n="fr">法语</option>
+              <option value="de" data-i18n="de">德语</option>
+              <option value="ko" data-i18n="ko">韩语</option>
+              <option value="ru" data-i18n="ru">俄语</option>
+              <option value="pt" data-i18n="pt">葡萄牙语</option>
+              <option value="ar" data-i18n="ar">阿拉伯语</option>
+              <option value="hi" data-i18n="hi">印地语</option>
+              <option value="id" data-i18n="id">印尼语</option>
+              <option value="yue" data-i18n="yue">粤语</option>
+            </select>
+          </div>
+        </div>
+        <div class="text-section">
+          <div class="text-input-area">
+            <label for="translateText" data-i18n="textLabel">文本</label>
+            <textarea id="translateText">欢迎来到我们的文化交流空间。</textarea>
+            <button id="translateBtn" data-i18n="translateBtn">执行翻译</button>
+          </div>
+          <div class="text-result-area">
+            <label data-i18n="resultLabel">结果</label>
+            <pre id="translateResult" data-i18n="waitingTranslate">等待翻译请求...</pre>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 文化对话功能 -->
+    <section id="chat-section" class="feature-section" style="display: none;">
+      <article class="card">
+        <div class="chat-column chat-column-1">
+          <h2 data-i18n="chatTitle">文化对话</h2>
+        </div>
+        <div class="chat-column chat-column-2">
+          <div class="chat-input-wrapper">
+            <label for="chatInput" data-i18n="questionLabel">问题</label>
+            <div class="chat-input-area">
+              <div id="chatHistory"
+                style="background: rgba(15, 52, 96, 0.03); border-radius: 14px; padding: 14px; min-height: 400px; max-height: 500px; overflow-y: auto; margin-bottom: 16px; border: 1px solid rgba(15, 52, 96, 0.08);">
+              </div>
+              <textarea id="chatInput" style="margin-bottom: 10px;"
+                data-i18n="defaultQuestion">请介绍一下图片中民族服饰可能对应的节庆和手工艺。</textarea>
+            </div>
+          </div>
+        </div>
+        <div class="chat-column chat-column-3">
+          <input id="chatImageFile" type="file" accept="image/*" />
+          <button id="chatBtn" data-i18n="sendBtn">发送</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    let latestProfile = null;
+    let chatHistory = [];
+
+    // 语言对照对象
+    const i18n = {
+      zh: {
+        pageTitle: "AI 文化对话系统",
+        dockLogo: "AI 文化对话系统",
+        dockSubtitle: "AI Cultural Dialogue System",
+        navBack: "返回主页",
+        navTranslate: "语言翻译",
+        navChat: "文化对话",
+        navLanguage: "语言选择",
+        optionZh: "中文",
+        optionEn: "English",
+        optionMw: "蒙古文（中国）",
+        translateTitle: "民族语言翻译",
+        sourceLang: "源语言",
+        targetLang: "目标语言",
+        textLabel: "文本",
+        translateBtn: "执行翻译",
+        resultLabel: "结果",
+        waitingTranslate: "等待翻译请求...",
+        translating: "翻译中...",
+        chatTitle: "文化对话",
+        questionLabel: "问题",
+        defaultQuestion: "请介绍一下图片中民族服饰可能对应的节庆和手工艺。",
+        sendBtn: "发送",
+        auto: "自动识别",
+        zh: "中文",
+        en: "英文",
+        xle_mw: "西里尔蒙古文",
+        mw: "传统蒙古文",
+        es: "西班牙语",
+        fr: "法语",
+        de: "德语",
+        ja: "日语",
+        ko: "韩语",
+        ru: "俄语",
+        pt: "葡萄牙语",
+        ar: "阿拉伯语",
+        hi: "印地语",
+        id: "印尼语",
+        yue: "粤语",
+        placeholderAsk: "请输入问题...",
+        placeholderAnalyzing: "已选择图片，正在分析...",
+        msgProcessing: "处理中...",
+        msgGenerating: "生成中...",
+        msgPleaseInput: "请输入问题或选择图片。"
+      },
+      en: {
+        pageTitle: "AI Cultural Dialogue System",
+        dockLogo: "AI Cultural Dialogue System",
+        dockSubtitle: "AI 文化对话系统",
+        navBack: "Back to Home",
+        navTranslate: "Language Translation",
+        navChat: "Cultural Dialogue",
+        navLanguage: "Language",
+        optionZh: "中文",
+        optionEn: "English",
+        optionMw: "Mongolian (China)",
+        translateTitle: "Ethnic Language Translation",
+        sourceLang: "Source Language",
+        targetLang: "Target Language",
+        textLabel: "Text",
+        translateBtn: "Translate",
+        resultLabel: "Result",
+        waitingTranslate: "Waiting for translation...",
+        translating: "Translating...",
+        chatTitle: "Cultural Dialogue",
+        questionLabel: "Question",
+        defaultQuestion: "Please introduce the festivals and crafts that may correspond to the ethnic costumes in the picture.",
+        sendBtn: "Send",
+        auto: "Auto Detect",
+        zh: "Chinese",
+        en: "English",
+        xle_mw: "Cyrillic Mongolian",
+        mw: "Traditional Mongolian",
+        es: "Spanish",
+        fr: "French",
+        de: "German",
+        ja: "Japanese",
+        ko: "Korean",
+        ru: "Russian",
+        pt: "Portuguese",
+        ar: "Arabic",
+        hi: "Hindi",
+        id: "Indonesian",
+        yue: "Cantonese",
+        placeholderAsk: "Please enter a question...",
+        placeholderAnalyzing: "Image selected, analyzing...",
+        msgProcessing: "Processing...",
+        msgGenerating: "Generating...",
+        msgPleaseInput: "Please enter a question or select an image."
+      },
+      mw: {
+        pageTitle: "AI ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠰᠢᠰᠲᠧᠮ",
+        dockLogo: "AI ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠰᠢᠰᠲᠧᠮ",
+        dockSubtitle: "AI Cultural Dialogue System",
+        navBack: "ᠡᠬᠡᠭᠰᠢ ᠬᠣᠲᠠᠭ᠎ᠠ",
+        navTranslate: "ᠬᠡᠯᠡᠨ ᠦ ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ",
+        navChat: "ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ",
+        navAbout: "ᠲᠤᠬᠠᠢ",
+        navLanguage: "ᠬᠡᠯᠡ ᠶᠢᠨ ᠰᠡᠯᠡᠬᠴᠢ",
+        optionZh: "ᠳᠤᠮᠳᠠᠳᠤ ᠬᠡᠯᠡ",
+        optionEn: "English",
+        optionMw: "ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ (ᠪᠦᠭᠦᠳᠡ ᠨᠠᠢᠷᠠᠮᠳᠠᠬᠤ ᠮᠣᠩᠭᠣᠯ ᠤᠨ ᠠᠷᠠᠳ ᠤᠨ ᠣᠯᠠᠨ ᠤᠯᠤᠰᠪᠥᠬᠥᠳᠡ ᠨᠠᠶᠢᠷᠠᠮᠳᠠᠬᠤ ᠳᠤᠮᠳᠠᠳᠤ ᠠᠷᠠᠳ ᠤᠯᠤᠰ)",
+        translateTitle: "ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠬᠡᠯᠡᠨ ᠦ ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ",
+        sourceLang: "ᠡᠬᠡ ᠬᠡᠯᠡ",
+        targetLang: "ᠴᠢᠯᠠᠭᠤᠯᠰᠠᠨ ᠬᠡᠯᠡ",
+        textLabel: "ᠪᠢᠴᠢᠭ",
+        translateBtn: "ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ ᠶᠢ ᠢᠵᠢᠯᠬᠤ",
+        resultLabel: "ᠤᠷᠤᠨ",
+        waitingTranslate: "ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ ᠶᠢᠨ ᠬᠦᠰᠦᠯ ᠦᠨ ᠲᠦᠯᠦᠬᠦ ᠶᠢ ᠪᠡᠯᠡᠪᠡᠯᠡᠭᠡ ᠶᠢᠨ ᠲᠦᠯᠦ...",
+        translating: "ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ ᠪᠣᠯᠤᠭᠠ ᠶᠢᠨ ᠲᠦᠯᠦ...",
+        chatTitle: "ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ",
+        questionLabel: "ᠠᠰᠤᠭᠠ",
+        defaultQuestion: "ᠵᠤᠷᠠᠭ ᠤᠨ ᠳᠣᠲᠣᠷᠠ ᠪᠠᠢ ᠶᠤᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠬᠦᠪᠴᠢ ᠶᠢᠨ ᠲᠣᠬᠠᠢ ᠲᠠᠨ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ ᠪᠠᠶᠠᠷ ᠤᠨ ᠡᠵᠡᠯᠡᠭᠡ ᠲᠠ ᠬᠥᠷᠦᠨ ᠦ ᠦᠵᠢᠯ ᠥᠭᠡᠯ ᠦᠨ ᠲᠦᠯᠦᠬᠦ ᠶᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ",
+        sendBtn: "ᠢᠯᠭᠠᠬᠤ",
+        aboutTitle: "ᠰᠢᠰᠲᠧᠮ ᠤᠨ ᠲᠤᠬᠠᠢ",
+        aboutDesc: "AI ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠰᠢᠰᠲᠧᠮ Python + FastAPI ᠤᠨ ᠰᠤᠷᠤᠭᠯᠰᠠᠨ ᠬᠡᠷᠡᠭᠴᠦ ᠦᠨ ᠲᠥᠪ ᠦᠨ ᠰᠢᠰᠲᠧᠮ ᠦᠨ᠎ᠦ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠲᠠ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠤᠷᠤᠨ ᠳᠤ ᠪᠠᠢ ᠶᠤᠨ ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠶᠢ ᠢᠵᠢᠯᠬᠤ",
+        aboutFeature1Title: "ᠤᠭᠲᠠ ᠵᠤᠷᠠᠭ ᠤᠨ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠪᠠᠢ",
+        aboutFeature1: "ᠵᠤᠷᠠᠭ ᠤᠨ ᠢᠯᠭᠠᠬᠤ ᠤᠨ ᠬᠣᠢᠨ᠎ᠦ ᠪᠢᠴᠢᠭ ᠤᠨ ᠲᠥᠪ ᠦᠨ ᠲᠥᠪ ᠦᠨ ᠦᠷᠡᠭ ᠦᠨ ᠦᠭᠡ ᠢ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠪᠠᠢ, ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠰᠣᠶᠤᠯ ᠤᠨ ᠴᠢᠳᠡᠰ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠪᠠᠢ",
+        aboutFeature2Title: "ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠬᠥᠪᠴᠢ ᠶᠢᠨ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠪᠠᠢ",
+        aboutFeature2: "ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠬᠥᠪᠴᠢ ᠶᠢᠨ ᠲᠣᠬᠠᠢ ᠲᠠᠨ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠰᠣᠶᠤᠯ ᠤᠨ ᠪᠠᠴᠬᠤᠷ ᠤᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠦᠭᠡ ᠢ ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠪᠠᠢ, ᠤᠯᠠᠭᠠᠨ ᠬᠠᠯᠬ᠎ᠠ ᠶᠢᠨ ᠬᠥᠷᠦᠨ ᠦ ᠦᠵᠢᠯ ᠥᠭᠡᠯ ᠦᠨ ᠴᠢᠳᠡᠰ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠲᠤᠷᠭᠤᠯᠬᠤ",
+        aboutFeature3Title: "AI ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ",
+        aboutFeature3: "ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠰᠠᠨ ᠦᠷᠡᠭ ᠦᠨ ᠦᠭᠡ ᠢᠨ ᠤᠷᠤᠨ ᠳᠤ ᠪᠠᠢ ᠶᠤᠨ AI ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠶᠢ ᠢᠵᠢᠯᠬᠤ, ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠰᠣᠶᠤᠯ ᠤᠨ ᠤᠯᠠᠭᠠᠨ ᠬᠠᠯᠬ᠎ᠠ ᠶᠢᠨ ᠴᠢᠳᠡᠰ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠲᠤᠷᠭᠤᠯᠬᠤ",
+        aboutFeature4Title: "ᠣᠯᠠᠨ ᠬᠡᠯᠡ ᠶᠢ ᠳᠡᠮᠵᠢᠬᠤ",
+        aboutFeature4: "ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠪᠠᠭᠠ ᠬᠡᠯᠡᠨ ᠦ ᠣᠷᠤᠴᠢᠯᠭ᠎ᠠ ᠶᠢ ᠳᠡᠮᠵᠢᠬᠤ, ᠬᠡᠯᠡ ᠶᠢᠨ ᠰᠡᠯᠡᠬᠴᠢ ᠶᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ, ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠶᠢ ᠲᠤᠷᠭᠤᠯᠬᠤ",
+        aboutTech1: "FastAPI ᠲᠥᠪ ᠦᠨ ᠰᠢᠰᠲᠧᠮ ᠦᠨ ᠦᠭᠡ",
+        aboutTech2: "ᠵᠢᠫᠦ AI ᠶᠡᠬᠡ ᠮᠣᠳᠡᠯ",
+        aboutTech3: "ᠤᠭᠲᠠ ᠨᠡᠢᠲᠡᠯᠡᠭᠰᠡᠨ ᠬᠠᠷᠢᠭᠴᠤ ᠶᠢᠨ ᠳᠤᠷᠠᠯᠭ᠎ᠠ",
+        aboutTech4: "ᠣᠯᠠᠨ ᠬᠡᠯᠡ ᠶᠢᠨ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤᠨ ᠳᠡᠮᠵᠢᠯᠭ᠎ᠠ",
+        aboutGoal: "ᠡᠨᠡ ᠰᠢᠰᠲᠧᠮ ᠦᠨ ᠦᠭᠡ ᠢ ᠪᠣᠯᠤᠭᠠ ᠶᠢᠨ ᠲᠦᠯᠦ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠲᠠ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠤᠷᠤᠨ ᠳᠤ ᠪᠠᠢ ᠶᠤᠨ ᠰᠣᠶᠤᠯ ᠤᠨ ᠬᠠᠷᠢᠯᠴᠤᠯᠭ᠎ᠠ ᠶᠢ ᠢᠵᠢᠯᠬᠤ, ᠳᠡᠯᠡᠬᠡᠢ ᠶᠢ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠰᠣᠶᠤᠯ ᠤᠨ ᠴᠢᠳᠡᠰ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠲᠤᠷᠭᠤᠯᠬᠤ",
+        auto: "ᠥᠪᠡᠷ ᠲᠦᠷ ᠦᠨ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠪᠠᠢ",
+        zh: "ᠳᠤᠮᠳᠠᠳᠤ ᠬᠡᠯᠡ",
+        en: "English",
+        xle_mw: "ᠰᠢᠷᠢᠯ ᠤᠨ ᠤᠰᠤᠭ ᠤᠨ ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ",
+        mw: "ᠤᠯᠠᠭᠠᠨ ᠬᠠᠯᠬ᠎ᠠ ᠶᠢᠨ ᠮᠣᠩᠭᠤᠯ ᠬᠡᠯᠡ",
+        es: "ᠰᠫᠠᠨᠢ ᠬᠡᠯᠡ",
+        fr: "ᠹᠷᠡᠨᠴᠢ ᠬᠡᠯᠡ",
+        de: "ᠭᠧᠷᠮᠠᠨ ᠬᠡᠯᠡ",
+        ja: "ᠵᠢᠫᠦᠨ ᠦ ᠬᠡᠯᠡ",
+        ko: "ᠬᠣᠷᠢᠶ᠎ᠠ ᠦᠨ ᠬᠡᠯᠡ",
+        ru: "ᠣᠷᠣᠰ ᠤᠨ ᠬᠡᠯᠡ",
+        pt: "ᠫᠣᠷᠲᠤᠭᠠᠯ ᠤᠨ ᠬᠡᠯᠡ",
+        ar: "ᠠᠷᠠᠪ ᠤᠨ ᠬᠡᠯᠡ",
+        hi: "ᠬᠢᠨᠳᠤ ᠤᠨ ᠬᠡᠯᠡ",
+        id: "ᠢᠨᠳᠣᠨᠧᠰᠢ ᠶᠢᠨ ᠬᠡᠯᠡ",
+        yue: "ᠭᠤᠸᠠᠩ ᠳᠤᠩ ᠤᠨ ᠬᠡᠯᠡ",
+        placeholderAsk: "ᠠᠰᠤᠭᠠ ᠶᠢ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠲᠦᠯᠦᠬᠦ ᠶᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ...",
+        placeholderAnalyzing: "ᠵᠤᠷᠠᠭ ᠤᠨ ᠢᠯᠭᠠᠬᠤ ᠤᠨ ᠬᠣᠢᠨ᠎ᠦ ᠲᠠᠨᠢᠭᠤᠯᠤᠯᠰᠠᠨ ᠦᠷᠡᠭ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ...",
+        msgProcessing: "ᠢᠵᠢᠯᠬᠤ ᠤᠨ ᠲᠦᠯᠦ...",
+        msgGenerating: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠰᠠᠨ ᠦᠷᠡᠭ ᠦᠨ ᠦᠭᠡ ᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ...",
+        msgPleaseInput: "ᠠᠰᠤᠭᠠ ᠶᠢ ᠥᠭᠡᠯ ᠦᠨ ᠤᠯᠢᠭᠡᠯ ᠦᠨ ᠲᠦᠯᠦᠬᠦ ᠶᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ ᠡᠰᠥᠯᠡ ᠵᠤᠷᠠᠭ ᠤᠨ ᠢᠯᠭᠠᠬᠤ ᠤᠨ ᠲᠦᠯᠦᠬᠦ ᠶᠢ ᠨᠡᠢᠲᠡᠯᠡᠵᠦ ᠣᠭᠤᠯᠤᠨ᠎ᠠᠢ."
+      }
+    };
+
+    const languageLabels = {
+      auto: "自动识别",
+      zh: "中文",
+      en: "英文",
+      xle_mw: "西里尔蒙古文",
+      mw: "传统蒙古文",
+      es: "西班牙语",
+      fr: "法语",
+      de: "德语",
+      ja: "日语",
+      ko: "韩语",
+      ru: "俄语",
+      pt: "葡萄牙语",
+      ar: "阿拉伯语",
+      hi: "印地语",
+      id: "印尼语",
+      yue: "粤语",
+    };
+
+    // 当前语言
+    let currentLang = 'zh';
+
+    // 切换语言函数
+    function switchLanguage(lang) {
+      currentLang = lang;
+      const langData = i18n[lang];
+
+      // 更新页面标题
+      document.title = langData.pageTitle;
+
+      // 更新所有带有data-i18n属性的元素
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (langData[key]) {
+          el.textContent = langData[key];
+        }
+      });
+
+      // 更新所有带有data-i18n-placeholder属性的元素
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (langData[key]) {
+          el.placeholder = langData[key];
+        }
+      });
+
+      // 更新语言选择下拉菜单
+      document.querySelectorAll('.language-option').forEach(opt => {
+        const optLang = opt.getAttribute('data-lang');
+        if (langData[`option${optLang.charAt(0).toUpperCase() + optLang.slice(1)}`]) {
+          opt.textContent = langData[`option${optLang.charAt(0).toUpperCase() + optLang.slice(1)}`];
+        }
+      });
+
+      // 更新翻译语言选项
+      updateTranslateLanguageOptions(lang);
+    }
+
+    // 更新翻译语言选项
+    function updateTranslateLanguageOptions(lang) {
+      const langData = i18n[lang];
+      const sourceLangSelect = document.getElementById('sourceLang');
+      const targetLangSelect = document.getElementById('targetLang');
+
+      // 保存当前选中的值
+      const currentSource = sourceLangSelect.value;
+      const currentTarget = targetLangSelect.value;
+
+      // 更新源语言选项
+      Array.from(sourceLangSelect.options).forEach(opt => {
+        if (langData[opt.value]) {
+          opt.textContent = langData[opt.value];
+        }
+      });
+
+      // 更新目标语言选项
+      Array.from(targetLangSelect.options).forEach(opt => {
+        if (langData[opt.value]) {
+          opt.textContent = langData[opt.value];
+        }
+      });
+
+      // 恢复选中的值
+      sourceLangSelect.value = currentSource;
+      targetLangSelect.value = currentTarget;
+    }
+
+    // 渲染对话历史
+    function renderChatHistory() {
+      const chatHistoryElement = document.getElementById('chatHistory');
+      chatHistoryElement.innerHTML = '';
+
+      chatHistory.forEach(message => {
+        const messageElement = document.createElement('div');
+        messageElement.style.marginBottom = '12px';
+        messageElement.style.padding = '10px';
+        messageElement.style.borderRadius = '10px';
+
+        if (message.role === 'user') {
+          messageElement.style.background = 'rgba(233, 69, 96, 0.12)';
+          messageElement.style.textAlign = 'right';
+          messageElement.style.marginLeft = '20%';
+          messageElement.style.border = '1px solid rgba(233, 69, 96, 0.2)';
+        } else {
+          messageElement.style.background = 'rgba(15, 52, 96, 0.05)';
+          messageElement.style.textAlign = 'left';
+          messageElement.style.marginRight = '20%';
+          messageElement.style.border = '1px solid rgba(15, 52, 96, 0.1)';
+        }
+
+        messageElement.innerHTML = message.content;
+        chatHistoryElement.appendChild(messageElement);
+      });
+
+      // 自动滚动到底部
+      chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
+    }
+
+    // 导航栏交互
+    const dockItems = document.querySelectorAll('.dock-nav .dock-item');
+    const sections = document.querySelectorAll('.feature-section');
+    const languageSelector = document.getElementById('languageSelector');
+    const languageDropdown = document.getElementById('languageDropdown');
+
+    dockItems.forEach((item, index) => {
+      item.addEventListener('click', function () {
+        // 移除所有激活状态
+        dockItems.forEach(i => i.classList.remove('active'));
+        // 添加当前激活状态
+        this.classList.add('active');
+
+        // 隐藏所有功能区域
+        sections.forEach(section => {
+          section.style.display = 'none';
+        });
+
+        // 显示对应功能区域
+        const sectionIds = ['translate-section', 'chat-section'];
+        if (sectionIds[index]) {
+          document.getElementById(sectionIds[index]).style.display = 'block';
+        }
+      });
+    });
+
+    // 语言选择功能
+    languageSelector.addEventListener('click', function (e) {
+      e.stopPropagation();
+      languageDropdown.style.display = languageDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // 点击语言选项
+    document.querySelectorAll('.language-option').forEach(option => {
+      option.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const lang = this.getAttribute('data-lang');
+        // 这里可以添加语言切换的逻辑
+        console.log('切换语言到:', lang);
+
+        // 移除所有语言相关的类
+        document.body.classList.remove('lang-mw', 'lang-zh', 'lang-en');
+
+        // 添加对应语言的类
+        if (lang === 'mw') {
+          document.body.classList.add('lang-mw');
+          // 自动将目标语言切换为传统蒙古文
+          document.getElementById('targetLang').value = 'mw';
+        } else if (lang === 'zh') {
+          document.body.classList.add('lang-zh');
+        } else if (lang === 'en') {
+          document.body.classList.add('lang-en');
+        }
+
+        // 调用语言切换函数，更新界面文字
+        switchLanguage(lang);
+
+        languageDropdown.style.display = 'none';
+      });
+    });
+
+    // 点击页面其他地方关闭下拉菜单
+    document.addEventListener('click', function () {
+      languageDropdown.style.display = 'none';
+    });
+
+    // 页面加载完成后显示语言选择框并初始化语言
+    window.addEventListener('load', function () {
+      // 初始化语言为中文
+      switchLanguage('zh');
+      // 延迟显示，确保页面完全加载
+      setTimeout(function () {
+        languageDropdown.style.display = 'block';
+      }, 500);
+    });
+
+    function formatAnalyzeResult(data) {
+      const fileAnalysis = data.file_analysis || {};
+      const culture = data.culture_analysis || {};
+      const clothingFeatures = Array.isArray(culture.clothing_features)
+        ? culture.clothing_features.filter(Boolean).join("、")
+        : "";
+      const recommendedItems = Array.isArray(culture.recommended_culture_items)
+        ? culture.recommended_culture_items.filter(Boolean).map((item) => `- ${item}`).join("\n")
+        : "";
+      const confidence = typeof fileAnalysis.confidence === "number"
+        ? `${Math.round(fileAnalysis.confidence * 100)}%`
+        : "未提供";
+
+      // 处理文化故事的Markdown格式
+      const culturalStory = culture.cultural_story || "暂无文化故事。";
+      const formattedStory = formatMarkdown(culturalStory);
+
+      return [
+        "文件信息",
+        `类型：${fileAnalysis.file_type || "未识别"}`,
+        `描述：${fileAnalysis.detailed_description || "暂无描述"}`,
+        `置信度：${confidence}`,
+        "",
+        "文化识别",
+        `判断结果：${culture.ethnicity || "暂未判断"}`,
+        `服饰特征：${clothingFeatures || "暂无明显特征"}`,
+        "",
+        "文化背景",
+        formattedStory,
+        "",
+        "推荐延伸体验",
+        recommendedItems || "暂无推荐内容",
+        culture.caution ? `\n注意：${culture.caution}` : "",
+      ].join("\n");
+    }
+
+    // 处理Markdown格式
+    function formatMarkdown(text) {
+      // 修正特殊符号
+      text = text.replace(/�包/g, "蒙古包");
+
+      // 处理标题
+      text = text.replace(/^### (.*$)/gm, "<h3>$1</h3>");
+      text = text.replace(/^#### (.*$)/gm, "<h4>$1</h4>");
+      text = text.replace(/^##### (.*$)/gm, "<h5>$1</h5>");
+
+      // 处理加粗文本
+      text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+      // 处理无序列表
+      text = text.replace(/^- (.*$)/gm, "<li>$1</li>");
+      text = text.replace(/(<li>.*?<\/li>)/gs, "<ul>$1</ul>");
+
+      // 处理有序列表
+      text = text.replace(/^\d+\. (.*$)/gm, "<li>$1</li>");
+      text = text.replace(/(<li>.*?<\/li>)/gs, "<ol>$1</ol>");
+
+      // 处理段落
+      text = text.replace(/\n\n/g, "</p><p>");
+      text = "<p>" + text + "</p>";
+
+      // 清理多余的标签
+      text = text.replace(/<p><\/p>/g, "");
+
+      return text;
+    }
+
+    function formatChatReply(data) {
+      const reply = typeof data.reply === "string" ? data.reply.trim() : "";
+      if (!reply) {
+        return "暂未生成有效回复。";
+      }
+      // 处理Markdown格式
+      return formatMarkdown(reply);
+    }
+
+
+
+    // 翻译函数
+    async function translateText(text, sourceLang, targetLang) {
+      const response = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: text,
+          source_language: sourceLang,
+          target_language: targetLang,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok && Array.isArray(data.translations) && data.translations.length > 0) {
+        return data.translations[0].content;
+      }
+      throw new Error('翻译失败');
+    }
+
+    document.getElementById("translateBtn").addEventListener("click", async () => {
+      const result = document.getElementById("translateResult");
+      result.textContent = i18n[currentLang].translating;
+      const response = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: document.getElementById("translateText").value,
+          source_language: document.getElementById("sourceLang").value,
+          target_language: document.getElementById("targetLang").value,
+        }),
+      });
+      const data = await response.json();
+      if (response.ok && Array.isArray(data.translations) && data.translations.length > 0) {
+        if (data.translations.length === 1) {
+          result.textContent = data.translations[0].content;
+          return;
+        }
+        const langData = i18n[currentLang];
+        result.textContent = data.translations
+          .map((item) => `${langData[item.language] || item.language}\n${item.content}`)
+          .join("\n\n");
+        return;
+      }
+      result.textContent = JSON.stringify(data, null, 2);
+    });
+
+    // 文件选择事件处理
+    document.getElementById("chatImageFile").addEventListener("change", function () {
+      const chatInput = document.getElementById("chatInput");
+      const langData = i18n[currentLang];
+      if (this.files.length > 0) {
+        // 选择文件后禁用问题输入框
+        chatInput.disabled = true;
+        chatInput.placeholder = langData.placeholderAnalyzing;
+      } else {
+        // 没有选择文件时启用问题输入框
+        chatInput.disabled = false;
+        chatInput.placeholder = langData.placeholderAsk;
+      }
+    });
+
+    document.getElementById("chatBtn").addEventListener("click", async () => {
+      const chatInput = document.getElementById("chatInput");
+      const userMessage = chatInput.value.trim();
+      const fileInput = document.getElementById("chatImageFile");
+      const langData = i18n[currentLang];
+      const isMongolianMode = currentLang === 'mw';
+
+      if (!userMessage && !fileInput.files.length) {
+        chatHistory.push({ role: "assistant", content: langData.msgPleaseInput });
+        renderChatHistory();
+        return;
+      }
+
+      const chatHistoryElement = document.getElementById('chatHistory');
+      const loadingElement = document.createElement('div');
+      loadingElement.id = 'loadingMessage';
+      loadingElement.style.marginBottom = '12px';
+      loadingElement.style.padding = '10px';
+      loadingElement.style.borderRadius = '10px';
+      loadingElement.style.background = 'rgba(15, 52, 96, 0.05)';
+      loadingElement.style.textAlign = 'left';
+      loadingElement.style.marginRight = '20%';
+      loadingElement.style.border = '1px solid rgba(15, 52, 96, 0.1)';
+      loadingElement.textContent = langData.msgProcessing;
+      chatHistoryElement.appendChild(loadingElement);
+      chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
+
+      try {
+        if (fileInput.files.length) {
+          const form = new FormData();
+          form.append("file", fileInput.files[0]);
+          const analyzeResponse = await fetch("/api/analyze", { method: "POST", body: form });
+          const analyzeData = await analyzeResponse.json();
+
+          if (analyzeResponse.ok) {
+            latestProfile = analyzeData.culture_analysis || null;
+            const analysisResult = formatAnalyzeResult(analyzeData);
+
+            let displayResult = analysisResult;
+            if (isMongolianMode) {
+              displayResult = await translateText(analysisResult, 'zh', 'mw');
+            }
+
+            chatHistory.push({
+              role: "assistant",
+              content: `图片分析结果：<br>${displayResult}`
+            });
+            renderChatHistory();
+          } else {
+            chatHistory.push({ role: "assistant", content: `分析错误: ${JSON.stringify(analyzeData, null, 2)}` });
+            renderChatHistory();
+          }
+        }
+
+        if (userMessage) {
+          chatHistory.push({ role: "user", content: userMessage });
+          renderChatHistory();
+          chatInput.value = "";
+
+          const chatLoadingElement = document.createElement('div');
+          chatLoadingElement.id = 'chatLoadingMessage';
+          chatLoadingElement.style.marginBottom = '12px';
+          chatLoadingElement.style.padding = '10px';
+          chatLoadingElement.style.borderRadius = '10px';
+          chatLoadingElement.style.background = 'rgba(15, 52, 96, 0.05)';
+          chatLoadingElement.style.textAlign = 'left';
+          chatLoadingElement.style.marginRight = '20%';
+          chatLoadingElement.style.border = '1px solid rgba(15, 52, 96, 0.1)';
+          chatLoadingElement.textContent = langData.msgGenerating;
+          chatHistoryElement.appendChild(chatLoadingElement);
+          chatHistoryElement.scrollTop = chatHistoryElement.scrollHeight;
+
+          let messageToSend = userMessage;
+          const messagesToSend = [...chatHistory];
+
+          if (isMongolianMode) {
+            messageToSend = await translateText(userMessage, 'mw', 'zh');
+            messagesToSend[messagesToSend.length - 1].content = messageToSend;
+          }
+
+          const chatResponse = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              messages: messagesToSend,
+              cultural_profile: latestProfile,
+            }),
+          });
+
+          const chatData = await chatResponse.json();
+          document.getElementById('chatLoadingMessage').remove();
+
+          if (chatResponse.ok) {
+            let aiReply = formatChatReply(chatData);
+
+            if (isMongolianMode) {
+              const plainTextReply = chatData.reply || '';
+              const translatedReply = await translateText(plainTextReply, 'zh', 'mw');
+              aiReply = formatMarkdown(translatedReply);
+            }
+
+            chatHistory.push({ role: "assistant", content: aiReply });
+            renderChatHistory();
+          } else {
+            chatHistory.push({ role: "assistant", content: `对话错误: ${JSON.stringify(chatData, null, 2)}` });
+            renderChatHistory();
+          }
+        }
+      } catch (error) {
+        if (document.getElementById('loadingMessage')) {
+          document.getElementById('loadingMessage').remove();
+        }
+        if (document.getElementById('chatLoadingMessage')) {
+          document.getElementById('chatLoadingMessage').remove();
+        }
+        chatHistory.push({ role: "assistant", content: `错误: ${error.message}` });
+        renderChatHistory();
+      } finally {
+        fileInput.value = '';
+        chatInput.disabled = false;
+        chatInput.placeholder = "请输入问题...";
+      }
+    });
+  </script>
+</body>
+
+</html>

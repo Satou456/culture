@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "title": "春节文化",
+        "description": "辞旧迎新、团圆祈福的年节",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/chunjie/1.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/chunjie/chunjie.png"
+    },
+    {
+        "id": 2,
+        "title": "游牧文化",
+        "description": "依托草原、逐水草迁徙的游牧民族核心文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/youmu/2.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/youmu/2.png"
+    },
+    {
+        "id": 3,
+        "title": "藏文化",
+        "description": "融合藏传佛教与高原生态的文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/zang/3.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/zang/3.png"
+    },
+    {
+        "id": 4,
+        "title": "农耕文化",
+        "description": "以农业生产为基础，衍生出的社会习俗、宗教信仰等文化体系",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/nonggeng/4.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/nonggeng/4.png"
+    },
+    {
+        "id": 5,
+        "title": "西南山地文化",
+        "description": "西南地区多民族融合形成的山地特色文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinanshandi/5.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinanshandi/5.png"
+    },
+    {
+        "id": 6,
+        "title": "佛教文化",
+        "description": "起源于印度，在中国形成独特宗派体系的佛教文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/fo/6.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/fo/6.png"
+    },
+    {
+        "id": 7,
+        "title": "新疆文化",
+        "description": "多元民族融合，兼具东西方特色的边疆文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinjiang/7.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinjiang/7.png"
+    },
+    {
+        "id": 8,
+        "title": "故宫文化",
+        "description": "以故宫为核心，承载的皇家历史、建筑艺术与文化遗产",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/gugong/8.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/gugong/8.png"
+    },
+    {
+        "id": 9,
+        "title": "广西文化",
+        "description": "以壮族为主体，多民族共生的华南边疆特色文化",
+        "videoUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/guangxi/9.mp4",
+        "thumbnailUrl": "https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/guangxi/9.png"
+    }
+]

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="satou.community.mapper.PostMapper">
+
+    <resultMap id="PostDetailVOMap" type="satou.community.domain.vo.PostDetailVO">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="file_url" property="fileUrl"/>
+        <result column="user_id" property="userId"/>
+        <result column="authorUsername" property="authorUsername"/>
+        <result column="authorName" property="authorName"/>
+        <result column="authorAvatar" property="authorAvatar"/>
+        <result column="ethnic_group" property="ethnicGroup"/>
+        <result column="region" property="region"/>
+        <result column="visibility" property="visibility"/>
+        <result column="comments" property="comments"/>
+        <result column="collects" property="collects"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="top" property="top"/>
+        <result column="create_time" property="createTime"/>
+
+        <!-- 关键修改：指定 column 和 typeHandler -->
+        <!-- javaType 可以省略，因为 TypeHandler 上有 @MappedTypes(List.class)，但写上更清晰 -->
+        <result column="tagNames" property="tags" javaType="java.util.List"
+                typeHandler="satou.community.handler.StringListTypeHandler"/>
+    </resultMap>
+
+    <select id="selectPostList" resultMap="PostDetailVOMap">
+        SELECT
+        p.id,
+        p.title,
+        p.content,
+        p.file_url,
+        p.user_id,
+        p.ethnic_group,
+        p.region,
+        p.visibility,
+        p.comments,
+        p.collects,
+        p.like_count,
+        p.top,
+        p.create_time,
+        u.nickname as authorName,
+        u.avatar as authorAvatar,
+        tag_agg.tagNames
+        FROM post p
+        LEFT JOIN user u ON p.user_id = u.id
+        LEFT JOIN (
+        SELECT
+        pt.post_id,
+        GROUP_CONCAT(t.name) as tagNames
+        FROM post_tag pt
+        LEFT JOIN tags t ON pt.tag_id = t.id
+        GROUP BY pt.post_id
+        ) tag_agg ON p.id = tag_agg.post_id
+
+        <where>
+            <choose>
+                <when test="targetUserId != null and targetUserId != ''">
+                    AND p.user_id = #{targetUserId}
+                    <if test="currentUserId == null or currentUserId == ''">
+                        AND p.visibility = 1
+                    </if>
+                    <if test="currentUserId != null and currentUserId != '' and currentUserId != targetUserId">
+                        AND (p.visibility = 1 OR (p.visibility = 2 AND EXISTS (
+                        SELECT 1 FROM follow f
+                        WHERE f.user_id = #{currentUserId} AND f.friend_id = #{targetUserId}
+                        )))
+                    </if>
+                </when>
+                <otherwise>
+                    AND p.visibility = 1
+                </otherwise>
+            </choose>
+        </where>
+
+        <choose>
+            <when test="sortType == 'latest'">
+                ORDER BY p.top DESC, p.create_time DESC
+            </when>
+            <when test="sortType == 'hottest'">
+                ORDER BY p.top DESC, p.like_count DESC, p.create_time DESC
+            </when>
+            <otherwise>
+                ORDER BY p.top DESC, p.create_time DESC
+            </otherwise>
+        </choose>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectDetailVO" resultMap="PostDetailVOMap">
+        SELECT
+            p.id, p.title, p.content, p.file_url, p.user_id,
+            p.ethnic_group, p.region, p.visibility, p.comments,
+            p.collects, p.like_count, p.top, p.create_time,
+            u.username as authorUsername,
+            u.nickname as authorName,
+            u.avatar as authorAvatar,
+            GROUP_CONCAT(t.name) as tagNames
+        FROM post p
+                 LEFT JOIN user u ON p.user_id = u.id
+                 LEFT JOIN post_tag pt ON p.id = pt.post_id
+                 LEFT JOIN tags t ON pt.tag_id = t.id
+        WHERE p.id = #{postId}
+        GROUP BY
+            p.id, p.title, p.content, p.file_url, p.user_id,
+            p.ethnic_group, p.region, p.visibility, p.comments,
+            p.collects, p.like_count, p.top, p.create_time,
+            u.username, u.nickname, u.avatar
+    </select>
+</mapper>

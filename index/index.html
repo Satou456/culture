@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中华民族文化馆 - 探索中华文化的现代魅力</title>
+    <meta name="description" content="中华民族文化馆致力于展示和推广中国传统文化，融合现代设计与传统元素，为您带来独特的文化体验。">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+</head>
+
+<body>
+    <!-- 头部 -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <nav class="nav nav-left" role="navigation" aria-label="左侧导航">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#home" class="nav-link active" aria-current="page">首页</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">中华民族介绍</a></li>
+                        <li class="nav-item"><a href="#history" class="nav-link">中华民族的历史</a></li>
+                    </ul>
+                </nav>
+                <div class="logo">
+                    <a href="#home" aria-label="返回首页">
+                        <span class="logo-text">中华民族文化馆</span>
+                        <span class="logo-subtext">CHINESE CULTURE CENTER</span>
+                    </a>
+                </div>
+                <nav class="nav nav-right" role="navigation" aria-label="右侧导航">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="#services" class="nav-link">中华民族文化概览大屏</a></li>
+                        <li class="nav-item"><a href="#forum" class="nav-link">AI对话系统</a></li>
+                        <li class="nav-item"><a href="#community" class="nav-link">论坛平台</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button id="navToggle" class="nav-toggle" aria-label="切换导航菜单">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主页内容 -->
+    <main>
+        <!-- 首页部分 -->
+        <section id="home" class="section">
+            <!-- 背景视频切换 -->
+            <div class="video-container video-switcher">
+                <!-- 视频1 -->
+                <div class="video-item active">
+                    <video muted loop playsinline preload="auto">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/chunjie/1.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频2 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/youmu/2.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频3 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/zang/3.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频4 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/nonggeng/4.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频5 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinanshandi/5.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频6 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/fo/6.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频7 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinjiang/7.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频8 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/gugong/8.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频9 -->
+                <div class="video-item">
+                    <video muted loop playsinline preload="none">
+                        <source src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/guangxi/9.mp4"
+                            type="video/mp4">
+                        您的浏览器不支持HTML5视频播放。
+                    </video>
+                </div>
+                <!-- 视频控制 -->
+                <div class="video-controls coverflow-controls">
+                    <div class="coverflow-item active" data-index="0">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/chunjie/chunjie.png"
+                            alt="视频1" class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="1">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/youmu/2.png" alt="视频2"
+                            class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="2">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/zang/3.png" alt="视频3"
+                            class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="3">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/nonggeng/4.png"
+                            alt="视频4" class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="4">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinanshandi/5.png"
+                            alt="视频5" class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="5">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/fo/6.png" alt="视频6"
+                            class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="6">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/xinjiang/7.png"
+                            alt="视频7" class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="7">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/gugong/8.png" alt="视频8"
+                            class="thumbnail">
+                    </div>
+                    <div class="coverflow-item" data-index="8">
+                        <img src="https://teststorage1.oss-cn-beijing.aliyuncs.com/video_display/guangxi/9.png"
+                            alt="视频9" class="thumbnail">
+                    </div>
+                </div>
+            </div>
+            <!-- 内容 -->
+            <div class="container">
+                <h2>中华民族文化馆</h2>
+                <p></p>
+            </div>
+        </section>
+
+        <!-- 关于我们部分 -->
+        <section id="about" class="section">
+            <div class="container">
+                <!-- 左侧轮播照片 -->
+                <div class="carousel">
+                    <div class="carousel-item active">
+                        <img src="image/56mz.png" alt="中华民族团结">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./image/56mmz1.png" alt="中华文化多样性">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./image/mz3.png" alt="各民族文化交流">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./image/chinese_56.png" alt="中国历史文化遗产">
+                    </div>
+                </div>
+                <!-- 右侧内容 -->
+                <div class="content">
+                    <div class="content-header">
+                        <h2>什么是中华民族</h2>
+                        <button id="ethnicGroupsBtn" class="btn btn-primary">查看56个民族</button>
+                    </div>
+                    <p>中华民族是中国各民族的统称，包括汉族、蒙古族、回族、藏族、维吾尔族、苗族、彝族、壮族、布依族、朝鲜族、满族、侗族、瑶族、白族、土家族、哈尼族、哈萨克族、傣族、黎族、傈僳族、佤族、畲族、高山族、拉祜族、水族、东乡族、纳西族、景颇族、柯尔克孜族、土族、达斡尔族、仫佬族、羌族、布朗族、撒拉族、毛南族、仡佬族、锡伯族、阿昌族、普米族、塔吉克族、怒族、乌孜别克族、俄罗斯族、鄂温克族、德昂族、保安族、裕固族、京族、塔塔尔族、独龙族、鄂伦春族、赫哲族、门巴族、珞巴族、基诺族等56个民族。
+                    </p>
+                    <p>中华民族是一个历史形成的命运共同体，各民族在长期的历史发展中相互融合、相互依存，共同创造了灿烂的中华文化。中华民族具有多元一体的特征，多元是指各民族文化的多样性，一体是指各民族在历史发展中形成的统一整体。
+                    </p>
+                    <p>中华民族的概念最早由梁启超在1902年提出，经过百余年的发展，已成为中国各民族共同的身份认同。中华民族伟大复兴是近代以来中国人民最伟大的梦想，需要各民族共同团结奋斗、共同繁荣发展。</p>
+                    <h3>为什么叫中华民族</h3>
+                    <p>“中华民族”这一名称的由来，与中国历史上的民族融合和文化认同密切相关。</p>
+                    <p><strong>“中”字的含义：</strong>意为中间、中心，象征着中国作为文明古国在东亚地区的核心地位。在传统文化中，“中”也代表着中正、中和的价值观，体现了中华民族追求和谐、平衡的文化精神。
+                    </p>
+                    <p><strong>“华”字的含义：</strong>原指华丽、光彩，后引申为文化的繁荣昌盛。在古代，“华”常用来指代中原地区的华夏文明，与“夷”相对，代表着先进的文化和礼仪。</p>
+                    <p><strong>“民族”的含义：</strong>是近代从西方传入的概念，指具有共同语言、地域、经济生活以及共同文化心理素质的稳定共同体。</p>
+                    <p>“中华民族”一词的组合，既体现了中国各民族对共同文化传统的认同，也表达了各民族作为一个整体的团结意识。这一名称超越了单一民族的界限，成为中国各民族共同的身份标识。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 中华民族的历史部分 -->
+        <section id="history" class="section">
+            <div class="container">
+                <h2>中华民族的历史</h2>
+                <p>中华民族有着悠久的历史和灿烂的文化，从远古时期的华夏文明到现代的中华民族共同体，经历了漫长的发展过程。</p>
+
+                <!-- 历史内容展示区 -->
+                <div class="history-content">
+                    <div id="historyDisplay" class="history-display">
+                        <div class="history-item active" data-period="ancient">
+                            <h3>远古时期</h3>
+                            <p>这是中华民族的起源与孕育阶段。距今约170万年的元谋人、70万至20万年的北京人等古人类，已在中华大地上留下了用火、制造工具的痕迹。进入新石器时代，黄河流域的仰韶文化、龙山文化，长江流域的河姆渡文化、良渚文化等，展现出早期农业文明的曙光。传说中的炎帝、黄帝部落，在涿鹿之战后逐渐融合，形成了华夏族的雏形，"炎黄子孙"的称谓由此而来。这一时期，原始的图腾崇拜、部落联盟与早期的伦理观念，共同奠定了中华民族的文化基因与身份认同。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="xia-shang-zhou">
+                            <h3>夏商周时期</h3>
+                            <p>这是中华民族早期国家形态形成与发展的关键阶段。夏朝（约前2070—前1600年）作为中国历史上第一个王朝，打破了原始部落的禅让制，确立了"家天下"的世袭制。商朝（约前1600—前1046年）以成熟的甲骨文、精美的青铜器（如司母戊鼎）和发达的青铜文明著称。西周（前1046—前771年）通过分封制、宗法制和礼乐制度，构建起严密的统治网络，将华夏族的活动范围拓展至黄河中下游及江淮地区。"华夏"作为民族共同体的概念逐渐清晰，为后世大一统格局奠定了基础。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="spring-autumn">
+                            <h3>春秋战国时期</h3>
+                            <p>这是一个大动荡、大变革与大融合的时代。周王室衰微，诸侯争霸与兼并战争频发，却也催生了思想文化的空前繁荣——"百家争鸣"中，儒家（孔子、孟子）、道家（老子、庄子）、法家（韩非子）、墨家（墨子）等学派竞相绽放，提出了仁、礼、无为、法治等核心思想，成为中华民族精神的重要源头。同时，中原华夏族与周边的戎、狄、蛮、夷等民族在战争、贸易与迁徙中加速融合，"华夷之辨"的界限逐渐模糊，为秦汉统一多民族国家的形成铺平了道路。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="qin-han">
+                            <h3>秦汉时期</h3>
+                            <p>这是中华民族大一统格局正式确立的时期。秦朝（前221—前207年）：秦始皇横扫六国，建立起中国历史上第一个中央集权的大一统王朝，统一文字、度量衡、货币与车轨，修筑长城与驰道，强化了民族共同体的纽带。汉朝（前202—220年）：西汉初年的休养生息与汉武帝时期的开疆拓土，巩固了大一统格局；"罢黜百家，独尊儒术"使儒家思想成为正统，深刻影响了中华民族的价值取向；张骞出使西域开辟丝绸之路，中华文明的影响力远播中亚、欧洲。"汉族"的称谓也在这一时期逐渐形成，成为中华民族的主体民族。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="three-kingdoms">
+                            <h3>三国两晋南北朝时期</h3>
+                            <p>这是政权更迭频繁、民族大融合的关键阶段。三国鼎立（魏、蜀、吴）后，西晋短暂统一，随即陷入"五胡乱华"的动荡。北方的匈奴、鲜卑、羯、氐、羌等少数民族内迁，与汉族杂居共处，北魏孝文帝改革（迁都洛阳、推行汉化）等举措，极大地推动了民族文化的交融。与此同时，北方人口大量南迁，江南地区得到大规模开发，为经济重心南移奠定了基础。玄学、佛教的盛行与道教的发展，也丰富了中华民族的精神世界，为隋唐盛世的到来积蓄了力量。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="sui-tang">
+                            <h3>隋唐宋元明清时期</h3>
+                            <p>这是中华民族多元一体格局不断巩固、文明高度发展的时期。隋唐（581—907年）：隋朝结束了数百年的分裂，再次实现大一统；唐朝以开放包容的姿态缔造了盛世，科举制完善了人才选拔体系，唐诗、书法、绘画成就斐然，玄奘西行、鉴真东渡等中外交流，彰显了中华文明的活力与影响力。宋元（960—1368年）：宋与辽、金、西夏等民族政权并立，在碰撞中走向融合；元朝疆域空前辽阔，行省制度影响深远，回族等新的民族共同体在这一时期形成，宋词、元曲成为文学艺术的高峰。明清（1368—1912年）：明朝加强中央集权，郑和下西洋彰显了国力；清朝奠定了现代中国的版图，通过册封、改土归流等措施巩固了对边疆的统治，统一多民族国家得到空前巩固。明清小说（如《三国演义》《红楼梦》）等世俗文化的蓬勃发展，也反映了中华民族精神的丰富与深化。
+                            </p>
+                        </div>
+                        <div class="history-item" data-period="modern">
+                            <h3>近代以来</h3>
+                            <p>这是中华民族从沉沦到觉醒、从抗争到复兴的历史阶段。鸦片战争后，西方列强的入侵使中国陷入半殖民地半封建社会的深渊，民族危机空前深重。从洋务运动、戊戌变法到辛亥革命，先进的中国人不断探索救亡图存的道路；五四运动后，中国共产党应运而生，领导中国人民经过28年的新民主主义革命，推翻了"三座大山"，于1949年建立了中华人民共和国，实现了民族独立和人民解放。新中国成立后，中华民族在社会主义建设与改革开放的征程中，不断增强综合国力与文化自信，正向着伟大复兴的目标稳步迈进。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 时间轴选择器 -->
+                <div class="history-timeline-selector">
+                    <div class="timeline-axis">
+                        <div class="timeline-point active" data-period="ancient">
+                            <div class="timeline-label">远古时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="xia-shang-zhou">
+                            <div class="timeline-label">夏商周时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="spring-autumn">
+                            <div class="timeline-label">春秋战国时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="qin-han">
+                            <div class="timeline-label">秦汉时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="three-kingdoms">
+                            <div class="timeline-label">三国两晋南北朝时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="sui-tang">
+                            <div class="timeline-label">隋唐宋元明清时期</div>
+                        </div>
+                        <div class="timeline-point" data-period="modern">
+                            <div class="timeline-label">近代以来</div>
+                        </div>
+                        <div class="timeline-point" id="viewDetails">
+                            <div class="timeline-label">查看详细信息</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务部分 -->
+        <section id="services" class="section">
+            <div class="container">
+                <div class="content-left">
+                    <h2>中华民族文化概览大屏</h2>
+                    <p>“中华民族文化大屏”，是中华民族文化馆铺展的一幅数字长卷。它中华民族中各个文化，化作星河般的可视化图景，指尖轻触地图，青海的风便携着多元民族的故事扑面而来；柱状图勾勒出代表建筑、民族音乐的脉络，折线图与环形图则记录着文化脉搏的跳动与传承的温度。深色科技感的界面，如同一扇通往文明深处的窗口，一键直达的沉浸式大屏，让每一次点击都成为对文脉的致敬，以数字化为舟楫，载着文化自信驶向更广阔的精神远方。
+                    </p>
+                    <a href="./mz_screen/index.html" class="btn btn-primary">中华民族文化概览大屏</a>
+                </div>
+                <div class="content-right">
+                    <div id="chinaMap" style="width: 100%; height: 600%;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 弹窗 -->
+        <div id="blueprintModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>全国中华民族文化概览图</h3>
+                    <button id="closeModal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <iframe
+                        src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=chinese%20cultural%20blueprint%20map%20of%20china&image_size=landscape_16_9"
+                        frameborder="0" width="100%" height="400"></iframe>
+                    <p>”全国中华民族文化概览图“展示了中华文化在全国各地的分布情况，包括传统节日、民间艺术、历史遗迹等文化元素的地理分布。</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="gotoBlueprint" class="btn btn-secondary">跳转到详细蓝图</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 56个民族弹窗 -->
+        <div id="ethnicGroupsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>中国56个民族</h3>
+                    <button id="closeEthnicGroupsModal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="ethnicGroupsContainer" class="ethnic-groups-container">
+                        <!-- 民族卡片将通过JavaScript动态添加 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 民族详情弹窗 -->
+        <div id="ethnicDetailModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="ethnicDetailTitle">民族详情</h3>
+                    <button id="closeEthnicDetailModal" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="ethnicDetailContent" class="ethnic-detail-content">
+                        <!-- 民族详情将通过JavaScript动态添加 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI对话系统入口 -->
+        <section id="forum" class="section">
+            <div class="container">
+                <div class="content-left">
+                    <h2>AI文化对话系统</h2>
+                    <p>通过先进的人工智能技术，与我们的文化智能助手进行对话，探索中华文化的博大精深。</p>
+                    <div class="ai-entry">
+                        <div class="ai-feature">
+                            <div class="ai-icon">
+                                <i class="fas fa-robot fa-4x"></i>
+                            </div>
+                            <h3>智能文化问答</h3>
+                            <p>无论你对中华文化的哪个方面有疑问，我们的AI助手都能为你提供详细的解答和深入的分析。</p>
+                        </div>
+                        <div class="ai-feature">
+                            <div class="ai-icon">
+                                <i class="fas fa-history fa-4x"></i>
+                            </div>
+                            <h3>历史文化探索</h3>
+                            <p>穿越时空，探索中华民族五千年的历史文化，了解各个时期的文化特色和重要事件。</p>
+                        </div>
+                        <div class="ai-feature">
+                            <div class="ai-icon">
+                                <i class="fas fa-language fa-4x"></i>
+                            </div>
+                            <h3>AI支持少数民族语言</h3>
+                            <p>支持多种少数民族语言的识别和回复，让不同民族的用户都能通过自己的母语与AI助手交流，感受中华文化的多样性。</p>
+                        </div>
+                    </div>
+                    <a href="http://127.0.0.1:8000" class="btn btn-primary ai-start-btn">启动AI对话系统</a>
+                </div>
+                <div class="content-right">
+                    <div class="ai-visual">
+                        <div class="ai-globe">
+                            <div class="globe-container">
+                                <div class="globe"></div>
+                                <div class="globe-grid"></div>
+                            </div>
+                            <div class="ai-pulse"></div>
+                        </div>
+                        <div class="ai-chat-preview">
+                            <div class="chat-header">
+                                <h3>AI文化助手</h3>
+                                <span class="status-online">在线</span>
+                            </div>
+                            <div class="chat-messages">
+                                <div class="message ai-message">
+                                    <p>你好！我是中华民族文化馆的AI文化助手，很高兴为你服务。请问你想了解中华文化的哪些方面？</p>
+                                </div>
+                                <div class="message user-message">
+                                    <p>我想了解中国的传统节日</p>
+                                </div>
+                                <div class="message ai-message">
+                                    <p>中国有许多重要的传统节日，如春节、清明节、端午节、中秋节等。每个节日都有其独特的历史背景和文化内涵...</p>
+                                </div>
+                                <div class="message ai-message">
+                                    <p>例如，春节是中国最重要的传统节日，象征着团圆和新的开始。人们会贴春联、放鞭炮、吃年夜饭、拜年等，这些习俗都有着深厚的文化意义。</p>
+                                </div>
+                            </div>
+                            <div class="chat-input disabled">
+                                <input type="text" placeholder="启动AI对话系统以开始交流..." disabled />
+                                <button class="send-btn disabled"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 论坛平台 -->
+        <section id="community" class="section">
+            <div class="container">
+                <div class="content-left">
+                    <h2>论坛平台</h2>
+                    <p>在这里，你可以与来自全国各地的文化爱好者交流分享，探讨中华文化的精髓，共同促进文化的传承与发展。</p>
+                    <div class="community-features">
+                        <div class="community-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments fa-3x"></i>
+                            </div>
+                            <h3>文化交流</h3>
+                            <p>与其他文化爱好者交流心得，分享见解，共同探讨中华文化的魅力。</p>
+                        </div>
+                        <div class="community-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-users fa-3x"></i>
+                            </div>
+                            <h3>社区互动</h3>
+                            <p>参与各类文化主题活动，结识志同道合的朋友，建立文化交流的社区网络。</p>
+                        </div>
+                        <div class="community-feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-book fa-3x"></i>
+                            </div>
+                            <h3>知识分享</h3>
+                            <p>分享自己的文化知识和研究成果，为中华文化的传承与发展贡献力量。</p>
+                        </div>
+                    </div>
+                    <div class="community-buttons">
+                        <a href="http://localhost:5173/" class="btn btn-primary community-join-btn">加入论坛</a>
+                    </div>
+                </div>
+                <div class="content-right">
+                    <div class="community-visual">
+                        <div class="forum-preview">
+                            <div class="forum-header">
+                                <h3>热门讨论</h3>
+                                <span class="forum-stats">1,234 个主题 · 5,678 个回复</span>
+                            </div>
+                            <div class="forum-threads">
+                                <div class="thread-item">
+                                    <div class="thread-title">
+                                        <a href="#">如何更好地传承和弘扬中华传统文化？</a>
+                                    </div>
+                                    <div class="thread-meta">
+                                        <span class="thread-author">文化爱好者</span>
+                                        <span class="thread-date">2026-02-01</span>
+                                        <span class="thread-replies">42 回复</span>
+                                    </div>
+                                </div>
+                                <div class="thread-item">
+                                    <div class="thread-title">
+                                        <a href="#">各民族传统节日的异同比较</a>
+                                    </div>
+                                    <div class="thread-meta">
+                                        <span class="thread-author">民俗研究</span>
+                                        <span class="thread-date">2026-01-28</span>
+                                        <span class="thread-replies">36 回复</span>
+                                    </div>
+                                </div>
+                                <div class="thread-item">
+                                    <div class="thread-title">
+                                        <a href="#">中华文化在现代社会的创新与发展</a>
+                                    </div>
+                                    <div class="thread-meta">
+                                        <span class="thread-author">文化学者</span>
+                                        <span class="thread-date">2026-01-25</span>
+                                        <span class="thread-replies">58 回复</span>
+                                    </div>
+                                </div>
+                                <div class="thread-item">
+                                    <div class="thread-title">
+                                        <a href="#">传统艺术形式的现代转型</a>
+                                    </div>
+                                    <div class="thread-meta">
+                                        <span class="thread-author">艺术爱好者</span>
+                                        <span class="thread-date">2026-01-20</span>
+                                        <span class="thread-replies">29 回复</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="forum-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

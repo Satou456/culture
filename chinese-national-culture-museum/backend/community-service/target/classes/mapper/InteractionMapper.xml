@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="satou.community.mapper.InteractionMapper">
+
+    <select id="selectCollectedPosts" resultType="satou.community.domain.vo.PostDetailVO">
+        SELECT
+            p.id,
+            p.title,
+            p.content,
+            p.file_url AS fileUrl,
+            p.user_id AS userId,
+            u.username AS authorName,
+            u.avatar AS authorAvatar,
+            p.ethnic_group AS ethnicGroup,
+            p.region,
+            p.visibility,
+            p.comments,
+            p.collects,
+            p.like_count AS likeCount,
+            p.top,
+            p.create_time AS createTime,
+            p.modify_time AS modifyTime,
+            (SELECT JSON_ARRAYAGG(t.name) 
+             FROM post_tag pt 
+             JOIN tags t ON pt.tag_id = t.id
+             WHERE pt.post_id = p.id) AS tags
+        FROM
+            interaction i
+        JOIN
+            post p ON i.target_id = p.id AND i.target_type = 1 AND i.action_type = 2
+        JOIN
+            user u ON p.user_id = u.id
+        WHERE
+            i.user_id = #{userId}
+        ORDER BY
+            i.create_time DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+</mapper>

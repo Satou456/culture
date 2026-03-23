@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="satou.community.mapper.UserMapper">
+
+    <!-- 动态更新用户资料 -->
+    <update id="updateProfile" parameterType="map">
+        UPDATE user
+        <set>
+            <if test="dto.nickname != null and dto.nickname != ''" >
+                nickname = #{dto.nickname},
+            </if>
+            <if test="dto.avatar != null and dto.avatar != ''">
+                avatar = #{dto.avatar},
+            </if>
+            <if test="dto.banner != null and dto.banner != ''">
+                banner = #{dto.banner},
+            </if>
+            <if test="dto.bio != null and dto.bio != ''">
+                bio = #{dto.bio},
+            </if>
+            <if test="dto.mobile != null and dto.mobile != ''">
+                mobile = #{dto.mobile},
+            </if>
+            <if test="dto.email != null and dto.email != ''">
+                email = #{dto.email},
+            </if>
+            <if test="dto.ethnicGroup != null and dto.ethnicGroup != ''">
+                ethnic_group = #{dto.ethnicGroup},
+            </if>
+            <if test="dto.province != null and dto.province != ''">
+                province = #{dto.province},
+            </if>
+            <if test="dto.city != null and dto.city != ''">
+                city = #{dto.city},
+            </if>
+            <if test="dto.interestTags != null and dto.interestTags.size() > 0">
+                interest_tags = #{dto.interestTags, typeHandler=com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler},
+            </if>
+            modify_time = NOW()
+        </set>
+        WHERE id = #{userId}
+    </update>
+
+</mapper>
