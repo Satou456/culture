@@ -1,0 +1,421 @@
+/* 历史页面特定样式 */
+.history-timeline-container {
+    min-height: 100vh;
+    padding: 120px 20px 80px;
+    background-image: url('../image/bgj3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.history-content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 80px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.history-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.history-header h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #000000;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.history-header p {
+    font-size: 1.3rem;
+    color: #000000;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 时间轴布局 */
+.timeline-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-axis {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--primary-color);
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.timeline-period {
+    display: flex;
+    width: 100%;
+    margin-bottom: 80px;
+    position: relative;
+}
+
+.timeline-period:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-content {
+    flex: 1;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    margin: 0 40px;
+}
+
+.timeline-content:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.timeline-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+    margin: 30px 0 15px;
+}
+
+.timeline-content p {
+    font-size: 1.1rem;
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.timeline-date {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.timeline-date:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 59, 48, 0.5);
+}
+
+.timeline-events {
+    margin-top: 20px;
+}
+
+.event-item {
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.event-item h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.event-item p {
+    font-size: 1rem;
+    color: #333333;
+    margin-bottom: 0;
+}
+
+/* 页脚样式 */
+.history-footer {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+}
+
+.history-footer p {
+    font-size: 1rem;
+    color: #000000;
+    margin: 0;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes headerSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes contentSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 页面进入动画 */
+body {
+    animation: pageFadeIn 1s ease-out forwards;
+}
+
+/* 头部进入动画 */
+.header {
+    animation: headerSlideIn 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+/* 主要内容进入动画 */
+.history-header {
+    animation: contentSlideUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+
+/* 时间轴进入动画 */
+.timeline-period {
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+}
+
+.timeline-period:nth-child(1) { animation-delay: 0.6s; }
+.timeline-period:nth-child(2) { animation-delay: 0.8s; }
+.timeline-period:nth-child(3) { animation-delay: 1s; }
+.timeline-period:nth-child(4) { animation-delay: 1.2s; }
+.timeline-period:nth-child(5) { animation-delay: 1.4s; }
+.timeline-period:nth-child(6) { animation-delay: 1.6s; }
+.timeline-period:nth-child(7) { animation-delay: 1.8s; }
+.timeline-period:nth-child(8) { animation-delay: 2s; }
+.timeline-period:nth-child(9) { animation-delay: 2.2s; }
+.timeline-period:nth-child(10) { animation-delay: 2.4s; }
+
+/* 返回按钮样式 */
+.back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 59, 48, 0.1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.2);
+    color: var(--primary-color);
+}
+
+.back-button i {
+    transition: all 0.3s ease;
+}
+
+.back-button:hover i {
+    transform: translateX(-3px);
+}
+
+/* 调整头部高度 */
+.header {
+    height: 60px;
+}
+
+.header-content {
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-actions {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .history-content-wrapper {
+        padding: 60px;
+    }
+    
+    .timeline-content {
+        padding: 30px;
+        margin: 0 30px;
+    }
+    
+    .timeline-date {
+        width: 70px;
+        height: 70px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .history-header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .history-content-wrapper {
+        padding: 40px;
+    }
+    
+    .timeline-period {
+        flex-direction: column !important;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    
+    .timeline-content {
+        width: 100%;
+        margin: 20px 0;
+        padding: 25px;
+    }
+    
+    .timeline-axis {
+        position: relative;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 4px;
+        margin: 20px 0;
+        transform: none;
+    }
+    
+    .timeline-date {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .history-timeline-container {
+        padding: 100px 20px 60px;
+    }
+    
+    .history-content-wrapper {
+        padding: 30px 20px;
+    }
+    
+    .history-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .history-header p {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .timeline-content p {
+        font-size: 1rem;
+    }
+    
+    .back-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .history-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .timeline-content {
+        padding: 20px;
+    }
+    
+    .timeline-date {
+        width: 60px;
+        height: 60px;
+        font-size: 0.8rem;
+    }
+}

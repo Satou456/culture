@@ -1,0 +1,299 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+@font-face {
+  font-family: electronicFont;
+  src: url(../font/DS-DIGIT.TTF);
+}
+//动画
+
+/* 水墨晕染效果 */
+@keyframes inkFade {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+    filter: blur(12px) contrast(120%);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+    filter: blur(6px) contrast(110%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) contrast(100%);
+  }
+}
+
+/* 云雾飘动效果 */
+@keyframes mistMove {
+  0% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(-10px); opacity: 0.8; }
+  100% { transform: translateY(0); opacity: 0.6; }
+}
+
+/* 应用到模块 */
+.panel {
+  animation: inkFade 1.2s ease-out forwards;
+}
+
+.map::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+  animation: mistMove 6s ease-in-out infinite;
+}
+
+
+
+body {
+  font-family: "SimHei", "微软雅黑", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url(../images/bg.jpg) no-repeat #121212;
+  background-size: cover;
+  line-height: 1.15;
+  min-height: 100vh;
+}
+header {
+  position: relative;
+  height: 1.25rem;
+  background: rgba(18, 28, 48, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-image: url(../images/head_bg.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% 100%;
+  h1 {
+    font-size: 0.475rem;
+    color: #f8f0e3;
+    text-align: center;
+    line-height: 1rem;
+    font-weight: 500;
+  }
+  .showTime {
+    position: absolute;
+    top: 0;
+    right: 0.375rem;
+    line-height: 0.9375rem;
+    font-size: 0.25rem;
+    color: rgba(224, 200, 104, 0.8); /* 浅鎏金，更柔和 */
+  }
+}
+.mainbox {
+  min-width: 1024px;
+  max-width: 1920px;
+  padding: 0.125rem 0.125rem 0;
+  display: flex;
+  .column {
+    flex: 3;
+    &:nth-child(2) {
+      flex: 7;
+      margin: 0 0.125rem 0.1875rem;
+      overflow: hidden;
+    }
+  }
+}
+.panel {
+  position: relative;
+  height: 3.875rem;
+  /* 核心优化1：边框改为温润的朱红低透，替代刺眼的正红 */
+  border: 1px solid rgba(200, 80, 80, 0.18);
+  /* 核心优化2：背景调整为暖调藏青透，加轻微渐变，更有层次且不冰冷 */
+  background: linear-gradient(
+    180deg,
+    rgba(20, 30, 50, 0.2),
+    rgba(10, 15, 30, 0.15)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-image: url(../images/line\(1\).png);
+  padding: 0 0.1875rem 0.5rem;
+  margin-bottom: 0.1875rem;
+  /* 核心优化3：边角装饰色降低饱和度，红金更柔和 */
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #b83227; /* 朱红，比正红温润 */
+    border-left: 2px solid #b83227;
+  }
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #e0c868; /* 浅鎏金，降低饱和度 */
+    border-right: 2px solid #e0c868;
+  }
+  .panel-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    &::before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid #e0c868; /* 浅鎏金 */
+      border-left: 2px solid #e0c868;
+    }
+    &::after {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid #b83227; /* 朱红 */
+      border-right: 2px solid #b83227;
+    }
+  }
+
+  h2 {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    color: #f9f2e6; /* 更暖的米白 */
+    font-size: 0.25rem;
+    font-weight: 400;
+    a {
+      margin: 0 0.1875rem;
+      color: #e0c868; /* 浅鎏金，和边角统一 */
+      text-decoration: underline;
+      text-underline-offset: 2px; /* 下划线偏移，更精致 */
+    }
+  }
+  .chart {
+    height: 3rem;
+  }
+}
+.no {
+  background: rgba(20, 30, 50, 0.12); /* 同步panel的暖调藏青透 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.1875rem;
+  .no-hd {
+    position: relative;
+    border: 1px solid rgba(200, 80, 80, 0.18); /* 和panel边框统一 */
+    background: rgba(10, 15, 30, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    &::before {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 10px;
+      border-top: 2px solid #b83227;
+      border-left: 2px solid #b83227;
+      top: 0;
+      left: 0;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 10px;
+      border-bottom: 2px solid #e0c868;
+      border-right: 2px solid #e0c868;
+      right: 0;
+      bottom: 0;
+    }
+    ul {
+      display: flex;
+      li {
+        position: relative;
+        flex: 1;
+        text-align: center;
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.875rem;
+        color: #e0c868; /* 浅鎏金 */
+        padding: 0.05rem 0;
+        font-family: electronicFont;
+        font-weight: bold;
+        &:first-child::after {
+          content: "";
+          position: absolute;
+          height: 50%;
+          width: 1px;
+          background: rgba(224, 200, 104, 0.3); /* 浅鎏金分隔线 */
+          right: 0;
+          top: 25%;
+        }
+      }
+    }
+  }
+  .no-bd ul {
+    display: flex;
+    li {
+      flex: 1;
+      height: 0.5rem;
+      line-height: 0.5rem;
+      text-align: center;
+      font-size: 0.225rem;
+      color: #f9f2e6; /* 暖米白 */
+      padding-top: 0.125rem;
+    }
+  }
+}
+.map {
+  position: relative;
+  height: 10.125rem;
+  background: rgba(10, 15, 30, 0.25); /* 同步暖调 */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  .chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    height: 10.125rem;
+    width: 100%;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+  @keyframes rotate1 {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}

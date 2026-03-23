@@ -1,0 +1,562 @@
+[
+    {
+        "id": 1,
+        "name": "汉族",
+        "population": "约13亿",
+        "distribution": "全国各地",
+        "language": "汉语",
+        "culture": "儒家文化、汉字、传统节日",
+        "introduction": "汉族是中国的主体民族，也是世界上人口最多的民族。汉族的先民是古代华夏族，经过长期的民族融合，逐渐形成了今天的汉族。汉族有着悠久的历史和灿烂的文化，儒家思想是汉族传统文化的核心。汉族使用汉字，拥有丰富的文学、艺术、科技成果。传统节日如春节、清明节、端午节、中秋节等是汉族重要的文化遗产。汉族在饮食、服饰、建筑等方面也有独特的文化特色。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=han%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 2,
+        "name": "蒙古族",
+        "population": "约600万",
+        "distribution": "内蒙古、新疆、辽宁",
+        "language": "蒙古语",
+        "culture": "草原文化、那达慕大会、蒙古包",
+        "introduction": "蒙古族主要分布在内蒙古自治区，是中国北方的游牧民族。蒙古族有着悠久的历史，曾经建立过横跨欧亚的蒙古帝国。蒙古族的文化以草原为特色，那达慕大会是蒙古族最重要的传统节日，会上有赛马、摔跤、射箭等传统体育项目。蒙古族的传统民居是蒙古包，适合游牧生活。蒙古族的饮食以牛羊肉、奶制品为主，如手抓肉、奶茶、奶酪等。蒙古族的音乐、舞蹈也有着独特的风格，如长调、马头琴等。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mongolian%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 3,
+        "name": "回族",
+        "population": "约1000万",
+        "distribution": "宁夏、甘肃、河南",
+        "language": "汉语（回族方言）",
+        "culture": "伊斯兰教文化、清真饮食",
+        "introduction": "回族是中国分布最广的少数民族之一，主要聚居在宁夏回族自治区。回族的形成与伊斯兰教的传入密切相关，其先民主要是元代来华的波斯、阿拉伯商人及士兵，后与汉族、蒙古族等民族融合而成。回族信仰伊斯兰教，有着独特的宗教文化和生活习俗。清真饮食是回族文化的重要组成部分，禁食猪肉、自死动物等。回族的传统节日主要有开斋节、古尔邦节、圣纪节等。回族在建筑、音乐、武术等方面也有独特的贡献，如清真寺建筑、花儿民歌、查拳等。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hui%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 4,
+        "name": "藏族",
+        "population": "约700万",
+        "distribution": "西藏、青海、四川",
+        "language": "藏语",
+        "culture": "藏传佛教、酥油茶、青稞酒",
+        "introduction": "藏族主要分布在西藏自治区及青海、四川、甘肃、云南等省的部分地区。藏族有着悠久的历史和灿烂的文化，是中国古老的民族之一。藏传佛教是藏族文化的重要组成部分，对藏族的生活、艺术、建筑等方面产生了深远的影响。布达拉宫、大昭寺等是藏族建筑的杰出代表。藏族的传统饮食以青稞、酥油、牛羊肉为主，酥油茶、青稞酒是藏族的特色饮品。藏族的文学、艺术、医学等也有着独特的成就，如《格萨尔王传》、唐卡、藏医等。藏族的传统节日有藏历新年、雪顿节、望果节等。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tibetan%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 5,
+        "name": "维吾尔族",
+        "population": "约1200万",
+        "distribution": "新疆",
+        "language": "维吾尔语",
+        "culture": "伊斯兰文化、手鼓舞、烤羊肉串",
+        "introduction": "维吾尔族主要分布在新疆维吾尔自治区，是新疆的主体民族。维吾尔族有着悠久的历史和独特的文化，其先民是古代西域的回纥人。维吾尔族信仰伊斯兰教，有着丰富的宗教文化和艺术遗产。维吾尔族的传统建筑以阿以旺、清真寺为特色，装饰精美。维吾尔族的音乐、舞蹈闻名中外，如十二木卡姆、手鼓舞、赛乃姆等。维吾尔族的饮食以面食、牛羊肉为主，烤羊肉串、抓饭、馕等是其特色食品。维吾尔族的传统节日有肉孜节、古尔邦节等。维吾尔族在纺织、印染、刺绣等工艺方面也有独特的成就。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=uyghur%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 6,
+        "name": "苗族",
+        "population": "约1000万",
+        "distribution": "贵州、湖南、云南",
+        "language": "苗语",
+        "culture": "苗族刺绣、芦笙舞、苗年",
+        "introduction": "苗族主要分布在贵州、湖南、云南、四川、广西、湖北等省区。苗族是中国最古老的民族之一，有着悠久的历史和丰富的文化。苗族的语言属于苗瑶语族，有多种方言。苗族的传统服饰色彩鲜艳，图案精美，刺绣、银饰是其特色。苗族的音乐、舞蹈丰富多彩，芦笙舞、木鼓舞等是其传统舞蹈。苗族的传统节日有苗年、四月八、龙船节、吃新节等。苗族的民间文学也很发达，有许多古老的传说和故事。苗族在建筑方面，吊脚楼是其传统民居。苗族的饮食以大米、玉米为主，酸汤鱼、苗族油茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=miao%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 7,
+        "name": "彝族",
+        "population": "约900万",
+        "distribution": "云南、四川、贵州",
+        "language": "彝语",
+        "culture": "火把节、彝族年、彝族文字",
+        "introduction": "彝族主要分布在云南、四川、贵州、广西等省区。彝族是中国古老的民族之一，有着悠久的历史和独特的文化。彝族有自己的文字，是中国最早的民族文字之一。彝族的传统服饰色彩鲜艳，图案丰富。彝族的传统节日有火把节、彝族年、跳公节等，其中火把节是彝族最盛大的传统节日。彝族的音乐、舞蹈丰富多彩，左脚舞、阿细跳月等是其传统舞蹈。彝族的民间文学也很发达，有许多古老的史诗和传说。彝族在建筑方面，土掌房是其传统民居。彝族的饮食以玉米、土豆、荞麦为主，坨坨肉、转转酒等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=yi%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 8,
+        "name": "壮族",
+        "population": "约1700万",
+        "distribution": "广西、云南",
+        "language": "壮语",
+        "culture": "三月三歌圩、铜鼓文化",
+        "introduction": "壮族是中国人口最多的少数民族，主要分布在广西壮族自治区及云南、广东、贵州等省的部分地区。壮族有着悠久的历史和灿烂的文化，是古代百越民族的后裔。壮族有自己的文字，壮锦是壮族著名的传统工艺品。壮族的传统节日有三月三歌圩、牛魂节、中元节等，其中三月三歌圩是壮族最盛大的传统节日。壮族的音乐、舞蹈丰富多彩，扁担舞、铜鼓舞等是其传统舞蹈。壮族的民间文学也很发达，有许多古老的传说和故事。壮族在建筑方面，干栏式建筑是其传统民居。壮族的饮食以大米、玉米为主，五色糯米饭、壮家酸嘢等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=zhuang%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 9,
+        "name": "布依族",
+        "population": "约300万",
+        "distribution": "贵州",
+        "language": "布依语",
+        "culture": "布依族年、布依族纺织",
+        "introduction": "布依族主要分布在贵州省南部和西南部。布依族是中国古老的民族之一，有着悠久的历史和丰富的文化。布依族的语言属于汉藏语系壮侗语族，有自己的文字。布依族的传统服饰色彩鲜艳，图案精美，纺织、蜡染是其特色工艺。布依族的音乐、舞蹈丰富多彩，铜鼓舞、织布舞等是其传统舞蹈。布依族的传统节日有布依族年、三月三、六月六等。布依族的民间文学也很发达，有许多古老的传说和故事。布依族在建筑方面，石板房是其传统民居。布依族的饮食以大米、玉米为主，糯米饭、布依族酸汤等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=buyi%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 10,
+        "name": "朝鲜族",
+        "population": "约200万",
+        "distribution": "吉林、黑龙江、辽宁",
+        "language": "朝鲜语",
+        "culture": "朝鲜族歌舞、泡菜文化",
+        "introduction": "朝鲜族主要分布在吉林、黑龙江、辽宁等省，尤其是延边朝鲜族自治州。朝鲜族是中国的少数民族之一，有着悠久的历史和独特的文化。朝鲜族的语言属于阿尔泰语系，有自己的文字。朝鲜族的传统服饰色彩鲜艳，款式独特。朝鲜族的音乐、舞蹈丰富多彩，长鼓舞、扇子舞等是其传统舞蹈。朝鲜族的传统节日有春节、上元节、寒食节、端午节等。朝鲜族的民间文学也很发达，有许多古老的传说和故事。朝鲜族在建筑方面，传统民居多为土木结构的平房。朝鲜族的饮食以大米、小米为主，泡菜、冷面、烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=korean%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 11,
+        "name": "满族",
+        "population": "约1000万",
+        "distribution": "辽宁、河北、黑龙江",
+        "language": "满语（主要使用汉语）",
+        "culture": "满族服饰、萨满文化",
+        "introduction": "满族主要分布在辽宁、河北、黑龙江、吉林等省，是中国的少数民族之一。满族有着悠久的历史，曾经建立过清朝。满族的语言属于阿尔泰语系，满语现在使用较少，主要使用汉语。满族的传统服饰色彩鲜艳，款式独特，旗袍是其代表性服饰。满族的音乐、舞蹈丰富多彩，莽式舞、萨满舞等是其传统舞蹈。满族的传统节日有春节、元宵节、端午节、中秋节等。满族的民间文学也很发达，有许多古老的传说和故事。满族在建筑方面，传统民居多为砖木结构的四合院。满族的饮食以大米、小米、高粱为主，满汉全席、萨其马等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=manchu%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 12,
+        "name": "侗族",
+        "population": "约300万",
+        "distribution": "贵州、湖南、广西",
+        "language": "侗语",
+        "culture": "鼓楼、风雨桥、侗族大歌",
+        "introduction": "侗族主要分布在贵州、湖南、广西等省区的交界处。侗族是中国的少数民族之一，有着悠久的历史和独特的文化。侗族的语言属于汉藏语系壮侗语族，有自己的文字。侗族的传统建筑以鼓楼、风雨桥为特色，工艺精湛。侗族的音乐、舞蹈丰富多彩，侗族大歌是其代表性音乐形式，被列入世界非物质文化遗产。侗族的传统节日有侗年、三月三、六月六等。侗族的民间文学也很发达，有许多古老的传说和故事。侗族在建筑方面，传统民居多为干栏式建筑。侗族的饮食以大米、小米为主，侗族酸鱼、侗族油茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=dong%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 13,
+        "name": "瑶族",
+        "population": "约300万",
+        "distribution": "广西、湖南、云南",
+        "language": "瑶语",
+        "culture": "瑶族歌舞、盘王节",
+        "introduction": "瑶族主要分布在广西、湖南、云南、广东、贵州等省区。瑶族是中国的少数民族之一，有着悠久的历史和丰富的文化。瑶族的语言属于苗瑶语族，有多种方言。瑶族的传统服饰色彩鲜艳，图案精美，刺绣、银饰是其特色。瑶族的音乐、舞蹈丰富多彩，长鼓舞、铜鼓舞等是其传统舞蹈。瑶族的传统节日有盘王节、达努节、赶鸟节等。瑶族的民间文学也很发达，有许多古老的传说和故事。瑶族在建筑方面，传统民居多为干栏式建筑。瑶族的饮食以大米、玉米为主，瑶族油茶、瑶族酸肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=yao%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 14,
+        "name": "白族",
+        "population": "约200万",
+        "distribution": "云南",
+        "language": "白语",
+        "culture": "三月街、白族民居、三道茶",
+        "introduction": "白族主要分布在云南省大理白族自治州。白族是中国的少数民族之一，有着悠久的历史和独特的文化。白族的语言属于汉藏语系藏缅语族，有自己的文字。白族的传统服饰色彩鲜艳，款式独特。白族的音乐、舞蹈丰富多彩，霸王鞭舞、八角鼓舞等是其传统舞蹈。白族的传统节日有三月街、火把节、绕三灵等。白族的民间文学也很发达，有许多古老的传说和故事。白族在建筑方面，传统民居多为土木结构的四合院，三坊一照壁是其特色。白族的饮食以大米、小麦为主，三道茶、乳扇、饵丝等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bai%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 15,
+        "name": "土家族",
+        "population": "约900万",
+        "distribution": "湖南、湖北、重庆",
+        "language": "土家语（主要使用汉语）",
+        "culture": "摆手舞、吊脚楼",
+        "introduction": "土家族主要分布在湖南、湖北、重庆、贵州等省市的交界处。土家族是中国的少数民族之一，有着悠久的历史和丰富的文化。土家族的语言属于汉藏语系藏缅语族，现在主要使用汉语。土家族的传统服饰色彩鲜艳，图案精美。土家族的音乐、舞蹈丰富多彩，摆手舞、撒叶儿嗬等是其传统舞蹈。土家族的传统节日有赶年、四月八、六月六等。土家族的民间文学也很发达，有许多古老的传说和故事。土家族在建筑方面，吊脚楼是其传统民居。土家族的饮食以大米、玉米为主，土家族腊肉、油茶汤等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tujia%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 16,
+        "name": "哈尼族",
+        "population": "约160万",
+        "distribution": "云南",
+        "language": "哈尼语",
+        "culture": "梯田文化、长街宴",
+        "introduction": "哈尼族主要分布在云南省南部的红河哈尼族彝族自治州。哈尼族是中国的少数民族之一，有着悠久的历史和独特的文化。哈尼族的语言属于汉藏语系藏缅语族，有自己的文字。哈尼族的传统服饰色彩鲜艳，图案精美。哈尼族的音乐、舞蹈丰富多彩，棕扇舞、木鼓舞等是其传统舞蹈。哈尼族的传统节日有十月年、六月年、长街宴等。哈尼族的民间文学也很发达，有许多古老的传说和故事。哈尼族在建筑方面，传统民居多为土木结构的蘑菇房。哈尼族的饮食以大米、玉米为主，哈尼族红米、竹筒饭等是其特色食品。哈尼族的梯田文化是其重要的文化遗产，被列入世界文化遗产名录。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hani%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 17,
+        "name": "哈萨克族",
+        "population": "约150万",
+        "distribution": "新疆",
+        "language": "哈萨克语",
+        "culture": "草原文化、阿肯弹唱",
+        "introduction": "哈萨克族主要分布在新疆维吾尔自治区的北部和西部。哈萨克族是中国的少数民族之一，有着悠久的历史和独特的文化。哈萨克族的语言属于阿尔泰语系突厥语族，有自己的文字。哈萨克族的传统服饰色彩鲜艳，款式独特。哈萨克族的音乐、舞蹈丰富多彩，阿肯弹唱、黑走马舞等是其传统艺术形式。哈萨克族的传统节日有纳吾鲁孜节、古尔邦节、肉孜节等。哈萨克族的民间文学也很发达，有许多古老的史诗和故事。哈萨克族在建筑方面，传统民居多为毡房。哈萨克族的饮食以牛羊肉、奶制品为主，手抓肉、奶茶、马奶酒等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=kazakh%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 18,
+        "name": "傣族",
+        "population": "约130万",
+        "distribution": "云南",
+        "language": "傣语",
+        "culture": "泼水节、傣族歌舞、竹楼",
+        "introduction": "傣族主要分布在云南省南部的西双版纳傣族自治州和德宏傣族景颇族自治州。傣族是中国的少数民族之一，有着悠久的历史和独特的文化。傣族的语言属于汉藏语系壮侗语族，有自己的文字。傣族的传统服饰色彩鲜艳，款式独特。傣族的音乐、舞蹈丰富多彩，孔雀舞、象脚鼓舞等是其传统舞蹈。傣族的传统节日有泼水节、关门节、开门节等。傣族的民间文学也很发达，有许多古老的传说和故事。傣族在建筑方面，竹楼是其传统民居。傣族的饮食以大米为主，竹筒饭、傣族酸笋等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=dai%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 19,
+        "name": "黎族",
+        "population": "约130万",
+        "distribution": "海南",
+        "language": "黎语",
+        "culture": "黎族织锦、竹竿舞",
+        "introduction": "黎族主要分布在海南省的中南部。黎族是中国的少数民族之一，有着悠久的历史和独特的文化。黎族的语言属于汉藏语系壮侗语族，有自己的文字。黎族的传统服饰色彩鲜艳，图案精美，黎族织锦是其特色工艺。黎族的音乐、舞蹈丰富多彩，竹竿舞、打柴舞等是其传统舞蹈。黎族的传统节日有三月三、春节等。黎族的民间文学也很发达，有许多古老的传说和故事。黎族在建筑方面，传统民居多为船形屋。黎族的饮食以大米、玉米为主，黎族竹筒饭、黎族山兰酒等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=li%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 20,
+        "name": "傈僳族",
+        "population": "约70万",
+        "distribution": "云南、四川",
+        "language": "傈僳语",
+        "culture": "傈僳族歌舞、刀杆节",
+        "introduction": "傈僳族主要分布在云南省西北部和四川省西南部。傈僳族是中国的少数民族之一，有着悠久的历史和独特的文化。傈僳族的语言属于汉藏语系藏缅语族，有自己的文字。傈僳族的传统服饰色彩鲜艳，款式独特。傈僳族的音乐、舞蹈丰富多彩，葫芦笙舞、刀杆舞等是其传统舞蹈。傈僳族的传统节日有刀杆节、阔时节等。傈僳族的民间文学也很发达，有许多古老的传说和故事。傈僳族在建筑方面，传统民居多为木楞房。傈僳族的饮食以玉米、大米为主，傈僳族手抓饭、酢酒等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=lisu%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 21,
+        "name": "佤族",
+        "population": "约40万",
+        "distribution": "云南",
+        "language": "佤语",
+        "culture": "佤族歌舞、木鼓文化",
+        "introduction": "佤族主要分布在云南省西南部的沧源佤族自治县和西盟佤族自治县。佤族是中国的少数民族之一，有着悠久的历史和独特的文化。佤族的语言属于南亚语系孟高棉语族，有自己的文字。佤族的传统服饰色彩鲜艳，款式独特。佤族的音乐、舞蹈丰富多彩，木鼓舞、甩发舞等是其传统舞蹈。佤族的传统节日有新米节、木鼓节等。佤族的民间文学也很发达，有许多古老的传说和故事。佤族在建筑方面，传统民居多为干栏式建筑。佤族的饮食以大米、玉米为主，佤族水酒、鸡肉烂饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wa%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 22,
+        "name": "畲族",
+        "population": "约70万",
+        "distribution": "福建、浙江、江西",
+        "language": "畲语（主要使用汉语）",
+        "culture": "畲族歌舞、三月三歌会",
+        "introduction": "畲族主要分布在福建、浙江、江西、广东等省的山区。畲族是中国的少数民族之一，有着悠久的历史和独特的文化。畲族的语言属于苗瑶语族，现在主要使用汉语。畲族的传统服饰色彩鲜艳，图案精美，刺绣是其特色工艺。畲族的音乐、舞蹈丰富多彩，畲族山歌、彩带舞等是其传统艺术形式。畲族的传统节日有三月三、四月八、七月七等。畲族的民间文学也很发达，有许多古老的传说和故事。畲族在建筑方面，传统民居多为土木结构的平房。畲族的饮食以大米、甘薯为主，畲族乌饭、畲族米酒等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=she%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 23,
+        "name": "高山族",
+        "population": "约40万",
+        "distribution": "台湾、福建",
+        "language": "高山族语言",
+        "culture": "高山族歌舞、丰收节",
+        "introduction": "高山族主要分布在台湾省，少数分布在福建省。高山族是中国的少数民族之一，有着悠久的历史和独特的文化。高山族的语言属于南岛语系，有多种方言。高山族的传统服饰色彩鲜艳，款式独特。高山族的音乐、舞蹈丰富多彩，杵舞、拉手舞等是其传统舞蹈。高山族的传统节日有丰收节、播种节等。高山族的民间文学也很发达，有许多古老的传说和故事。高山族在建筑方面，传统民居多为竹木结构的房屋。高山族的饮食以大米、小米为主，高山族竹筒饭、烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=gaoshan%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 24,
+        "name": "拉祜族",
+        "population": "约40万",
+        "distribution": "云南",
+        "language": "拉祜语",
+        "culture": "拉祜族歌舞、葫芦文化",
+        "introduction": "拉祜族主要分布在云南省西南部的澜沧拉祜族自治县。拉祜族是中国的少数民族之一，有着悠久的历史和独特的文化。拉祜族的语言属于汉藏语系藏缅语族，有自己的文字。拉祜族的传统服饰色彩鲜艳，款式独特。拉祜族的音乐、舞蹈丰富多彩，芦笙舞、摆舞等是其传统舞蹈。拉祜族的传统节日有葫芦节、扩塔节等。拉祜族的民间文学也很发达，有许多古老的传说和故事。拉祜族在建筑方面，传统民居多为干栏式建筑。拉祜族的饮食以大米、玉米为主，拉祜族烤肉、烤茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=lahu%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 25,
+        "name": "水族",
+        "population": "约40万",
+        "distribution": "贵州",
+        "language": "水语",
+        "culture": "水族文字、端节",
+        "introduction": "水族主要分布在贵州省南部的三都水族自治县。水族是中国的少数民族之一，有着悠久的历史和独特的文化。水族的语言属于汉藏语系壮侗语族，有自己的文字。水族的传统服饰色彩鲜艳，图案精美。水族的音乐、舞蹈丰富多彩，铜鼓舞、芦笙舞等是其传统舞蹈。水族的传统节日有端节、卯节等。水族的民间文学也很发达，有许多古老的传说和故事。水族在建筑方面，传统民居多为干栏式建筑。水族的饮食以大米、玉米为主，水族酸汤鱼、水族糯米粑等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=shui%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 26,
+        "name": "东乡族",
+        "population": "约70万",
+        "distribution": "甘肃",
+        "language": "东乡语",
+        "culture": "伊斯兰教文化、东乡族饮食",
+        "introduction": "东乡族主要分布在甘肃省临夏回族自治州的东乡族自治县。东乡族是中国的少数民族之一，有着悠久的历史和独特的文化。东乡族的语言属于阿尔泰语系蒙古语族，有自己的文字。东乡族信仰伊斯兰教，有着独特的宗教文化和生活习俗。东乡族的传统服饰色彩鲜艳，款式独特。东乡族的音乐、舞蹈丰富多彩，东乡族花儿、打棍舞等是其传统艺术形式。东乡族的传统节日有开斋节、古尔邦节、圣纪节等。东乡族的民间文学也很发达，有许多古老的传说和故事。东乡族在建筑方面，传统民居多为土木结构的平房。东乡族的饮食以面食、牛羊肉为主，东乡族手抓肉、东乡族炸油香等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=dongxiang%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 27,
+        "name": "纳西族",
+        "population": "约30万",
+        "distribution": "云南、四川",
+        "language": "纳西语",
+        "culture": "东巴文化、纳西古乐",
+        "introduction": "纳西族主要分布在云南省西北部的丽江纳西族自治县。纳西族是中国的少数民族之一，有着悠久的历史和独特的文化。纳西族的语言属于汉藏语系藏缅语族，有自己的文字。纳西族的传统服饰色彩鲜艳，款式独特。纳西族的音乐、舞蹈丰富多彩，纳西古乐、白沙细乐等是其传统音乐形式。纳西族的传统节日有三朵节、火把节等。纳西族的民间文学也很发达，有许多古老的传说和故事。纳西族在建筑方面，传统民居多为土木结构的瓦房，丽江古城是其建筑杰作。纳西族的饮食以大米、小麦为主，纳西族粑粑、纳西族烤鱼等是其特色食品。东巴文化是纳西族的重要文化遗产，包括东巴文、东巴经、东巴画等。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=nahui%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 28,
+        "name": "景颇族",
+        "population": "约15万",
+        "distribution": "云南",
+        "language": "景颇语",
+        "culture": "景颇族歌舞、目瑙纵歌",
+        "introduction": "景颇族主要分布在云南省西部的德宏傣族景颇族自治州。景颇族是中国的少数民族之一，有着悠久的历史和独特的文化。景颇族的语言属于汉藏语系藏缅语族，有自己的文字。景颇族的传统服饰色彩鲜艳，款式独特。景颇族的音乐、舞蹈丰富多彩，目瑙纵歌是其最盛大的传统舞蹈。景颇族的传统节日有目瑙纵歌节、新米节等。景颇族的民间文学也很发达，有许多古老的传说和故事。景颇族在建筑方面，传统民居多为干栏式建筑。景颇族的饮食以大米、玉米为主，景颇族鬼鸡、景颇族竹筒饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=jingpo%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 29,
+        "name": "柯尔克孜族",
+        "population": "约20万",
+        "distribution": "新疆",
+        "language": "柯尔克孜语",
+        "culture": "草原文化、柯尔克孜族史诗",
+        "introduction": "柯尔克孜族主要分布在新疆维吾尔自治区的西南部的克孜勒苏柯尔克孜自治州。柯尔克孜族是中国的少数民族之一，有着悠久的历史和独特的文化。柯尔克孜族的语言属于阿尔泰语系突厥语族，有自己的文字。柯尔克孜族的传统服饰色彩鲜艳，款式独特。柯尔克孜族的音乐、舞蹈丰富多彩，柯尔克孜族史诗《玛纳斯》是其重要的文化遗产。柯尔克孜族的传统节日有诺鲁孜节、古尔邦节、肉孜节等。柯尔克孜族的民间文学也很发达，有许多古老的传说和故事。柯尔克孜族在建筑方面，传统民居多为毡房。柯尔克孜族的饮食以牛羊肉、奶制品为主，柯尔克孜族手抓肉、酸奶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=kirgiz%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 30,
+        "name": "土族",
+        "population": "约20万",
+        "distribution": "青海、甘肃",
+        "language": "土族语",
+        "culture": "土族歌舞、纳顿节",
+        "introduction": "土族主要分布在青海省东部的互助土族自治县和甘肃省的天祝藏族自治县。土族是中国的少数民族之一，有着悠久的历史和独特的文化。土族的语言属于阿尔泰语系蒙古语族，有自己的文字。土族的传统服饰色彩鲜艳，图案精美。土族的音乐、舞蹈丰富多彩，安昭舞、轮子秋等是其传统艺术形式。土族的传统节日有纳顿节、春节等。土族的民间文学也很发达，有许多古老的传说和故事。土族在建筑方面，传统民居多为土木结构的平房。土族的饮食以面食、青稞为主，土族锟锅、土族奶茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tu%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 31,
+        "name": "达斡尔族",
+        "population": "约13万",
+        "distribution": "内蒙古、黑龙江",
+        "language": "达斡尔语",
+        "culture": "达斡尔族歌舞、传统体育",
+        "introduction": "达斡尔族主要分布在内蒙古自治区的莫力达瓦达斡尔族自治旗和黑龙江省的齐齐哈尔市。达斡尔族是中国的少数民族之一，有着悠久的历史和独特的文化。达斡尔族的语言属于阿尔泰语系蒙古语族，有自己的文字。达斡尔族的传统服饰色彩鲜艳，款式独特。达斡尔族的音乐、舞蹈丰富多彩，达斡尔族鲁日格勒舞、哈库麦勒舞等是其传统舞蹈。达斡尔族的传统节日有阿涅节、抹黑节等。达斡尔族的民间文学也很发达，有许多古老的传说和故事。达斡尔族在建筑方面，传统民居多为土木结构的平房。达斡尔族的饮食以面食、大米为主，达斡尔族稷子饭、达斡尔族烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=daur%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 32,
+        "name": "仫佬族",
+        "population": "约20万",
+        "distribution": "广西",
+        "language": "仫佬语",
+        "culture": "仫佬族歌舞、依饭节",
+        "introduction": "仫佬族主要分布在广西壮族自治区的罗城仫佬族自治县。仫佬族是中国的少数民族之一，有着悠久的历史和独特的文化。仫佬族的语言属于汉藏语系壮侗语族，有自己的文字。仫佬族的传统服饰色彩鲜艳，款式独特。仫佬族的音乐、舞蹈丰富多彩，仫佬族山歌、彩调戏等是其传统艺术形式。仫佬族的传统节日有依饭节、春节等。仫佬族的民间文学也很发达，有许多古老的传说和故事。仫佬族在建筑方面，传统民居多为土木结构的平房。仫佬族的饮食以大米、玉米为主，仫佬族酸食、仫佬族糯米饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mulao%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 33,
+        "name": "羌族",
+        "population": "约30万",
+        "distribution": "四川",
+        "language": "羌语",
+        "culture": "羌族碉楼、羌族歌舞",
+        "introduction": "羌族主要分布在四川省阿坝藏族羌族自治州的茂县、汶川、理县等地。羌族是中国最古老的民族之一，有着悠久的历史和独特的文化。羌族的语言属于汉藏语系藏缅语族，有自己的文字。羌族的传统服饰色彩鲜艳，图案精美。羌族的音乐、舞蹈丰富多彩，羌族羊皮鼓舞、羌族锅庄等是其传统舞蹈。羌族的传统节日有羌历年、祭山会等。羌族的民间文学也很发达，有许多古老的传说和故事。羌族在建筑方面，碉楼是其传统建筑的代表。羌族的饮食以玉米、小麦为主，羌族咂酒、羌族腊肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=qiang%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 34,
+        "name": "布朗族",
+        "population": "约10万",
+        "distribution": "云南",
+        "language": "布朗语",
+        "culture": "布朗族歌舞、茶文化",
+        "introduction": "布朗族主要分布在云南省西双版纳傣族自治州的勐海县和临沧市的双江拉祜族佤族布朗族傣族自治县。布朗族是中国的少数民族之一，有着悠久的历史和独特的文化。布朗族的语言属于南亚语系孟高棉语族，有自己的文字。布朗族的传统服饰色彩鲜艳，款式独特。布朗族的音乐、舞蹈丰富多彩，布朗族山歌、布朗族鼓舞等是其传统艺术形式。布朗族的传统节日有开门节、关门节等。布朗族的民间文学也很发达，有许多古老的传说和故事。布朗族在建筑方面，传统民居多为干栏式建筑。布朗族的饮食以大米、玉米为主，布朗族烤茶、布朗族竹筒饭等是其特色食品。布朗族是著名的茶农，普洱茶的故乡之一。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=brown%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 35,
+        "name": "撒拉族",
+        "population": "约13万",
+        "distribution": "青海、甘肃",
+        "language": "撒拉语",
+        "culture": "伊斯兰教文化、撒拉族饮食",
+        "introduction": "撒拉族主要分布在青海省海东市的循化撒拉族自治县和甘肃省临夏回族自治州的积石山保安族东乡族撒拉族自治县。撒拉族是中国的少数民族之一，有着悠久的历史和独特的文化。撒拉族的语言属于阿尔泰语系突厥语族，有自己的文字。撒拉族信仰伊斯兰教，有着独特的宗教文化和生活习俗。撒拉族的传统服饰色彩鲜艳，款式独特。撒拉族的音乐、舞蹈丰富多彩，撒拉族花儿、撒拉族舞蹈等是其传统艺术形式。撒拉族的传统节日有开斋节、古尔邦节、圣纪节等。撒拉族的民间文学也很发达，有许多古老的传说和故事。撒拉族在建筑方面，传统民居多为土木结构的平房。撒拉族的饮食以面食、牛羊肉为主，撒拉族油香、撒拉族手抓肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=salar%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 36,
+        "name": "毛南族",
+        "population": "约10万",
+        "distribution": "广西",
+        "language": "毛南语",
+        "culture": "毛南族歌舞、分龙节",
+        "introduction": "毛南族主要分布在广西壮族自治区的环江毛南族自治县。毛南族是中国的少数民族之一，有着悠久的历史和独特的文化。毛南族的语言属于汉藏语系壮侗语族，有自己的文字。毛南族的传统服饰色彩鲜艳，款式独特。毛南族的音乐、舞蹈丰富多彩，毛南族山歌、毛南族舞蹈等是其传统艺术形式。毛南族的传统节日有分龙节、春节等。毛南族的民间文学也很发达，有许多古老的传说和故事。毛南族在建筑方面，传统民居多为土木结构的平房。毛南族的饮食以大米、玉米为主，毛南族酸食、毛南族糯米饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=maonan%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 37,
+        "name": "仡佬族",
+        "population": "约50万",
+        "distribution": "贵州、广西",
+        "language": "仡佬语",
+        "culture": "仡佬族歌舞、吃新节",
+        "introduction": "仡佬族主要分布在贵州省的遵义市、安顺市和广西壮族自治区的隆林各族自治县。仡佬族是中国的少数民族之一，有着悠久的历史和独特的文化。仡佬族的语言属于汉藏语系壮侗语族，有自己的文字。仡佬族的传统服饰色彩鲜艳，款式独特。仡佬族的音乐、舞蹈丰富多彩，仡佬族山歌、仡佬族舞蹈等是其传统艺术形式。仡佬族的传统节日有吃新节、春节等。仡佬族的民间文学也很发达，有许多古老的传说和故事。仡佬族在建筑方面，传统民居多为土木结构的平房。仡佬族的饮食以大米、玉米为主，仡佬族糯米饭、仡佬族酸食等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=gelao%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 38,
+        "name": "锡伯族",
+        "population": "约19万",
+        "distribution": "新疆、辽宁",
+        "language": "锡伯语",
+        "culture": "锡伯族歌舞、西迁节",
+        "introduction": "锡伯族主要分布在新疆维吾尔自治区的察布查尔锡伯自治县和辽宁省的沈阳市、开原市等地。锡伯族是中国的少数民族之一，有着悠久的历史和独特的文化。锡伯族的语言属于阿尔泰语系满-通古斯语族，有自己的文字。锡伯族的传统服饰色彩鲜艳，款式独特。锡伯族的音乐、舞蹈丰富多彩，锡伯族贝伦舞、锡伯族民歌等是其传统艺术形式。锡伯族的传统节日有西迁节、春节等。锡伯族的民间文学也很发达，有许多古老的传说和故事。锡伯族在建筑方面，传统民居多为土木结构的平房。锡伯族的饮食以面食、大米为主，锡伯族花花菜、锡伯族酸奶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=xibo%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 39,
+        "name": "阿昌族",
+        "population": "约4万",
+        "distribution": "云南",
+        "language": "阿昌语",
+        "culture": "阿昌族歌舞、阿昌刀",
+        "introduction": "阿昌族主要分布在云南省德宏傣族景颇族自治州的陇川县和梁河县。阿昌族是中国的少数民族之一，有着悠久的历史和独特的文化。阿昌族的语言属于汉藏语系藏缅语族，有自己的文字。阿昌族的传统服饰色彩鲜艳，款式独特。阿昌族的音乐、舞蹈丰富多彩，阿昌族山歌、阿昌族舞蹈等是其传统艺术形式。阿昌族的传统节日有阿露窝罗节、春节等。阿昌族的民间文学也很发达，有许多古老的传说和故事。阿昌族在建筑方面，传统民居多为土木结构的平房。阿昌族的饮食以大米、玉米为主，阿昌族过手米线、阿昌族酸食等是其特色食品。阿昌族的阿昌刀是其著名的传统工艺品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=achang%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 40,
+        "name": "普米族",
+        "population": "约4万",
+        "distribution": "云南、四川",
+        "language": "普米语",
+        "culture": "普米族歌舞、转山会",
+        "introduction": "普米族主要分布在云南省的兰坪白族普米族自治县和宁蒗彝族自治县，以及四川省的木里藏族自治县。普米族是中国的少数民族之一，有着悠久的历史和独特的文化。普米族的语言属于汉藏语系藏缅语族，有自己的文字。普米族的传统服饰色彩鲜艳，款式独特。普米族的音乐、舞蹈丰富多彩，普米族山歌、普米族舞蹈等是其传统艺术形式。普米族的传统节日有转山会、春节等。普米族的民间文学也很发达，有许多古老的传说和故事。普米族在建筑方面，传统民居多为土木结构的平房。普米族的饮食以大米、玉米为主，普米族酥油茶、普米族糯米饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=primi%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 41,
+        "name": "塔吉克族",
+        "population": "约5万",
+        "distribution": "新疆",
+        "language": "塔吉克语",
+        "culture": "塔吉克族歌舞、鹰舞",
+        "introduction": "塔吉克族主要分布在新疆维吾尔自治区的塔什库尔干塔吉克自治县。塔吉克族是中国的少数民族之一，有着悠久的历史和独特的文化。塔吉克族的语言属于印欧语系伊朗语族，有自己的文字。塔吉克族的传统服饰色彩鲜艳，款式独特。塔吉克族的音乐、舞蹈丰富多彩，鹰舞是其代表性舞蹈。塔吉克族的传统节日有古尔邦节、肉孜节等。塔吉克族的民间文学也很发达，有许多古老的传说和故事。塔吉克族在建筑方面，传统民居多为石木结构的房屋。塔吉克族的饮食以面食、牛羊肉为主，塔吉克族抓饭、塔吉克族奶茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=takir%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 42,
+        "name": "怒族",
+        "population": "约3万",
+        "distribution": "云南",
+        "language": "怒语",
+        "culture": "怒族歌舞、仙女节",
+        "introduction": "怒族主要分布在云南省怒江傈僳族自治州的福贡县、贡山独龙族怒族自治县和兰坪白族普米族自治县。怒族是中国的少数民族之一，有着悠久的历史和独特的文化。怒族的语言属于汉藏语系藏缅语族，有自己的文字。怒族的传统服饰色彩鲜艳，款式独特。怒族的音乐、舞蹈丰富多彩，怒族山歌、怒族舞蹈等是其传统艺术形式。怒族的传统节日有仙女节、春节等。怒族的民间文学也很发达，有许多古老的传说和故事。怒族在建筑方面，传统民居多为干栏式建筑。怒族的饮食以玉米、大米为主，怒族咕嘟酒、怒族烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=nu%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 43,
+        "name": "乌孜别克族",
+        "population": "约1万",
+        "distribution": "新疆",
+        "language": "乌孜别克语",
+        "culture": "乌孜别克族歌舞、饮食文化",
+        "introduction": "乌孜别克族主要分布在新疆维吾尔自治区的乌鲁木齐市、伊宁市、喀什市等地。乌孜别克族是中国的少数民族之一，有着悠久的历史和独特的文化。乌孜别克族的语言属于阿尔泰语系突厥语族，有自己的文字。乌孜别克族的传统服饰色彩鲜艳，款式独特。乌孜别克族的音乐、舞蹈丰富多彩，乌孜别克族歌舞、乌孜别克族乐器演奏等是其传统艺术形式。乌孜别克族的传统节日有古尔邦节、肉孜节等。乌孜别克族的民间文学也很发达，有许多古老的传说和故事。乌孜别克族在建筑方面，传统民居多为砖木结构的房屋。乌孜别克族的饮食以面食、牛羊肉为主，乌孜别克族抓饭、乌孜别克族烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=uzbek%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 44,
+        "name": "俄罗斯族",
+        "population": "约1万",
+        "distribution": "新疆、黑龙江",
+        "language": "俄语",
+        "culture": "俄罗斯族歌舞、饮食文化",
+        "introduction": "俄罗斯族主要分布在新疆维吾尔自治区的伊犁哈萨克自治州、塔城地区和黑龙江省的黑河市等地。俄罗斯族是中国的少数民族之一，有着悠久的历史和独特的文化。俄罗斯族的语言属于印欧语系斯拉夫语族，有自己的文字。俄罗斯族的传统服饰色彩鲜艳，款式独特。俄罗斯族的音乐、舞蹈丰富多彩，俄罗斯族歌舞、俄罗斯族乐器演奏等是其传统艺术形式。俄罗斯族的传统节日有圣诞节、复活节等。俄罗斯族的民间文学也很发达，有许多古老的传说和故事。俄罗斯族在建筑方面，传统民居多为砖木结构的房屋。俄罗斯族的饮食以面食、肉类为主，俄罗斯族面包、俄罗斯族红肠等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=russian%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 45,
+        "name": "鄂温克族",
+        "population": "约3万",
+        "distribution": "内蒙古、黑龙江",
+        "language": "鄂温克语",
+        "culture": "鄂温克族歌舞、狩猎文化",
+        "introduction": "鄂温克族主要分布在内蒙古自治区的鄂温克族自治旗和黑龙江省的讷河市等地。鄂温克族是中国的少数民族之一，有着悠久的历史和独特的文化。鄂温克族的语言属于阿尔泰语系满-通古斯语族，有自己的文字。鄂温克族的传统服饰色彩鲜艳，款式独特。鄂温克族的音乐、舞蹈丰富多彩，鄂温克族山歌、鄂温克族舞蹈等是其传统艺术形式。鄂温克族的传统节日有瑟宾节、春节等。鄂温克族的民间文学也很发达，有许多古老的传说和故事。鄂温克族在建筑方面，传统民居多为蒙古包或土木结构的房屋。鄂温克族的饮食以肉类、奶制品为主，鄂温克族手抓肉、鄂温克族奶茶等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ewenki%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 46,
+        "name": "德昂族",
+        "population": "约2万",
+        "distribution": "云南",
+        "language": "德昂语",
+        "culture": "德昂族歌舞、茶文化",
+        "introduction": "德昂族主要分布在云南省德宏傣族景颇族自治州的芒市、瑞丽市和保山市的龙陵县。德昂族是中国的少数民族之一，有着悠久的历史和独特的文化。德昂族的语言属于南亚语系孟高棉语族，有自己的文字。德昂族的传统服饰色彩鲜艳，款式独特。德昂族的音乐、舞蹈丰富多彩，德昂族山歌、德昂族舞蹈等是其传统艺术形式。德昂族的传统节日有泼水节、关门节等。德昂族的民间文学也很发达，有许多古老的传说和故事。德昂族在建筑方面，传统民居多为干栏式建筑。德昂族的饮食以大米、玉米为主，德昂族烤茶、德昂族酸食等是其特色食品。德昂族是著名的茶农，普洱茶的故乡之一。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=deang%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 47,
+        "name": "保安族",
+        "population": "约2万",
+        "distribution": "甘肃",
+        "language": "保安语",
+        "culture": "保安族歌舞、保安腰刀",
+        "introduction": "保安族主要分布在甘肃省临夏回族自治州的积石山保安族东乡族撒拉族自治县。保安族是中国的少数民族之一，有着悠久的历史和独特的文化。保安族的语言属于阿尔泰语系蒙古语族，有自己的文字。保安族信仰伊斯兰教，有着独特的宗教文化和生活习俗。保安族的传统服饰色彩鲜艳，款式独特。保安族的音乐、舞蹈丰富多彩，保安族花儿、保安族舞蹈等是其传统艺术形式。保安族的传统节日有开斋节、古尔邦节、圣纪节等。保安族的民间文学也很发达，有许多古老的传说和故事。保安族在建筑方面，传统民居多为土木结构的平房。保安族的饮食以面食、牛羊肉为主，保安族手抓肉、保安族油香等是其特色食品。保安族的保安腰刀是其著名的传统工艺品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bonan%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 48,
+        "name": "裕固族",
+        "population": "约1万",
+        "distribution": "甘肃",
+        "language": "裕固语",
+        "culture": "裕固族歌舞、饮食文化",
+        "introduction": "裕固族主要分布在甘肃省张掖市的肃南裕固族自治县。裕固族是中国的少数民族之一，有着悠久的历史和独特的文化。裕固族的语言属于阿尔泰语系突厥语族，有自己的文字。裕固族信仰藏传佛教，有着独特的宗教文化和生活习俗。裕固族的传统服饰色彩鲜艳，款式独特。裕固族的音乐、舞蹈丰富多彩，裕固族民歌、裕固族舞蹈等是其传统艺术形式。裕固族的传统节日有春节、祭鄂博等。裕固族的民间文学也很发达，有许多古老的传说和故事。裕固族在建筑方面，传统民居多为土木结构的平房。裕固族的饮食以面食、肉类为主，裕固族酥油茶、裕固族手抓肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=yugur%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 49,
+        "name": "京族",
+        "population": "约3万",
+        "distribution": "广西",
+        "language": "京语",
+        "culture": "京族歌舞、哈节",
+        "introduction": "京族主要分布在广西壮族自治区防城港市的东兴市。京族是中国的少数民族之一，有着悠久的历史和独特的文化。京族的语言属于南亚语系孟高棉语族，有自己的文字。京族的传统服饰色彩鲜艳，款式独特。京族的音乐、舞蹈丰富多彩，京族哈歌、京族舞蹈等是其传统艺术形式。京族的传统节日有哈节、春节等。京族的民间文学也很发达，有许多古老的传说和故事。京族在建筑方面，传统民居多为砖木结构的房屋。京族的饮食以大米、海鲜为主，京族海鲜粥、京族烤鱼等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=jing%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 50,
+        "name": "塔塔尔族",
+        "population": "约0.5万",
+        "distribution": "新疆",
+        "language": "塔塔尔语",
+        "culture": "塔塔尔族歌舞、饮食文化",
+        "introduction": "塔塔尔族主要分布在新疆维吾尔自治区的乌鲁木齐市、伊宁市等地。塔塔尔族是中国的少数民族之一，有着悠久的历史和独特的文化。塔塔尔族的语言属于阿尔泰语系突厥语族，有自己的文字。塔塔尔族信仰伊斯兰教，有着独特的宗教文化和生活习俗。塔塔尔族的传统服饰色彩鲜艳，款式独特。塔塔尔族的音乐、舞蹈丰富多彩，塔塔尔族歌舞、塔塔尔族乐器演奏等是其传统艺术形式。塔塔尔族的传统节日有古尔邦节、肉孜节等。塔塔尔族的民间文学也很发达，有许多古老的传说和故事。塔塔尔族在建筑方面，传统民居多为砖木结构的房屋。塔塔尔族的饮食以面食、牛羊肉为主，塔塔尔族糕点、塔塔尔族烤肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=tatar%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 51,
+        "name": "独龙族",
+        "population": "约0.7万",
+        "distribution": "云南",
+        "language": "独龙语",
+        "culture": "独龙族歌舞、纹面文化",
+        "introduction": "独龙族主要分布在云南省怒江傈僳族自治州的贡山独龙族怒族自治县。独龙族是中国的少数民族之一，有着悠久的历史和独特的文化。独龙族的语言属于汉藏语系藏缅语族，有自己的文字。独龙族的传统服饰色彩鲜艳，款式独特。独龙族的音乐、舞蹈丰富多彩，独龙族山歌、独龙族舞蹈等是其传统艺术形式。独龙族的传统节日有卡雀哇节、春节等。独龙族的民间文学也很发达，有许多古老的传说和故事。独龙族在建筑方面，传统民居多为竹木结构的房屋。独龙族的饮食以大米、玉米为主，独龙族烤肉、独龙族酸食等是其特色食品。独龙族的纹面文化是其独特的文化现象。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=derung%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 52,
+        "name": "鄂伦春族",
+        "population": "约0.9万",
+        "distribution": "内蒙古、黑龙江",
+        "language": "鄂伦春语",
+        "culture": "鄂伦春族歌舞、狩猎文化",
+        "introduction": "鄂伦春族主要分布在内蒙古自治区的鄂伦春自治旗和黑龙江省的黑河市等地。鄂伦春族是中国的少数民族之一，有着悠久的历史和独特的文化。鄂伦春族的语言属于阿尔泰语系满-通古斯语族，有自己的文字。鄂伦春族的传统服饰色彩鲜艳，款式独特。鄂伦春族的音乐、舞蹈丰富多彩，鄂伦春族山歌、鄂伦春族舞蹈等是其传统艺术形式。鄂伦春族的传统节日有春节、抹黑节等。鄂伦春族的民间文学也很发达，有许多古老的传说和故事。鄂伦春族在建筑方面，传统民居多为仙人柱（帐篷）。鄂伦春族的饮食以肉类、兽肉为主，鄂伦春族烤肉、鄂伦春族狍子肉等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=orochun%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 53,
+        "name": "赫哲族",
+        "population": "约0.5万",
+        "distribution": "黑龙江",
+        "language": "赫哲语",
+        "culture": "赫哲族歌舞、渔猎文化",
+        "introduction": "赫哲族主要分布在黑龙江省的同江市、饶河县等地。赫哲族是中国的少数民族之一，有着悠久的历史和独特的文化。赫哲族的语言属于阿尔泰语系满-通古斯语族，有自己的文字。赫哲族的传统服饰色彩鲜艳，款式独特。赫哲族的音乐、舞蹈丰富多彩，赫哲族山歌、赫哲族舞蹈等是其传统艺术形式。赫哲族的传统节日有乌日贡节、春节等。赫哲族的民间文学也很发达，有许多古老的传说和故事。赫哲族在建筑方面，传统民居多为土木结构的房屋。赫哲族的饮食以鱼类、肉类为主，赫哲族烤鱼、赫哲族杀生鱼等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=hezhe%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 54,
+        "name": "门巴族",
+        "population": "约1万",
+        "distribution": "西藏",
+        "language": "门巴语",
+        "culture": "门巴族歌舞、宗教文化",
+        "introduction": "门巴族主要分布在西藏自治区的墨脱县、错那县等地。门巴族是中国的少数民族之一，有着悠久的历史和独特的文化。门巴族的语言属于汉藏语系藏缅语族，有自己的文字。门巴族信仰藏传佛教，有着独特的宗教文化和生活习俗。门巴族的传统服饰色彩鲜艳，款式独特。门巴族的音乐、舞蹈丰富多彩，门巴族山歌、门巴族舞蹈等是其传统艺术形式。门巴族的传统节日有藏历新年、望果节等。门巴族的民间文学也很发达，有许多古老的传说和故事。门巴族在建筑方面，传统民居多为石木结构的房屋。门巴族的饮食以大米、玉米为主，门巴族酥油茶、门巴族糯米饭等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=monba%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 55,
+        "name": "珞巴族",
+        "population": "约0.3万",
+        "distribution": "西藏",
+        "language": "珞巴语",
+        "culture": "珞巴族歌舞、狩猎文化",
+        "introduction": "珞巴族主要分布在西藏自治区的墨脱县、察隅县等地。珞巴族是中国的少数民族之一，有着悠久的历史和独特的文化。珞巴族的语言属于汉藏语系藏缅语族，有自己的文字。珞巴族信仰原始宗教，有着独特的宗教文化和生活习俗。珞巴族的传统服饰色彩鲜艳，款式独特。珞巴族的音乐、舞蹈丰富多彩，珞巴族山歌、珞巴族舞蹈等是其传统艺术形式。珞巴族的传统节日有旭独龙节、洞更谷乳木节等。珞巴族的民间文学也很发达，有许多古老的传说和故事。珞巴族在建筑方面，传统民居多为竹木结构的房屋。珞巴族的饮食以大米、玉米为主，珞巴族烤肉、珞巴族酸食等是其特色食品。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=loxa%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    },
+    {
+        "id": 56,
+        "name": "基诺族",
+        "population": "约2万",
+        "distribution": "云南",
+        "language": "基诺语",
+        "culture": "基诺族歌舞、太阳鼓文化",
+        "introduction": "基诺族主要分布在云南省西双版纳傣族自治州的景洪市。基诺族是中国的少数民族之一，有着悠久的历史和独特的文化。基诺族的语言属于汉藏语系藏缅语族，有自己的文字。基诺族的传统服饰色彩鲜艳，款式独特。基诺族的音乐、舞蹈丰富多彩，基诺族山歌、基诺族舞蹈等是其传统艺术形式。基诺族的传统节日有特懋克节、春节等。基诺族的民间文学也很发达，有许多古老的传说和故事。基诺族在建筑方面，传统民居多为竹木结构的房屋。基诺族的饮食以大米、玉米为主，基诺族烤肉、基诺族酸食等是其特色食品。基诺族的太阳鼓文化是其重要的文化遗产。",
+        "image": "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=jino%20chinese%20ethnic%20group%20traditional%20culture&image_size=square"
+    }
+]

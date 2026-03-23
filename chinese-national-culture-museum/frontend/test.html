@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>私信 WebSocket 测试</title>
+</head>
+<body>
+<h2>WebSocket 私信测试</h2>
+<div>
+    <label>当前用户 ID:</label> <input type="text" id="userId" value="123456789"><br><br>
+    <label>Token (从登录后获取):</label> <input type="text" id="token" value="你的SaToken值"><br><br>
+    <button onclick="connect()">连接 WebSocket</button>
+    <button onclick="disconnect()">断开</button>
+</div>
+<hr>
+<div>
+    <label>接收者用户名:</label> <input type="text" id="receiverName" value="testUser"><br><br>
+    <label>消息内容:</label> <input type="text" id="msgContent" value="你好，这是一条测试消息"><br><br>
+    <button onclick="sendHttpMessage()">通过 HTTP 发送 (触发推送)</button>
+</div>
+<hr>
+<h3>消息日志:</h3>
+<div id="log" style="border:1px solid #ccc; height:300px; overflow-y:scroll; padding:10px;"></div>
+
+<script>
+    let ws = null;
+
+    function log(msg) {
+        const div = document.getElementById('log');
+        const time = new Date().toLocaleTimeString();
+        div.innerHTML += `<div>[${time}] ${msg}</div>`;
+        div.scrollTop = div.scrollHeight;
+    }
+
+    function connect() {
+        const userId = document.getElementById('userId').value;
+        const token = document.getElementById('token').value;
+
+        if(!token) { alert('请输入 Token'); return; }
+
+        // 构建 WebSocket URL: ws://host:port/ws/{userId}?token={token}
+        // 注意：http 对应 ws, https 对应 wss
+        const wsUrl = `ws://localhost:8080/ws/${userId}?token=${token}`;
+
+        log(`正在连接: ${wsUrl}`);
+        ws = new WebSocket(wsUrl);
+
+        ws.onopen = () => {
+            log('✅ 连接成功！');
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            log(`📩 收到推送: ${JSON.stringify(data)}`);
+            if(data.code === 200 && data.data) {
+                alert(`收到新消息来自 ${data.data.senderUsername}: ${data.data.content}`);
+            }
+        };
+
+        ws.onclose = () => {
+            log('❌ 连接关闭');
+        };
+
+        ws.onerror = (err) => {
+            log(`⚠️ 错误: ${err}`);
+        };
+    }
+
+    function disconnect() {
+        if(ws) {
+            ws.close();
+            ws = null;
+            log('已手动断开');
+        }
+    }
+
+    function sendHttpMessage() {
+        const receiver = document.getElementById('receiverName').value;
+        const content = document.getElementById('msgContent').value;
+        const token = document.getElementById('token').value;
+
+        fetch('http://localhost:8080/message/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token // 假设你的全局拦截器识别 satoken 头
+            },
+            body: JSON.stringify({
+                receiverUsername: receiver,
+                content: content
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                log(`📤 HTTP 发送结果: ${JSON.stringify(data)}`);
+                if(data.code === 200) {
+                    log('发送成功，请观察是否收到 WebSocket 推送（如果接收者在线）');
+                }
+            })
+            .catch(err => log(`发送失败: ${err}`));
+    }
+</script>
+</body>
+</html>
