@@ -154,7 +154,7 @@ docker-compose --version
 将项目代码克隆到服务器上：
 
 ```bash
-git clone https://github.com/yourusername/culture.git
+git clone https://github.com/Satou456/culture.git
 cd culture
 ```
 

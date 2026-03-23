@@ -8,8 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 23579
       MYSQL_DATABASE: cultural_museum
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 23579
     ports:
       - "3306:3306"
     volumes:
@@ -57,12 +55,12 @@ services:
       HEIMORI_AUTH_PREFIX: ${HEIMORI_AUTH_PREFIX:-Bearer}
     restart: always
 
-  # 中华民族文化博物馆
-  chinese-national-culture-museum:
+  # 中华民族文化博物馆后端
+  chinese-national-culture-museum-backend:
     build:
       context: .
-      dockerfile: Dockerfile.chinese-national-culture-museum
-    container_name: chinese-national-culture-museum-service
+      dockerfile: Dockerfile.chinese-national-culture-museum-backend
+    container_name: chinese-national-culture-museum-backend-service
     ports:
       - "8080:8080"
     depends_on:
@@ -71,6 +69,20 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cultural_museum
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 23579
+    restart: always
+
+  # 中华民族文化博物馆前端
+  chinese-national-culture-museum-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.chinese-national-culture-museum-frontend
+    container_name: chinese-national-culture-museum-frontend-service
+    ports:
+      - "5173:5173"
+    depends_on:
+      - chinese-national-culture-museum-backend
+    environment:
+      VITE_API_BASE_URL: http://chinese-national-culture-museum-backend:8080
     restart: always
 
 volumes:

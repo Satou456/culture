@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const request = axios.create({
-  baseURL: 'http://localhost:8080', // 根据实际后端地址修改
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080', // 从环境变量获取 API 基础 URL
   timeout: 5000,
   headers: { 'Content-Type': 'application/json' }
 });

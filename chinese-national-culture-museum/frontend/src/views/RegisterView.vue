@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <form @submit.prevent="handleRegister" class="auth-form">
-      <a href="http://127.0.0.1:5000/" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
+      <a href="http://20.196.138.17:5000/" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
       <h2>注册</h2>
       <div class="input-field">
         <input v-model="form.username" type="text" placeholder="请输入用户名" required>

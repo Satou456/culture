@@ -1,124 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css" />
-  </head>
 
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css" />
+</head>
 
-    <header>
-      <div style="display: flex; align-items: center; position: relative; height: 100%;">
-        <div style="position: absolute; left: 0.375rem; z-index: 10;">
-          <button id="backBtn" class="back-btn" style="padding: 8px 16px; background: rgba(74, 137, 220, 0.2); border: 1px solid #4a89dc; border-radius: 4px; color: #4a89dc; cursor: pointer; font-size: 0.2rem; z-index: 10;">返回主页</button>
-        </div>
-        <h1 style="flex: 1; text-align: center; margin: 0;">中华文化 数字图谱</h1>
-        <div class="showTime" style="position: absolute; right: 0.375rem;"></div>
+<body>
+
+  <header>
+    <div style="display: flex; align-items: center; position: relative; height: 100%;">
+      <div style="position: absolute; left: 0.375rem; z-index: 10;">
+        <button id="backBtn" class="back-btn"
+          style="padding: 8px 16px; background: rgba(74, 137, 220, 0.2); border: 1px solid #4a89dc; border-radius: 4px; color: #4a89dc; cursor: pointer; font-size: 0.2rem; z-index: 10;">返回主页</button>
       </div>
-      <script>
-        var t = null;
-        t = setTimeout(time, 1000); //開始运行
-        function time() { 
-          clearTimeout(t); //清除定时器
-          dt = new Date();
-          var y = dt.getFullYear();
-          var mt = dt.getMonth() + 1;
-          var day = dt.getDate();
-          var h = dt.getHours(); //获取时
-          var m = dt.getMinutes(); //获取分
-          var s = dt.getSeconds(); //获取秒
-          document.querySelector(".showTime").innerHTML =
-            "当前时间：" +
-            // y +
-            // "年" +
-            // mt +
-            // "月" +
-            // day +
-            // "-" +
-            h +
-            "时" +
-            m +
-            "分" +
-            s +
-            "秒";
-          t = setTimeout(time, 1000); //设定定时器，循环运行
-        }
-      </script>
-    </header>
-    <section class="mainbox">
-      <div class="column">
-        <div class="panel bar">
-          <h2>文化种类
-            <!-- “最火”文化 <a href="javascript:;">按照访问量</a> -->
-            <!-- <a href="javacript:;"> </a> -->
-          </h2>
-          <div class="chart"></div>
-          <div class="panel-footer"></div>
-        </div>
-        <div class="panel line">
-          <h2>地区文化访问人数</h2>
-          <div class="chart"></div>
-          <div class="panel-footer"></div>
-        </div>
-        <div class="panel pie">
-          <h2>地区文化受众年龄</h2>
-          <div class="chart"></div>
-          <div class="panel-footer"></div>
-        </div>
+      <h1 style="flex: 1; text-align: center; margin: 0;">中华文化 数字图谱</h1>
+      <div class="showTime" style="position: absolute; right: 0.375rem;"></div>
+    </div>
+    <script>
+      var t = null;
+      t = setTimeout(time, 1000); //開始运行
+      function time() {
+        clearTimeout(t); //清除定时器
+        dt = new Date();
+        var y = dt.getFullYear();
+        var mt = dt.getMonth() + 1;
+        var day = dt.getDate();
+        var h = dt.getHours(); //获取时
+        var m = dt.getMinutes(); //获取分
+        var s = dt.getSeconds(); //获取秒
+        document.querySelector(".showTime").innerHTML =
+          "当前时间：" +
+          // y +
+          // "年" +
+          // mt +
+          // "月" +
+          // day +
+          // "-" +
+          h +
+          "时" +
+          m +
+          "分" +
+          s +
+          "秒";
+        t = setTimeout(time, 1000); //设定定时器，循环运行
+      }
+    </script>
+  </header>
+  <section class="mainbox">
+    <div class="column">
+      <div class="panel bar">
+        <h2>文化种类
+          <!-- “最火”文化 <a href="javascript:;">按照访问量</a> -->
+          <!-- <a href="javacript:;"> </a> -->
+        </h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
       </div>
+      <div class="panel line">
+        <h2>地区文化访问人数</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pie">
+        <h2>地区文化受众年龄</h2>
+        <div class="chart"></div>
+        <div class="panel-footer"></div>
+      </div>
+    </div>
 
 
-      <div class="column">
-        <div class="no">
-           <div class="no-bd">
-            <ul>
-              <li>共收录文化数量</li>
-              <li>非遗文化数量</li>
-            </ul>
-          </div>
-          <div class="no-hd">
-            <ul>
-              <li id="total-culture-count">0</li>
-              <li id="intangible-culture-count">0</li>
-            </ul>
-          </div>
+    <div class="column">
+      <div class="no">
+        <div class="no-bd">
+          <ul>
+            <li>共收录文化数量</li>
+            <li>非遗文化数量</li>
+          </ul>
         </div>
-        <div class="map">
-          <div class="chart"></div>
-          <div class="map1"></div>
-          <div class="map2"></div>
-          <div class="map3"></div>
+        <div class="no-hd">
+          <ul>
+            <li id="total-culture-count">0</li>
+            <li id="intangible-culture-count">0</li>
+          </ul>
         </div>
       </div>
-
-
-      <div class="column">
-        <div class="panel bar1">
-          <h2>地区民族介绍</h2>
-
-          <!-- <div class="chart"></div> -->
-          <div class="panel-footer"></div>
-        </div>
-        <div class="panel line1">
-          <h2>
-            地区民族文化
-            <button id="searchBtn" class="search-btn" style="margin-left: 10px; padding: 4px 8px; background: rgba(74, 137, 220, 0.2); border: 1px solid #4a89dc; border-radius: 4px; color: #4a89dc; cursor: pointer; font-size: 0.2rem;">搜索文化</button>
-          </h2>
-          <!-- <div class="chart"></div> -->
-          <div class="panel-footer"></div>
-        </div>
-        <div class="panel pie1">
-          <h2>地区主要信息</h2>
-          <!-- <div class="chart"></div> -->
-          <div class="panel-footer"></div>
-        </div>
+      <div class="map">
+        <div class="chart"></div>
+        <div class="map1"></div>
+        <div class="map2"></div>
+        <div class="map3"></div>
       </div>
-    </section>
-    <!-- 搜索弹出框 -->
-    <div id="searchModal" class="search-modal" style="
+    </div>
+
+
+    <div class="column">
+      <div class="panel bar1">
+        <h2>地区民族介绍</h2>
+
+        <!-- <div class="chart"></div> -->
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel line1">
+        <h2>
+          地区民族文化
+          <button id="searchBtn" class="search-btn"
+            style="margin-left: 10px; padding: 4px 8px; background: rgba(74, 137, 220, 0.2); border: 1px solid #4a89dc; border-radius: 4px; color: #4a89dc; cursor: pointer; font-size: 0.2rem;">搜索文化</button>
+        </h2>
+        <!-- <div class="chart"></div> -->
+        <div class="panel-footer"></div>
+      </div>
+      <div class="panel pie1">
+        <h2>地区主要信息</h2>
+        <!-- <div class="chart"></div> -->
+        <div class="panel-footer"></div>
+      </div>
+    </div>
+  </section>
+  <!-- 搜索弹出框 -->
+  <div id="searchModal" class="search-modal" style="
       position: fixed;
       top: 50%;
       left: 50%;
@@ -136,31 +139,35 @@
       display: none;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     ">
-      <!-- 搜索头部 -->
-      <div class="search-header" style="margin-bottom: 20px;">
-        <h2 style="text-align: center; margin-bottom: 15px; color: #f6bb42;">文化搜索</h2>
-        <div class="search-input-container" style="display: flex; gap: 10px;">
-          <input type="text" id="searchInput" placeholder="输入文化名称搜索..." style="flex: 1; padding: 10px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; font-size: 14px;">
-          <button id="doSearchBtn" class="do-search-btn" style="padding: 10px 20px; background: rgba(74, 137, 220, 0.3); border: 1px solid #4a89dc; border-radius: 6px; color: #4a89dc; cursor: pointer; font-size: 14px;">搜索</button>
-          <button id="closeSearchBtn" class="close-search-btn" style="padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; cursor: pointer; font-size: 14px;">关闭</button>
-        </div>
-      </div>
-      
-      <!-- 文化列表 -->
-      <div class="culture-list-container" style="margin-bottom: 20px;">
-        <h3 style="margin-bottom: 10px; color: #f6bb42;">按热度排序文化</h3>
-        <ul id="cultureList" class="culture-list" style="list-style: none; padding: 0; margin: 0;">
-          <!-- 文化列表项将通过JavaScript动态生成 -->
-          <li style="padding: 15px; margin-bottom: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
-            <div style="font-weight: bold; color: #f6bb42;">加载中...</div>
-            <div style="font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 5px;">请稍候...</div>
-          </li>
-        </ul>
+    <!-- 搜索头部 -->
+    <div class="search-header" style="margin-bottom: 20px;">
+      <h2 style="text-align: center; margin-bottom: 15px; color: #f6bb42;">文化搜索</h2>
+      <div class="search-input-container" style="display: flex; gap: 10px;">
+        <input type="text" id="searchInput" placeholder="输入文化名称搜索..."
+          style="flex: 1; padding: 10px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; font-size: 14px;">
+        <button id="doSearchBtn" class="do-search-btn"
+          style="padding: 10px 20px; background: rgba(74, 137, 220, 0.3); border: 1px solid #4a89dc; border-radius: 6px; color: #4a89dc; cursor: pointer; font-size: 14px;">搜索</button>
+        <button id="closeSearchBtn" class="close-search-btn"
+          style="padding: 10px 20px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; cursor: pointer; font-size: 14px;">关闭</button>
       </div>
     </div>
-    
-    <!-- 文化详细信息弹出框 -->
-    <div id="cultureDetailModal" class="culture-detail-modal" style="
+
+    <!-- 文化列表 -->
+    <div class="culture-list-container" style="margin-bottom: 20px;">
+      <h3 style="margin-bottom: 10px; color: #f6bb42;">按热度排序文化</h3>
+      <ul id="cultureList" class="culture-list" style="list-style: none; padding: 0; margin: 0;">
+        <!-- 文化列表项将通过JavaScript动态生成 -->
+        <li
+          style="padding: 15px; margin-bottom: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+          <div style="font-weight: bold; color: #f6bb42;">加载中...</div>
+          <div style="font-size: 12px; color: rgba(255, 255, 255, 0.7); margin-top: 5px;">请稍候...</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 文化详细信息弹出框 -->
+  <div id="cultureDetailModal" class="culture-detail-modal" style="
       position: fixed;
       top: 50%;
       left: 50%;
@@ -178,48 +185,51 @@
       display: none;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     ">
-      <!-- 详细信息头部 -->
-      <div class="culture-detail-header" style="margin-bottom: 20px;">
-        <h2 id="cultureDetailTitle" style="text-align: center; margin-bottom: 15px; color: #f6bb42;"></h2>
-        <button id="closeCultureDetailBtn" class="close-culture-detail-btn" style="position: absolute; top: 10px; right: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; cursor: pointer; font-size: 14px;">关闭</button>
-      </div>
-      
-      <!-- 详细信息内容 -->
-      <div id="cultureDetailContent" class="culture-detail-content" style="display: flex; gap: 30px;">
-        <!-- 左侧：文化图片 -->
-        <div class="culture-image-container" style="flex: 1; max-width: 500px;">
-          <img id="cultureImage" src="" alt="文化图片" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; max-height: 500px;">
-        </div>
-        
-        <!-- 右侧：文化详情 -->
-        <div class="culture-info-container" style="flex: 2;">
-          <div id="cultureDescription" style="margin-bottom: 20px; line-height: 1.6; font-size: 16px;"></div>
-          <div id="cultureDetails" style="font-size: 15px; line-height: 1.6;"></div>
-        </div>
-      </div>
+    <!-- 详细信息头部 -->
+    <div class="culture-detail-header" style="margin-bottom: 20px;">
+      <h2 id="cultureDetailTitle" style="text-align: center; margin-bottom: 15px; color: #f6bb42;"></h2>
+      <button id="closeCultureDetailBtn" class="close-culture-detail-btn"
+        style="position: absolute; top: 10px; right: 10px; padding: 6px 12px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 6px; color: #fff; cursor: pointer; font-size: 14px;">关闭</button>
     </div>
 
-    <script src="js/flexible.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="js/echarts.min.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/china.js"></script>
-    <script src="js/myMap.js"></script>
-    <script>
-      // 确保DOM加载完成后绑定事件
-      document.addEventListener('DOMContentLoaded', function() {
-        // 返回按钮点击事件
-        var backBtn = document.getElementById('backBtn');
-        if (backBtn) {
-          backBtn.addEventListener('click', function() {
-            console.log('返回按钮被点击');
-            window.location.href = 'http://127.0.0.1:5000';
-          });
-        } else {
-          console.error('返回按钮未找到');
-        }
-      });
-    </script>
-  </body>
+    <!-- 详细信息内容 -->
+    <div id="cultureDetailContent" class="culture-detail-content" style="display: flex; gap: 30px;">
+      <!-- 左侧：文化图片 -->
+      <div class="culture-image-container" style="flex: 1; max-width: 500px;">
+        <img id="cultureImage" src="" alt="文化图片"
+          style="width: 100%; height: auto; border-radius: 8px; object-fit: cover; max-height: 500px;">
+      </div>
+
+      <!-- 右侧：文化详情 -->
+      <div class="culture-info-container" style="flex: 2;">
+        <div id="cultureDescription" style="margin-bottom: 20px; line-height: 1.6; font-size: 16px;"></div>
+        <div id="cultureDetails" style="font-size: 15px; line-height: 1.6;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/echarts.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/china.js"></script>
+  <script src="js/myMap.js"></script>
+  <script>
+    // 确保DOM加载完成后绑定事件
+    document.addEventListener('DOMContentLoaded', function () {
+      // 返回按钮点击事件
+      var backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', function () {
+          console.log('返回按钮被点击');
+          window.location.href = 'http://20.196.138.17:5000';
+        });
+      } else {
+        console.error('返回按钮未找到');
+      }
+    });
+  </script>
+</body>
+
 </html>
