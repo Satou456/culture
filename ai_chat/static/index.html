@@ -1103,6 +1103,9 @@
 
     dockItems.forEach((item, index) => {
       item.addEventListener('click', function () {
+        // 跳过第一个返回主页的项目
+        if (index === 0) return;
+        
         // 移除所有激活状态
         dockItems.forEach(i => i.classList.remove('active'));
         // 添加当前激活状态
@@ -1115,8 +1118,9 @@
 
         // 显示对应功能区域
         const sectionIds = ['translate-section', 'chat-section'];
-        if (sectionIds[index]) {
-          document.getElementById(sectionIds[index]).style.display = 'block';
+        const sectionIndex = index - 1; // 减去返回主页的索引
+        if (sectionIds[sectionIndex]) {
+          document.getElementById(sectionIds[sectionIndex]).style.display = 'block';
         }
       });
     });
