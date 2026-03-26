@@ -1,205 +1,216 @@
 <template>
-  <div class="layout-container" :style="{ backgroundImage: `url(${backgroundImage})` }">
-    <!-- 顶部导航栏 -->
-    <header class="top-nav">
-      <div class="top-nav-left">
-        <div class="logo-area">
-          <h1 class="site-title">中华文化论坛</h1>
-        </div>
-        <nav class="top-nav-links">
-          <router-link to="/" class="top-nav-link" exact-active-class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-            </svg>
-            <span>首页</span>
-          </router-link>
-          <router-link to="/category" class="top-nav-link" active-class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <span>分类</span>
-          </router-link>
-          <router-link to="/my-collects" class="top-nav-link" active-class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            <span>收藏</span>
-          </router-link>
-          <router-link to="/my-posts" class="top-nav-link" active-class="active">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <span>我的帖子</span>
-          </router-link>
-        </nav>
+  <div class="layout-container" :class="{ 'bg-loaded': isBgLoaded }" :style="{ backgroundImage: isBgLoaded ? `url(${backgroundImage})` : 'none' }">
+    <!-- 加载状态 -->
+    <div v-if="isLoading" class="loading-container">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">加载中...</p>
       </div>
-      <div class="top-nav-right">
-        <router-link to="/message" class="nav-icon-btn">
-          <span class="nav-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </span>
-          <span v-if="unreadMessages > 0" class="notification-badge">{{ unreadMessages }}</span>
-        </router-link>
-        <div class="user-menu-container">
-          <button class="nav-icon-btn" @click="toggleUserMenu">
-            <img v-if="isLoggedIn" :src="userAvatar" alt="avatar" class="user-avatar-small" />
-            <span v-else class="nav-icon">
+    </div>
+    
+    <!-- 正常内容 -->
+    <template v-else>
+      <!-- 顶部导航栏 -->
+      <header class="top-nav">
+        <div class="top-nav-left">
+          <div class="logo-area">
+            <h1 class="site-title">中华文化论坛</h1>
+          </div>
+          <nav class="top-nav-links">
+            <router-link to="/" class="top-nav-link" exact-active-class="active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+              <span>首页</span>
+            </router-link>
+            <router-link to="/category" class="top-nav-link" active-class="active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>分类</span>
+            </router-link>
+            <router-link to="/my-collects" class="top-nav-link" active-class="active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              <span>收藏</span>
+            </router-link>
+            <router-link to="/my-posts" class="top-nav-link" active-class="active">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>我的帖子</span>
+            </router-link>
+          </nav>
+        </div>
+        <div class="top-nav-right">
+          <router-link to="/message" class="nav-icon-btn">
+            <span class="nav-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
               </svg>
             </span>
-          </button>
-          <!-- 下拉菜单 -->
-          <div v-if="isLoggedIn && showUserDropdown" class="user-dropdown">
-            <button class="dropdown-item" @click="goToProfile">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-              <span>个人主页</span>
+            <span v-if="unreadMessages > 0" class="notification-badge">{{ unreadMessages }}</span>
+          </router-link>
+          <div class="user-menu-container">
+            <button class="nav-icon-btn" @click="toggleUserMenu">
+              <img v-if="isLoggedIn" :src="userAvatar" alt="avatar" class="user-avatar-small" />
+              <span v-else class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
             </button>
-            <button class="dropdown-item" @click="handleLogout">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                <polyline points="16 17 21 12 16 7"></polyline>
-                <line x1="21" y1="12" x2="9" y2="12"></line>
-              </svg>
-              <span>退出登录</span>
-            </button>
+            <!-- 下拉菜单 -->
+            <div v-if="isLoggedIn && showUserDropdown" class="user-dropdown">
+              <button class="dropdown-item" @click="goToProfile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>个人主页</span>
+              </button>
+              <button class="dropdown-item" @click="handleLogout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                  <polyline points="16 17 21 12 16 7"></polyline>
+                  <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                <span>退出登录</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- 主内容区域 -->
+      <div class="main-content">
+        <!-- 中间内容区 -->
+        <main class="content-area">
+          <router-view />
+        </main>
+
+        <!-- 右侧面板 -->
+        <aside class="right-sidebar">
+          <!-- 用户信息卡片 -->
+          <div class="user-card">
+            <div v-if="isLoggedIn" class="user-profile">
+              <img :src="userAvatar" alt="avatar" class="user-avatar-large" />
+              <h3 class="user-name-large">{{ nickname || username }}</h3>
+              <div class="user-stats">
+                <div class="stat-item">
+                  <span class="stat-value">{{ friendCount }}</span>
+                  <span class="stat-label">好友</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">{{ postCount }}</span>
+                  <span class="stat-label">作品</span>
+                </div>
+              </div>
+              <div class="user-actions">
+                <router-link to="/friends" class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span>好友</span>
+                </router-link>
+                <router-link to="/message" class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  <span>私信</span>
+                </router-link>
+                <router-link to="/profile" class="action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                  <span>设置</span>
+                </router-link>
+              </div>
+            </div>
+            <div v-else class="login-prompt">
+              <h3>登录以参与讨论</h3>
+              <p>登录后可以发布帖子、评论和与其他用户互动</p>
+              <div class="login-buttons">
+                <router-link to="/login" class="btn btn-login">登录</router-link>
+                <router-link to="/register" class="btn btn-register">注册</router-link>
+              </div>
+            </div>
+          </div>
+
+          <!-- 统计信息卡片 -->
+          <div class="stats-card">
+            <h3>论坛统计</h3>
+            <div class="stats-list">
+              <div class="stat-row">
+                <span class="stat-label">总用户数</span>
+                <span class="stat-value">{{ stats.totalUsers?.toLocaleString() || 0 }}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">总话题数</span>
+                <span class="stat-value">{{ stats.totalPosts?.toLocaleString() || 0 }}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">总回复数</span>
+                <span class="stat-value">{{ stats.totalComments?.toLocaleString() || 0 }}</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-label">今日新增</span>
+                <span class="stat-value">{{ stats.todayNew?.toLocaleString() || 0 }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 热门标签卡片 -->
+          <div class="tags-card">
+            <h3>热门标签</h3>
+            <div class="tags-list">
+              <span v-for="tag in hotTags" :key="tag" class="tag" @click="goToTag(tag)">{{ tag }}</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- 退出登录提示框 -->
+      <div v-if="showLogoutModal" class="logout-modal-overlay" @click="cancelLogout">
+        <div class="logout-modal" @click.stop>
+          <div class="logout-modal-header">
+            <h3>退出登录</h3>
+          </div>
+          <div class="logout-modal-body">
+            <p>确定要退出登录吗？</p>
+          </div>
+          <div class="logout-modal-footer">
+            <button class="cancel-btn" @click="cancelLogout">取消</button>
+            <button class="confirm-btn" @click="confirmLogout">确定</button>
           </div>
         </div>
       </div>
-    </header>
 
-    <!-- 主内容区域 -->
-    <div class="main-content">
-      <!-- 中间内容区 -->
-      <main class="content-area">
-        <router-view />
-      </main>
+      <!-- 发布作品模态框 -->
+      <CreatePost v-if="showCreatePost" @close="showCreatePost = false" />
 
-      <!-- 右侧面板 -->
-      <aside class="right-sidebar">
-        <!-- 用户信息卡片 -->
-        <div class="user-card">
-          <div v-if="isLoggedIn" class="user-profile">
-            <img :src="userAvatar" alt="avatar" class="user-avatar-large" />
-            <h3 class="user-name-large">{{ nickname || username }}</h3>
-            <div class="user-stats">
-              <div class="stat-item">
-                <span class="stat-value">{{ friendCount }}</span>
-                <span class="stat-label">好友</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-value">{{ postCount }}</span>
-                <span class="stat-label">作品</span>
-              </div>
-            </div>
-            <div class="user-actions">
-              <router-link to="/friends" class="action-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-                <span>好友</span>
-              </router-link>
-              <router-link to="/message" class="action-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-                <span>私信</span>
-              </router-link>
-              <router-link to="/profile" class="action-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-                <span>设置</span>
-              </router-link>
-            </div>
-          </div>
-          <div v-else class="login-prompt">
-            <h3>登录以参与讨论</h3>
-            <p>登录后可以发布帖子、评论和与其他用户互动</p>
-            <div class="login-buttons">
-              <router-link to="/login" class="btn btn-login">登录</router-link>
-              <router-link to="/register" class="btn btn-register">注册</router-link>
-            </div>
-          </div>
-        </div>
-
-        <!-- 统计信息卡片 -->
-        <div class="stats-card">
-          <h3>论坛统计</h3>
-          <div class="stats-list">
-            <div class="stat-row">
-              <span class="stat-label">总用户数</span>
-              <span class="stat-value">{{ stats.totalUsers?.toLocaleString() || 0 }}</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-label">总话题数</span>
-              <span class="stat-value">{{ stats.totalPosts?.toLocaleString() || 0 }}</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-label">总回复数</span>
-              <span class="stat-value">{{ stats.totalComments?.toLocaleString() || 0 }}</span>
-            </div>
-            <div class="stat-row">
-              <span class="stat-label">今日新增</span>
-              <span class="stat-value">{{ stats.todayNew?.toLocaleString() || 0 }}</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 热门标签卡片 -->
-        <div class="tags-card">
-          <h3>热门标签</h3>
-          <div class="tags-list">
-            <span v-for="tag in hotTags" :key="tag" class="tag" @click="goToTag(tag)">{{ tag }}</span>
-          </div>
-        </div>
-      </aside>
-    </div>
-
-    <!-- 退出登录提示框 -->
-    <div v-if="showLogoutModal" class="logout-modal-overlay" @click="cancelLogout">
-      <div class="logout-modal" @click.stop>
-        <div class="logout-modal-header">
-          <h3>退出登录</h3>
-        </div>
-        <div class="logout-modal-body">
-          <p>确定要退出登录吗？</p>
-        </div>
-        <div class="logout-modal-footer">
-          <button class="cancel-btn" @click="cancelLogout">取消</button>
-          <button class="confirm-btn" @click="confirmLogout">确定</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 发布作品模态框 -->
-    <CreatePost v-if="showCreatePost" @close="showCreatePost = false" />
-
-    <!-- 作品详情模态框 -->
-    <PostDetail 
-      v-if="showPostDetail" 
-      :visible="showPostDetail" 
-      :postId="currentPostId" 
-      @close="closePostDetail" 
-    />
+      <!-- 作品详情模态框 -->
+      <PostDetail 
+        v-if="showPostDetail" 
+        :visible="showPostDetail" 
+        :postId="currentPostId" 
+        @close="closePostDetail" 
+      />
+    </template>
   </div>
 </template>
 
@@ -229,6 +240,8 @@ const showUserDropdown = ref(false); // 用户下拉菜单显示状态
 const showLogoutModal = ref(false); // 退出登录提示框显示状态
 const friendCount = ref(0); // 好友数量
 const postCount = ref(0); // 作品数量
+const isBgLoaded = ref(false); // 背景图片加载状态
+const isLoading = ref(true); // 页面加载状态
 
 // 模态框状态
 const showCreatePost = ref(false);
@@ -247,7 +260,7 @@ const stats = ref({
 const hotTags = ref([]);
 
 // 检查登录状态
-const checkLoginStatus = () => {
+const checkLoginStatus = async () => {
   const token = localStorage.getItem('token');
   const storedUsername = localStorage.getItem('username');
   const storedUserId = localStorage.getItem('userId');
@@ -263,7 +276,7 @@ const checkLoginStatus = () => {
       userAvatar.value = `https://api.dicebear.com/7.x/avataaars/svg?seed=${storedUserId || storedUsername}`;
     }
     // 验证token有效性并获取最新用户信息
-    validateToken();
+    await validateToken();
   } else {
     isLoggedIn.value = false;
     username.value = '';
@@ -275,6 +288,7 @@ const checkLoginStatus = () => {
       router.push('/login');
     }
   }
+  return Promise.resolve(); // 确保函数返回Promise
 };
 
 // 验证token有效性并获取用户信息
@@ -284,8 +298,14 @@ const validateToken = async () => {
   
   if (token && userId) {
     try {
-      // 调用接口获取用户信息，包括头像
-      const userInfo = await userApi.getUserInfo(userId);
+      // 并行获取用户信息、好友数量和作品数量
+      const [userInfo, friends, posts] = await Promise.all([
+        userApi.getUserInfo(userId),
+        friendApi.getFriends(userId),
+        postApi.getPosts({ userId })
+      ]);
+      
+      // 处理用户信息
       if (userInfo) {
         if (userInfo.avatar) {
           userAvatar.value = userInfo.avatar;
@@ -297,21 +317,11 @@ const validateToken = async () => {
         }
       }
       
-      // 获取好友数量
-      try {
-        const friends = await friendApi.getFriends(userId);
-        friendCount.value = friends ? friends.length : 0;
-      } catch (error) {
-        console.error('获取好友数量失败:', error);
-      }
+      // 处理好友数量
+      friendCount.value = friends ? friends.length : 0;
       
-      // 获取作品数量
-      try {
-        const posts = await postApi.getPosts({ userId });
-        postCount.value = posts ? posts.length : 0;
-      } catch (error) {
-        console.error('获取作品数量失败:', error);
-      }
+      // 处理作品数量
+      postCount.value = posts ? posts.length : 0;
     } catch (error) {
       // token无效，清除登录信息
       clearLoginInfo();
@@ -324,6 +334,7 @@ const validateToken = async () => {
       }
     }
   }
+  return Promise.resolve(); // 确保函数返回Promise
 };
 
 // 清除登录信息
@@ -455,11 +466,39 @@ const loadHotTags = async () => {
   }
 };
 
+// 预加载背景图片
+const preloadBackgroundImage = () => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = backgroundImage;
+    img.onload = () => {
+      isBgLoaded.value = true;
+      resolve();
+    };
+    img.onerror = () => {
+      // 图片加载失败时也 resolve，避免阻塞其他操作
+      isBgLoaded.value = true;
+      resolve();
+    };
+  });
+};
+
 // 组件挂载时检查状态
 onMounted(() => {
-  checkLoginStatus();
-  loadStats();
-  loadHotTags();
+  // 并行处理API请求和图片预加载，减少加载时间
+  Promise.all([
+    checkLoginStatus(),
+    loadStats(),
+    loadHotTags(),
+    preloadBackgroundImage()
+  ]).then(() => {
+    // 所有请求完成后，设置加载状态为false
+    isLoading.value = false;
+  }).catch(error => {
+    console.error('初始化请求失败:', error);
+    // 即使请求失败，也设置加载状态为false，避免页面一直显示加载中
+    isLoading.value = false;
+  });
   
   // 监听存储变化（例如在其他标签页登录/退出）
   window.addEventListener('storage', checkLoginStatus);
@@ -508,6 +547,58 @@ const handleClickOutside = (event) => {
   background-position: center;
   background-repeat: no-repeat;
   font-size: 14px;
+  transition: background-image 0.5s ease-in-out;
+  /* 加载时的背景色 */
+  background-color: #f5f5f5;
+}
+
+/* 背景图片加载完成后的效果 */
+.layout-container.bg-loaded {
+  background-color: transparent;
+}
+
+/* 加载状态容器 */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+
+/* 加载内容 */
+.loading-content {
+  text-align: center;
+  color: #333;
+}
+
+/* 加载动画 */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #409eff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+/* 加载文本 */
+.loading-text {
+  font-size: 16px;
+  color: #666;
+}
+
+/* 加载动画关键帧 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* 隐藏滚动条 */

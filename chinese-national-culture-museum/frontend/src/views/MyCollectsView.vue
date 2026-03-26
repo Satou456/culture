@@ -33,8 +33,8 @@
         <!-- 底部信息 -->
         <div class="post-footer">
           <div class="author-info">
-            <img :src="collect.authorAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${collect.authorName}`" class="author-avatar" />
-            <span class="author-name">{{ collect.authorName }}</span>
+            <img :src="collect.authorAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${collect.authorName || collect.authorUsername}`" class="author-avatar" />
+            <span class="author-name">{{ collect.authorName || collect.authorUsername }}</span>
           </div>
           <div class="post-stats">
             <span class="stat-item">

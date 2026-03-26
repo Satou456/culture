@@ -11,7 +11,7 @@
             p.content,
             p.file_url AS fileUrl,
             p.user_id AS userId,
-            u.username AS authorName,
+            u.nickname AS authorName,
             u.avatar AS authorAvatar,
             p.ethnic_group AS ethnicGroup,
             p.region,

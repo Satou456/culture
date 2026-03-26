@@ -62,8 +62,8 @@
               <!-- 底部信息 -->
               <div class="post-footer">
                 <div class="author-info">
-                  <img :src="post.authorAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.authorName}`" class="author-avatar" />
-                  <span class="author-name">{{ post.authorName }}</span>
+                  <img :src="post.authorAvatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${post.authorName || post.authorUsername}`" class="author-avatar" />
+                  <span class="author-name">{{ post.authorName || post.authorUsername }}</span>
                 </div>
                 <div class="post-stats">
                   <span class="stat-item">
