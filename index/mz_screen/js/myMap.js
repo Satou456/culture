@@ -738,7 +738,7 @@
                   </div>
                   <div>
                     <div style="color:#4a89dc;font-weight:bold;margin-bottom:5px;">民族种类占比</div>
-                    <div style="color:#f8f0e3;line-height:1.6;">${Object.entries(data.民族种类占比).length > 0 ? Object.entries(data.民族种类占比).map(([ethnic, ratio]) => `${ethnic}: ${ratio}%`).join('、') : '暂无数据'}</div>
+                    <div style="color:#f8f0e3;line-height:1.6;">${Object.entries(data.民族种类占比).length > 0 ? Object.entries(data.民族种类占比).filter(([ethnic]) => ethnic !== "其他").map(([ethnic, ratio]) => `${ethnic}: ${ratio}%`).join('、') : '暂无数据'}</div>
                   </div>
                 </div>
               </div>

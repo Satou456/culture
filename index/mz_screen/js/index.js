@@ -1067,9 +1067,10 @@ document.addEventListener('map-region-request', function (e) {
       return;
     }
 
-    // 转换数据并排序（按占比从高到低）
+    // 转换数据并排序（按占比从高到低），过滤掉"其他"条目
     var ethnicData = Object.entries(regionData["民族种类占比"])
       .map(([ethnic, ratio]) => ({ ethnic, ratio }))
+      .filter(item => item.ethnic !== "其他") // 过滤掉"其他"条目
       .sort((a, b) => b.ratio - a.ratio);
 
     // 生成表格内容
