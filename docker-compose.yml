@@ -82,7 +82,7 @@ services:
     depends_on:
       - chinese-national-culture-museum-backend
     environment:
-      VITE_API_BASE_URL: http://chinese-national-culture-museum-backend:8080
+      VITE_API_BASE_URL: http://20.196.138.17:8080
     restart: always
 
 volumes:
