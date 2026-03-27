@@ -124,7 +124,7 @@
 import { ref, reactive, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
-import { userApi } from '@/api';
+import { userApi } from '@/api/user';
 
 const router = useRouter();
 const avatarInput = ref(null);
@@ -196,6 +196,7 @@ const loadUserProfile = async () => {
   
   try {
     const userData = await userApi.getUserInfo(userId);
+    console.log('User data:', userData);
     if (userData) {
       Object.assign(userInfo, userData);
       // 处理兴趣标签
@@ -211,7 +212,7 @@ const loadUserProfile = async () => {
     }
   } catch (error) {
     console.error('获取用户信息失败:', error);
-    message.value = '获取用户信息失败，请检查网络连接';
+    ElMessage.error('获取用户信息失败，请检查网络连接');
   }
 };
 
@@ -246,6 +247,7 @@ const handleAvatarUpload = async (event) => {
 
   try {
     const avatarUrl = await userApi.uploadAvatar(file);
+    console.log('Avatar URL:', avatarUrl);
     if (avatarUrl) {
       userInfo.avatar = avatarUrl;
       // 保存到本地存储
@@ -275,6 +277,7 @@ const handleBannerUpload = async (event) => {
 
   try {
     const bannerUrl = await userApi.uploadBanner(file);
+    console.log('Banner URL:', bannerUrl);
     if (bannerUrl) {
       userInfo.banner = bannerUrl;
       ElMessage.success('横幅上传成功');

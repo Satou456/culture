@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onActivated } from 'vue';
 import { useRouter } from 'vue-router';
 import { tagApi } from '@/api/tag';
 import { errorHandler } from '@/utils/errorHandler';
@@ -169,6 +169,11 @@ const clearSelection = () => {
 
 // 组件挂载时获取标签列表
 onMounted(() => {
+  fetchTags();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
   fetchTags();
 });
 </script>

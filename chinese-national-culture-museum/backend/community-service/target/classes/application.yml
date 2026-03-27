@@ -66,7 +66,7 @@ sa-token:
 
 aliyun:
   oss:
-    endpoint: Https://oss-cn-beijing.aliyuncs.com
-    bucketName: teststorage1
-    region: cn-beijing
+    endpoint: ${OSS_ENDPOINT}
+    bucketName: ${OSS_BUCKET_NAME}
+    region: ${OSS_REGION}
 

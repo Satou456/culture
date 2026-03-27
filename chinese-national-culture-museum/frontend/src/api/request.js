@@ -48,6 +48,20 @@ const cache = {
     } catch (error) {
       console.error('Cache remove error:', error);
     }
+  },
+  clearByPath(path) {
+    if (!cacheConfig.enabled) return;
+    try {
+      // 遍历所有缓存项，删除与指定路径相关的缓存
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith('api_cache_') && key.includes(path)) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch (error) {
+      console.error('Cache clear error:', error);
+    }
   }
 };
 
@@ -137,5 +151,10 @@ request.interceptors.response.use(
     return Promise.reject(err);
   }
 );
+
+// 添加清除缓存的方法
+request.clearCache = function (path) {
+  cache.clearByPath(path);
+};
 
 export default request;

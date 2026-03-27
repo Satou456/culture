@@ -17,8 +17,10 @@ export const uploadApi = {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('type', 'post');
+    // 使用环境变量或默认的API基础URL
+    const baseURL = import.meta.env.VITE_API_BASE_URL || 'http://20.196.138.17:8080';
     // 直接使用axios，绕过响应拦截器，因为后端可能直接返回文件URL
-    return axios.post('http://localhost:8080/upload', formData, {
+    return axios.post(`${baseURL}/upload`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': localStorage.getItem('token')

@@ -61,7 +61,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onActivated } from 'vue';
 import { useRouter } from 'vue-router';
 import { collectApi } from '@/api/collect';
 import { errorHandler } from '@/utils/errorHandler';
@@ -93,6 +93,11 @@ const fetchMyCollects = async () => {
 };
 
 onMounted(() => {
+  fetchMyCollects();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
   fetchMyCollects();
 });
 </script>

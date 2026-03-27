@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onActivated } from 'vue';
 import { useRouter } from 'vue-router';
 import { postApi } from '@/api/post';
 import { errorHandler } from '@/utils/errorHandler';
@@ -118,6 +118,11 @@ const deletePost = async (postId) => {
 
 // 组件挂载时获取数据
 onMounted(() => {
+  fetchMyPosts();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
   fetchMyPosts();
 });
 </script>

@@ -24,13 +24,19 @@ public class AliyunOSSOperator {
         String bucketName = aliyunOSSProperties.getBucketName();
         String region = aliyunOSSProperties.getRegion();
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
-        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
+        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory
+                .newEnvironmentVariableCredentialsProvider();
 
         // 填写Object完整路径，例如202406/1.png。Object完整路径中不能包含Bucket名称。
-        //获取当前系统日期的字符串,格式为 yyyy/MM
+        // 获取当前系统日期的字符串,格式为 yyyy/MM
         String dir = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM"));
-        //生成一个新的不重复的文件名
-        String newFileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+        // 生成一个新的不重复的文件名
+        String extension = "";
+        int dotIndex = originalFilename.lastIndexOf(".");
+        if (dotIndex != -1) {
+            extension = originalFilename.substring(dotIndex);
+        }
+        String newFileName = UUID.randomUUID() + extension;
         String objectName = dir + "/" + newFileName;
 
         // 创建OSSClient实例。
@@ -49,7 +55,17 @@ public class AliyunOSSOperator {
             ossClient.shutdown();
         }
 
-        return endpoint.split("//")[0] + "//" + bucketName + "." + endpoint.split("//")[1] + "/" + objectName;
+        // 构建返回URL
+        String[] parts = endpoint.split("//");
+        String protocol = "http";
+        String domain = endpoint;
+
+        if (parts.length >= 2) {
+            protocol = parts[0];
+            domain = parts[1];
+        }
+
+        return protocol + "://" + bucketName + "." + domain + "/" + objectName;
     }
 
 }

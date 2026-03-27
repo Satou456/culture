@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, inject } from 'vue';
+import { ref, onMounted, onActivated, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { postApi } from '@/api';
 import { collectApi } from '@/api/collect';
@@ -230,6 +230,11 @@ const handleCollect = async (postId, event) => {
 };
 
 onMounted(() => {
+  fetchPosts();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
   fetchPosts();
 });
 </script>

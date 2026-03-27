@@ -42,6 +42,12 @@
 │   │   └── community-service  # 社区服务模块
 │   ├── frontend/           # 前端应用
 │   │   ├── src/            # 源代码
+│   │   │   ├── api/        # API请求模块
+│   │   │   ├── components/  # 组件
+│   │   │   ├── views/      # 页面
+│   │   │   ├── router/     # 路由配置
+│   │   │   ├── utils/      # 工具函数
+│   │   │   └── main.js     # 入口文件
 │   │   ├── public/         # 静态资源
 │   │   ├── dist/           # 构建输出
 │   │   ├── index.html      # 入口HTML文件
@@ -93,12 +99,19 @@
 
 - 文化论坛：提供文化交流和讨论的平台
 - 文化展示：展示中华民族的文化遗产和特色
-- 社区互动：用户可以发布帖子、评论和分享文化内容
+- 社区互动：用户可以发布帖子、评论、点赞和收藏文化内容
+- 用户管理：支持用户注册、登录、个人信息管理
+- 标签系统：为帖子添加标签，方便分类和搜索
+- 文件上传：支持上传图片和视频等多媒体文件
+- 权限管理：支持公开和仅好友可见的帖子设置
 
 **核心文件**：
 
 - `chinese-national-culture-museum/frontend/index.html`：前端入口页面
 - `chinese-national-culture-museum/frontend/src/`：前端源代码
+- `chinese-national-culture-museum/frontend/src/api/`：API请求模块
+- `chinese-national-culture-museum/frontend/src/views/`：页面组件
+- `chinese-national-culture-museum/frontend/src/components/`：通用组件
 - `chinese-national-culture-museum/backend/community-service/`：后端社区服务模块
 - `chinese-national-culture-museum/cultural_museum.sql`：数据库初始化脚本
 
@@ -126,6 +139,7 @@
 - Java 17+：用于中华民族文化博物馆后端
 - 浏览器：Chrome, Firefox, Edge等现代浏览器
 - 对于AI文化对话系统，需要配置智谱API Key和Heimori API Key
+- 对于中华民族文化博物馆，需要配置阿里云OSS账号（用于文件上传功能）
 
 ## 快速开始
 
@@ -146,7 +160,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # 验证安装
 docker --version
-docker-compose --version
+docker compose --version
 ```
 
 #### 2. 克隆项目代码
@@ -183,16 +197,26 @@ HEIMORI_API_KEY_HEADER=Authorization
 HEIMORI_TIMEOUT_SECONDS=30
 HEIMORI_TRANSLATION_MODEL=tengri-t1-pro
 HEIMORI_AUTH_PREFIX=Bearer
+
+# 阿里云OSS配置
+OSS_ACCESS_KEY_ID=your_access_key_id
+OSS_ACCESS_KEY_SECRET=your_access_key_secret
+OSS_ENDPOINT=oss-cn-beijing.aliyuncs.com
+OSS_BUCKET_NAME=your_bucket_name
 ```
 
-**注意**：只需要修改`BIGMODEL_API_KEY`和`HEIMORI_API_KEY`为您的真实API Key，其他配置项保持默认值即可。
+**注意**：
+
+- 需要修改`BIGMODEL_API_KEY`和`HEIMORI_API_KEY`为您的真实API Key
+- 需要修改`OSS_ACCESS_KEY_ID`、`OSS_ACCESS_KEY_SECRET`和`OSS_BUCKET_NAME`为您的阿里云OSS配置
+- 其他配置项保持默认值即可
 
 #### 4. 构建和启动容器
 
 使用Docker Compose构建和启动所有服务：
 
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 这将构建所有Docker镜像并启动容器。首次构建可能需要一些时间，因为需要下载基础镜像和安装依赖。
@@ -202,10 +226,11 @@ docker-compose up -d --build
 检查所有容器是否正常运行：
 
 ```bash
-docker-compose ps
+docker compose ps
 ```
 
 您应该看到以下容器正在运行：
+
 - mysql-db: MySQL数据库服务
 - index-service: 文化遗产数据库管理系统
 - ai-chat-service: AI文化对话系统
@@ -217,7 +242,8 @@ docker-compose ps
 
 - 文化遗产数据库管理系统：`http://服务器IP:5000`
 - AI文化对话系统：`http://服务器IP:8000`
-- 中华民族文化博物馆：`http://服务器IP:8080`
+- 中华民族文化博物馆前端：`http://服务器IP:5173`
+- 中华民族文化博物馆后端：`http://服务器IP:8080`
 
 ### 本地开发（可选）
 
@@ -241,7 +267,7 @@ docker-compose ps
 
 #### 2. 启动AI文化对话系统
 
-1. 进入ai_chat目录：
+1. 进入ai\_chat目录：
    ```bash
    cd ai_chat
    ```
@@ -346,6 +372,7 @@ docker-compose ps
 ### 2. 数据库连接失败
 
 如果应用无法连接到数据库，请检查：
+
 - MySQL容器是否正常运行
 - 环境变量中的数据库连接信息是否正确
 - 数据库初始化是否完成
@@ -393,6 +420,7 @@ docker-compose ps
 ### 8. API Key问题
 
 如果AI文化对话系统无法正常工作，请检查：
+
 - 智谱API Key和Heimori API Key是否正确配置
 - API Key是否有效
 

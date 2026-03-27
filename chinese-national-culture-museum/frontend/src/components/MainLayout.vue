@@ -96,7 +96,7 @@
       <div class="main-content">
         <!-- 中间内容区 -->
         <main class="content-area">
-          <router-view />
+          <router-view :key="route.fullPath" />
         </main>
 
         <!-- 右侧面板 -->

@@ -15,15 +15,28 @@ export const postApi = {
   },
   // 创建文章
   createPost(data) {
-    return request.post('/posts', data);
+    return request.post('/posts', data).then(res => {
+      // 清除相关缓存
+      request.clearCache('/posts');
+      return res;
+    });
   },
   // 更新文章
   updatePost(id, data) {
-    return request.put(`/posts/${id}`, data);
+    return request.put(`/posts/${id}`, data).then(res => {
+      // 清除相关缓存
+      request.clearCache('/posts');
+      request.clearCache(`/posts/${id}`);
+      return res;
+    });
   },
   // 删除文章
   deletePost(id) {
-    return request.delete('/posts', { params: { id } });
+    return request.delete('/posts', { params: { id } }).then(res => {
+      // 清除相关缓存
+      request.clearCache('/posts');
+      return res;
+    });
   },
   // 获取文章详情
   getPostDetail(id) {

@@ -14,7 +14,11 @@ export const userApi = {
     return request.get(`/user/${id}`);
   },
   updateUserInfo(profileData) {
-    return request.put('/user/update', profileData);
+    return request.put('/user/update', profileData).then(res => {
+      // 清除用户相关缓存
+      request.clearCache('/user');
+      return res;
+    });
   },
   uploadAvatar(file) {
     const formData = new FormData();
@@ -23,6 +27,10 @@ export const userApi = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(res => {
+      // 清除用户相关缓存
+      request.clearCache('/user');
+      return res;
     });
   },
   uploadBanner(file) {
@@ -32,6 +40,10 @@ export const userApi = {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(res => {
+      // 清除用户相关缓存
+      request.clearCache('/user');
+      return res;
     });
   },
   changePassword(passwordForm) {
