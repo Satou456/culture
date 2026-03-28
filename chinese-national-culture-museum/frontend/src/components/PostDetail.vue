@@ -369,6 +369,10 @@ const fetchComments = async () => {
   
   loadingComments.value = true;
   try {
+    // 清除评论相关缓存，确保获取最新数据
+    import('@/api/request').then(({ default: request }) => {
+      request.clearCache('/comments');
+    });
     const data = await commentApi.getCommentsByPostId(post.value.id);
     comments.value = data;
   } catch (err) {
@@ -408,6 +412,10 @@ const submitComment = async () => {
     commentContent.value = '';
     replyTo.value = null;
     replyUser.value = null;
+    // 清除评论缓存，确保获取最新数据
+    await import('@/api/request').then(({ default: request }) => {
+      request.clearCache('/comments');
+    });
     await fetchComments();
     // 更新帖子评论数
     post.value.comments++;
