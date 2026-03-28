@@ -98,7 +98,11 @@ onMounted(() => {
 
 // 每次激活组件时重新获取数据
 onActivated(() => {
-  fetchMyCollects();
+  // 清除收藏列表缓存，确保获取最新数据
+  import('@/api/request').then(({ default: request }) => {
+    request.clearCache('/collects');
+    fetchMyCollects();
+  });
 });
 </script>
 

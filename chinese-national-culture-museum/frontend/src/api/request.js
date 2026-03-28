@@ -81,7 +81,9 @@ request.interceptors.request.use(config => {
 
   // 检查缓存（仅对 GET 请求）
   if (config.method === 'get') {
-    const cacheKey = `api_cache_${config.url}_${JSON.stringify(config.params || {})}`;
+    // 在缓存键中包含用户信息，确保不同用户有不同的缓存
+    const userId = localStorage.getItem('userId') || 'guest';
+    const cacheKey = `api_cache_${userId}_${config.url}_${JSON.stringify(config.params || {})}`;
     const cachedData = cache.get(cacheKey);
 
     if (cachedData) {
@@ -106,7 +108,9 @@ request.interceptors.response.use(
 
     // 缓存 GET 请求的响应
     if (response.config.method === 'get') {
-      const cacheKey = `api_cache_${response.config.url}_${JSON.stringify(response.config.params || {})}`;
+      // 在缓存键中包含用户信息，确保不同用户有不同的缓存
+      const userId = localStorage.getItem('userId') || 'guest';
+      const cacheKey = `api_cache_${userId}_${response.config.url}_${JSON.stringify(response.config.params || {})}`;
       cache.set(cacheKey, res.data);
     }
 

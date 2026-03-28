@@ -1,17 +1,17 @@
 /*
  Navicat Premium Dump SQL
 
- Source Server         : mysql
+ Source Server         : 服务器
  Source Server Type    : MySQL
- Source Server Version : 90300 (9.3.0)
- Source Host           : localhost:3306
+ Source Server Version : 80045 (8.0.45)
+ Source Host           : 20.196.138.17:3306
  Source Schema         : cultural_museum
 
  Target Server Type    : MySQL
- Target Server Version : 90300 (9.3.0)
+ Target Server Version : 80045 (8.0.45)
  File Encoding         : 65001
 
- Date: 19/03/2026 17:53:05
+ Date: 28/03/2026 18:20:11
 */
 
 SET NAMES utf8mb4;
@@ -37,14 +37,6 @@ CREATE TABLE `comment`  (
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES ('2032354458341965826', '1234576897', '2026152657965563906', '2031681928526442498', NULL, '2026-03-13 15:13:57', NULL);
-INSERT INTO `comment` VALUES ('2032354776383455234', 'qwertyuio', '2026186367314202626', '2031681928526442498', '2032354458341965826', '2026-03-13 15:15:13', NULL);
-INSERT INTO `comment` VALUES ('2032354832138338305', '你好', '2026186367314202626', '2031681928526442498', NULL, '2026-03-13 15:15:26', NULL);
-INSERT INTO `comment` VALUES ('2032693816425107458', '好看！', '2026152657965563906', '2032355522839543810', NULL, '2026-03-14 13:42:26', NULL);
-INSERT INTO `comment` VALUES ('2032694749850685442', '12123', '2026152657965563906', '2032355522839543810', '2032693816425107458', '2026-03-14 13:46:09', NULL);
-INSERT INTO `comment` VALUES ('2032694816821137409', 'helloword', '2026152657965563906', '2032355522839543810', NULL, '2026-03-14 13:46:25', NULL);
-INSERT INTO `comment` VALUES ('2032695737990959106', '111', '2026152657965563906', '2031676102684311554', NULL, '2026-03-14 13:50:04', NULL);
-INSERT INTO `comment` VALUES ('2032695746622836737', '222', '2026152657965563906', '2031676102684311554', NULL, '2026-03-14 13:50:06', NULL);
 
 -- ----------------------------
 -- Table structure for cultures
@@ -61,7 +53,7 @@ CREATE TABLE `cultures`  (
   `heat` int NULL DEFAULT NULL,
   `created_at` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of cultures
@@ -90,7 +82,7 @@ CREATE TABLE `ethnic_groups`  (
   `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `created_at` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of ethnic_groups
@@ -168,13 +160,20 @@ CREATE TABLE `follow`  (
   UNIQUE INDEX `uk_user_friend`(`user_id` ASC, `friend_id` ASC) USING BTREE,
   INDEX `idx_user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_friend_id`(`friend_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户好友关系' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户好友关系' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of follow
 -- ----------------------------
-INSERT INTO `follow` VALUES (12, '2026186367314202626', '2026152657965563906', 1, '2026-03-14 12:06:34', '2026-03-14 12:06:34');
-INSERT INTO `follow` VALUES (13, '2026152657965563906', '2026186367314202626', 1, '2026-03-14 12:14:19', '2026-03-14 12:14:19');
+INSERT INTO `follow` VALUES (1, '2026186367314202626', '2026198765432109876', 1, '2026-02-01 10:00:00', '2026-02-01 10:00:00');
+INSERT INTO `follow` VALUES (2, '2026198765432109876', '2026186367314202626', 1, '2026-02-01 10:30:00', '2026-02-01 10:30:00');
+INSERT INTO `follow` VALUES (3, '2026209876543218765', '2026186367314202626', 1, '2026-02-02 11:00:00', '2026-02-02 11:00:00');
+INSERT INTO `follow` VALUES (4, '2026210987654327654', '2026198765432109876', 1, '2026-02-03 12:00:00', '2026-02-03 12:00:00');
+INSERT INTO `follow` VALUES (5, '2026221098765436543', '2026209876543218765', 1, '2026-02-04 13:00:00', '2026-02-04 13:00:00');
+INSERT INTO `follow` VALUES (6, '2026232109876545432', '2026210987654327654', 1, '2026-02-05 14:00:00', '2026-02-05 14:00:00');
+INSERT INTO `follow` VALUES (7, '2026243210987654321', '2026221098765436543', 1, '2026-02-06 15:00:00', '2026-02-06 15:00:00');
+INSERT INTO `follow` VALUES (8, '2026254321098763210', '2026232109876545432', 1, '2026-02-07 16:00:00', '2026-02-07 16:00:00');
+INSERT INTO `follow` VALUES (9, '2026265432109872109', '2026243210987654321', 1, '2026-02-08 17:00:00', '2026-02-08 17:00:00');
 
 -- ----------------------------
 -- Table structure for interaction
@@ -190,17 +189,31 @@ CREATE TABLE `interaction`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_user_target_action`(`user_id` ASC, `target_id` ASC, `action_type` ASC) USING BTREE,
   INDEX `idx_target`(`target_type` ASC, `target_id` ASC, `action_type` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户互动行为表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户互动行为表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of interaction
 -- ----------------------------
-INSERT INTO `interaction` VALUES (3, '2026186367314202626', '2031681928526442498', 1, 2, '2026-03-13 15:15:39');
-INSERT INTO `interaction` VALUES (4, '2026186367314202626', '2031676102684311554', 1, 2, '2026-03-13 15:15:41');
-INSERT INTO `interaction` VALUES (5, '2026152657965563906', '2032355522839543810', 1, 1, '2026-03-14 13:37:01');
-INSERT INTO `interaction` VALUES (6, '2026152657965563906', '2032355522839543810', 1, 2, '2026-03-14 13:37:06');
-INSERT INTO `interaction` VALUES (7, '2026152657965563906', '2031681928526442498', 1, 2, '2026-03-14 13:37:20');
-INSERT INTO `interaction` VALUES (8, '2026152657965563906', '2031681928526442498', 1, 1, '2026-03-14 13:37:21');
+INSERT INTO `interaction` VALUES (1, '2026198765432109876', '2032355522839543810', 1, 1, '2026-03-01 12:00:00');
+INSERT INTO `interaction` VALUES (2, '2026209876543218765', '2032355522839543810', 1, 1, '2026-03-01 12:30:00');
+INSERT INTO `interaction` VALUES (3, '2026210987654327654', '2032355522839543811', 1, 1, '2026-03-02 13:00:00');
+INSERT INTO `interaction` VALUES (4, '2026221098765436543', '2032355522839543812', 1, 1, '2026-03-03 14:00:00');
+INSERT INTO `interaction` VALUES (5, '2026232109876545432', '2032355522839543813', 1, 1, '2026-03-04 15:00:00');
+INSERT INTO `interaction` VALUES (6, '2026186367314202626', '2032355522839543810', 1, 2, '2026-03-01 13:00:00');
+INSERT INTO `interaction` VALUES (7, '2026198765432109876', '2032355522839543811', 1, 2, '2026-03-02 14:00:00');
+INSERT INTO `interaction` VALUES (8, '2026209876543218765', '2032355522839543812', 1, 2, '2026-03-03 15:00:00');
+INSERT INTO `interaction` VALUES (9, '2026210987654327654', '2032355522839543813', 1, 2, '2026-03-04 16:00:00');
+INSERT INTO `interaction` VALUES (10, '2026221098765436543', '2032355522839543814', 1, 2, '2026-03-05 17:00:00');
+INSERT INTO `interaction` VALUES (11, '2026186367314202626', '2032355522839543815', 1, 3, '2026-03-06 10:00:00');
+INSERT INTO `interaction` VALUES (12, '2026198765432109876', '2032355522839543816', 1, 3, '2026-03-07 11:00:00');
+INSERT INTO `interaction` VALUES (13, '2026209876543218765', '2032355522839543817', 1, 3, '2026-03-08 12:00:00');
+INSERT INTO `interaction` VALUES (14, '2026210987654327654', '2032355522839543818', 1, 3, '2026-03-09 13:00:00');
+INSERT INTO `interaction` VALUES (15, '2026221098765436543', '2032355522839543819', 1, 3, '2026-03-10 14:00:00');
+INSERT INTO `interaction` VALUES (17, '2026232109876545432', '2032355522839543810', 1, 1, '2026-03-28 10:00:08');
+INSERT INTO `interaction` VALUES (18, '2026221098765436543', '2032355522839543810', 1, 1, '2026-03-28 10:02:14');
+INSERT INTO `interaction` VALUES (19, '2026186367314202626', '2032355522839543817', 1, 2, '2026-03-28 10:18:43');
+INSERT INTO `interaction` VALUES (20, '2026186367314202626', '2032355522839543818', 1, 2, '2026-03-28 10:18:51');
+INSERT INTO `interaction` VALUES (21, '2026186367314202626', '2032355522839543818', 1, 1, '2026-03-28 10:18:52');
 
 -- ----------------------------
 -- Table structure for message
@@ -219,14 +232,16 @@ CREATE TABLE `message`  (
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES ('2028745064536104961', '2026186367314202626', '2026152657965563906', '1去1', '2026-03-03 16:11:30');
-INSERT INTO `message` VALUES ('2028753925091438594', '2026152657965563906', '2026186367314202626', '1去241', '2026-03-03 16:46:43');
-INSERT INTO `message` VALUES ('2028760828810952706', '2026152657965563906', '2026186367314202626', '你好，这是一条测试消息', '2026-03-03 17:14:09');
-INSERT INTO `message` VALUES ('2031268527908204545', '2026152657965563906', '2026186367314202626', '你好', '2026-03-10 15:18:51');
-INSERT INTO `message` VALUES ('2031268666257321985', '2026186367314202626', '2026152657965563906', '1111111111111', '2026-03-10 15:19:24');
-INSERT INTO `message` VALUES ('2031278818578542594', '2026186367314202626', '2026152657965563906', '份的人', '2026-03-10 15:59:44');
-INSERT INTO `message` VALUES ('2032019492982644738', '2026152657965563906', '2026186367314202626', 'hello、', '2026-03-12 17:02:55');
-INSERT INTO `message` VALUES ('2033807595971960833', '2026152657965563906', '2026186367314202626', '你好', '2026-03-17 15:28:12');
+INSERT INTO `message` VALUES ('2028745064536104961', '2026186367314202626', '2026198765432109876', '你好！我看到你分享的那达慕大会的帖子，很感兴趣，能分享更多细节吗？', '2026-03-02 10:00:00');
+INSERT INTO `message` VALUES ('2028753925091438594', '2026198765432109876', '2026186367314202626', '当然可以！那达慕大会真的很热闹，有很多精彩的活动，我可以给你发一些照片。', '2026-03-02 10:30:00');
+INSERT INTO `message` VALUES ('2028760828810952706', '2026209876543218765', '2026210987654327654', '你好！我对你分享的木卡姆艺术很感兴趣，想了解更多关于它的历史。', '2026-03-03 11:00:00');
+INSERT INTO `message` VALUES ('2031268527908204545', '2026210987654327654', '2026209876543218765', '木卡姆的历史确实很悠久，它是维吾尔族人民智慧的结晶，我可以给你推荐一些相关的资料。', '2026-03-03 11:30:00');
+INSERT INTO `message` VALUES ('2031268666257321985', '2026221098765436543', '2026232109876545432', '你好！我看到你分享的壮族铜鼓的帖子，很精彩！我也对民族工艺很感兴趣。', '2026-03-04 12:00:00');
+INSERT INTO `message` VALUES ('2031278818578542594', '2026232109876545432', '2026221098765436543', '谢谢！民族工艺确实很值得研究，我们可以一起交流学习。', '2026-03-04 12:30:00');
+INSERT INTO `message` VALUES ('2032019492982644738', '2026243210987654321', '2026254321098763210', '你好！我看到你分享的阿里郎的帖子，旋律真的很优美。', '2026-03-05 13:00:00');
+INSERT INTO `message` VALUES ('2033807595971960833', '2026254321098763210', '2026243210987654321', '谢谢！阿里郎确实是朝鲜族文化的瑰宝，希望更多人能了解它。', '2026-03-05 13:30:00');
+INSERT INTO `message` VALUES ('2033807595971960834', '2026265432109872109', '2026152657965563906', '你好！我看到你分享的传统节日的帖子，写得很全面，受益匪浅。', '2026-03-06 14:00:00');
+INSERT INTO `message` VALUES ('2033807595971960835', '2026152657965563906', '2026265432109872109', '谢谢！传统节日是中华民族的文化瑰宝，我们应该好好传承和弘扬。', '2026-03-06 14:30:00');
 
 -- ----------------------------
 -- Table structure for post
@@ -256,13 +271,15 @@ CREATE TABLE `post`  (
 -- ----------------------------
 -- Records of post
 -- ----------------------------
-INSERT INTO `post` VALUES ('2028734288333119489', '', NULL, NULL, '2028422892600995842', '', '', 1, 0, 0, 0, b'0', '2026-03-03 15:28:41', NULL);
-INSERT INTO `post` VALUES ('2028729785261338626', '245', NULL, NULL, '2028422892600995842', '', '', 1, 0, 0, 0, b'0', '2026-03-03 15:10:47', NULL);
-INSERT INTO `post` VALUES ('2032717394524684290', 'Hello World', '你好，世界！', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/2a98740c-951e-4240-8f48-6f578583ff02.jpeg', '2026152657965563906', '', '', 1, 0, 0, 0, b'0', '2026-03-14 15:16:08', NULL);
-INSERT INTO `post` VALUES ('2032355522839543810', '你好，我是李四', '我喜或这个论坛', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/70e5705a-3d66-4222-a308-7e3bf375f70d.jpg', '2026186367314202626', '汉', '大连市', 1, 3, 1, 1, b'0', '2026-03-13 15:18:11', NULL);
-INSERT INTO `post` VALUES ('2031681928526442498', '测试233', '132354677', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6b098456-f14b-48e0-a8cc-717c8d0e1ddb.png', '2026152657965563906', '汉', '大连市', 1, 3, 2, 1, b'0', '2026-03-11 18:41:33', NULL);
-INSERT INTO `post` VALUES ('2031676102684311554', '这是一个测试文章11111', '去微软推哦怕去微软推姐姐哦看来XZCZFGDHYTFYFUHRDEH,SaedrfcE4FW,SDXHEUIFUIHKWRFGIKWYEURSfs;redoufhwsaeui孙菲菲让我死哦分泸沽湖，\n如粪土热压罐肉片替换', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/fd3838ed-4049-400b-9a2c-213d7856586c.webp', '2026152657965563906', '汉', '大连市', 1, 2, 1, 0, b'0', '2026-03-11 18:18:24', NULL);
-INSERT INTO `post` VALUES ('2032714970858704898', '这是我的第二个作品', '123违法手段丰富', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/516bae69-4c1e-4e75-b563-81fdf12f7281.png', '2026152657965563906', '', '', 2, 0, 0, 0, b'0', '2026-03-14 15:06:30', NULL);
+INSERT INTO `post` VALUES ('2032355522839543812', '唐卡艺术：藏族文化的瑰宝', '唐卡是藏族文化中一种独特的绘画艺术形式，以宗教题材为主，通常绘制在布帛或纸张上。唐卡的历史可以追溯到公元7世纪，是藏族人民智慧的结晶。\n\n唐卡的制作过程非常复杂，需要经过选料、绷框、勾线、着色、金描等多个步骤，一幅精美的唐卡往往需要数月甚至数年的时间才能完成。\n\n唐卡不仅是一种艺术品，更是藏族宗教文化的重要载体。通过唐卡，我们可以了解藏族的宗教信仰、历史故事和民俗风情。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/edf473a8-7eea-4907-8fcf-ed218834a1e3.jpg', '2026209876543218765', '藏族', '西藏自治区拉萨市', 1, 0, 1, 1, b'0', '2026-03-03 12:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543815', '壮族铜鼓：古老的文化象征', '铜鼓是壮族的传统乐器和礼器，具有重要的历史和文化价值。壮族铜鼓的历史可以追溯到春秋战国时期，是中国古代青铜文化中的一朵奇葩。\n\n壮族铜鼓的造型独特，鼓面通常铸有精美的图案，如太阳纹、云纹、雷纹等。铜鼓在壮族人民的生活中有着重要的地位，常用于节日庆典、宗教仪式等场合。\n\n如今，壮族铜鼓已成为壮族文化的重要象征，被列入国家级非物质文化遗产名录。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/b3e10149-90b6-4f32-a850-3b4346cb8feb.jpg', '2026232109876545432', '壮族', '广西壮族自治区南宁市', 1, 0, 0, 0, b'0', '2026-03-06 15:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543813', '木卡姆：维吾尔族音乐的瑰宝', '木卡姆是维吾尔族传统音乐的精华，被誉为\"维吾尔族音乐之母\"。它是一种集歌、舞、乐于一体的大型综合艺术形式，包含了维吾尔族人民的历史、文化和生活。\n\n木卡姆的结构复杂，通常由序歌、叙诵歌曲、叙事组歌、舞蹈组歌和终曲等部分组成。演奏木卡姆需要多种乐器的配合，如热瓦普、弹布尔、手鼓等。\n\n2005年，维吾尔木卡姆被联合国教科文组织列入\"人类口头和非物质文化遗产代表作名录\"，成为全人类共同的文化财富。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/99a8e552-dfb4-42a8-b10f-7ddf0d66c1ca.jpeg', '2026210987654327654', '维吾尔族', '新疆维吾尔自治区乌鲁木齐市', 1, 0, 1, 1, b'0', '2026-03-04 13:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543810', '汉服之美，传承千年的文化瑰宝', '汉服是中华民族的传统服饰，承载着丰富的文化内涵。从黄帝垂衣裳而天下治，到明末清初的剃发易服，汉服经历了数千年的演变。如今，越来越多的年轻人开始重新审视和喜爱汉服，将其作为日常穿着的一部分。\n\n汉服的种类繁多，包括衣裳、深衣、袍服等多种形式。每一种款式都有其特定的文化背景和穿着场合。汉服的色彩、图案也都有着丰富的象征意义，如红色象征喜庆，龙纹象征权力等。\n\n穿汉服不仅仅是一种时尚，更是对传统文化的传承和弘扬。通过穿着汉服，我们可以更直观地感受中国传统文化的魅力，增强文化自信。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/e3212600-1b0c-4927-9322-c96f629855a2.jpeg', '2026186367314202626', '汉族', '江苏省南京市', 1, 0, 1, 4, b'0', '2026-03-01 10:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543818', '泼水节：傣族的新年庆典', '泼水节是傣族最重要的传统节日，通常在公历4月中旬举行，为期三天。泼水节是傣族的新年，象征着洗去过去一年的烦恼和不幸，迎来新的一年的幸福和吉祥。\n\n泼水节期间，傣族人民会举行盛大的泼水活动，人们用清水相互泼洒，表达祝福和友谊。此外，还有赛龙舟、放高升、跳孔雀舞等传统活动。\n\n泼水节不仅是傣族人民的节日，也是云南地区最具影响力的民族节日之一，每年都吸引大量游客前来参与。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/9584d8e0-f238-4488-a6b8-f87ffb38e57f.jpg', '2026265432109872109', '傣族', '云南省西双版纳傣族自治州', 1, 0, 1, 1, b'0', '2026-03-09 10:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543816', '火把节：彝族的狂欢盛宴', '火把节是彝族最重要的传统节日，通常在农历六月二十四举行，为期三天。火把节的起源与彝族的火崇拜有关，象征着光明、吉祥和繁荣。\n\n火把节期间，彝族人民会举行盛大的篝火晚会，人们身着节日盛装，围着篝火跳舞、唱歌。此外，还有斗牛、斗羊、斗鸡、赛马等传统体育活动。\n\n火把节不仅是彝族人民的节日，也是中华民族多元文化的重要组成部分。每年都有大量游客前往彝族地区参加火把节，感受彝族文化的魅力。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/aa138ff2-ef51-4548-9178-817f202cde71.jpg', '2026243210987654321', '彝族', '云南省楚雄彝族自治州', 1, 0, 0, 0, b'0', '2026-03-07 16:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543814', '苗族银饰：精美的民族工艺', '苗族银饰以其精美的工艺和独特的造型而闻名，是苗族文化的重要组成部分。苗族银饰的历史悠久，早在战国时期就已经出现。\n\n苗族银饰的种类繁多，包括头饰、颈饰、胸饰、手饰、脚饰等。银饰的图案多以龙、凤、花、鸟等为主题，寓意吉祥如意。\n\n苗族银饰的制作工艺非常精湛，需要经过熔银、锻打、錾刻、焊接、抛光等多个工序。每一件银饰都是苗族工匠智慧和技艺的结晶。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6b0f4a94-665d-4d29-b375-95676204e8c7.png', '2026221098765436543', '苗族', '贵州省黔东南苗族侗族自治州', 1, 0, 1, 0, b'0', '2026-03-05 14:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543811', '草原上的那达慕盛会', '那达慕是蒙古族传统的节日盛会，每年农历六月初四开始，为期五天。\"那达慕\"在蒙古语中意为\"娱乐、游戏\"，是蒙古族人民庆祝丰收、展示民族文化的重要活动。\n\n那达慕大会上，最精彩的莫过于赛马、摔跤和射箭三项传统体育项目，被称为\"男儿三艺\"。此外，还有歌舞表演、物资交流等活动。\n\n在那达慕大会上，你可以看到身着传统蒙古族服饰的牧民，听到悠扬的马头琴演奏，品尝到正宗的蒙古美食。这是一次近距离了解蒙古族文化的绝佳机会。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/3df3beab-3389-4851-95cf-6b90e991825f.jpg', '2026198765432109876', '蒙古族', '内蒙古自治区呼和浩特市', 1, 0, 1, 1, b'0', '2026-03-02 11:00:00', NULL);
+INSERT INTO `post` VALUES ('2032355522839543817', '阿里郎：朝鲜族的经典民歌', '阿里郎是朝鲜族最具代表性的传统民歌，被誉为\"朝鲜族的国歌\"。它以其优美的旋律和深情的歌词，表达了朝鲜族人民对故乡和亲人的思念之情。\n\n阿里郎的历史悠久，最早可以追溯到朝鲜王朝时期。经过数百年的演变，阿里郎已经成为朝鲜族文化的重要象征。\n\n在朝鲜族的传统节日和庆典中，阿里郎是必不可少的节目。无论是老人还是年轻人，都能演唱这首经典的民歌。', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/d0a432cb-777c-4ff2-b460-07ed95193b3b.webp', '2026254321098763210', '朝鲜族', '吉林省延边朝鲜族自治州', 1, 0, 1, 0, b'0', '2026-03-08 17:00:00', NULL);
 
 -- ----------------------------
 -- Table structure for post_tag
@@ -275,15 +292,32 @@ CREATE TABLE `post_tag`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `tag_id`(`tag_id` ASC) USING BTREE,
   INDEX `topic_id`(`post_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '作品-标签 中间表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '作品-标签 中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of post_tag
 -- ----------------------------
-INSERT INTO `post_tag` VALUES (3, '2031676102780780546', '2031676102684311554');
-INSERT INTO `post_tag` VALUES (4, '2031691553200062466', '2031681928526442498');
-INSERT INTO `post_tag` VALUES (5, '2031691553200062466', '2032714970858704898');
-INSERT INTO `post_tag` VALUES (6, '2031676102780780546', '2032714970858704898');
+INSERT INTO `post_tag` VALUES (20, '2031691553200062474', '2032355522839543819');
+INSERT INTO `post_tag` VALUES (21, '2031691553200062480', '2032355522839543819');
+INSERT INTO `post_tag` VALUES (22, '2031676102780780546', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (23, '2031691553200062466', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (24, '2031691553200062474', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (25, '2031691553200062469', '2032355522839543818');
+INSERT INTO `post_tag` VALUES (26, '2031691553200062468', '2032355522839543818');
+INSERT INTO `post_tag` VALUES (29, '2031691553200062467', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (30, '2031691553200062477', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (31, '2031691553200062469', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (32, '2031691553200062479', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (33, '2031691553200062471', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (34, '2031691553200062480', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (35, '2031691553200062471', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (36, '2031691553200062478', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (37, '2031691553200062467', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (38, '2031691553200062473', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (39, '2031691553200062478', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (40, '2031691553200062471', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (41, '2031691553200062469', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (42, '2031691553200062483', '2032355522839543811');
 
 -- ----------------------------
 -- Table structure for region_age_distribution
@@ -297,7 +331,7 @@ CREATE TABLE `region_age_distribution`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_age_distribution_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_age_distribution
@@ -338,7 +372,7 @@ CREATE TABLE `region_cultures`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_cultures_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_cultures
@@ -382,7 +416,7 @@ CREATE TABLE `region_ethnic_distribution`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_ethnic_distribution_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_ethnic_distribution
@@ -430,7 +464,7 @@ CREATE TABLE `region_festivals`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_festivals_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_festivals
@@ -478,7 +512,7 @@ CREATE TABLE `region_foods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_foods_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_foods
@@ -521,7 +555,7 @@ CREATE TABLE `region_images`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_images_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_images
@@ -560,7 +594,7 @@ CREATE TABLE `region_stats`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_stats_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_stats
@@ -584,7 +618,7 @@ CREATE TABLE `region_visitor_counts`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `region_id`(`region_id` ASC) USING BTREE,
   CONSTRAINT `region_visitor_counts_ibfk_1` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of region_visitor_counts
@@ -678,7 +712,7 @@ CREATE TABLE `regions`  (
   `main_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `created_at` datetime NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of regions
@@ -705,10 +739,26 @@ CREATE TABLE `tags`  (
 -- ----------------------------
 -- Records of tags
 -- ----------------------------
-INSERT INTO `tags` VALUES ('2026515978883440641', 'dffefg', 1);
-INSERT INTO `tags` VALUES ('2026515978946355201', 'fgrfgtht', 1);
 INSERT INTO `tags` VALUES ('2031676102780780546', '汉服', 2);
-INSERT INTO `tags` VALUES ('2031691553200062466', '12123', 2);
+INSERT INTO `tags` VALUES ('2031691553200062466', '民族服饰', 2);
+INSERT INTO `tags` VALUES ('2031691553200062467', '民族音乐', 5);
+INSERT INTO `tags` VALUES ('2031691553200062468', '民族舞蹈', 2);
+INSERT INTO `tags` VALUES ('2031691553200062469', '民族节日', 6);
+INSERT INTO `tags` VALUES ('2031691553200062470', '民族美食', 0);
+INSERT INTO `tags` VALUES ('2031691553200062471', '民族工艺', 6);
+INSERT INTO `tags` VALUES ('2031691553200062472', '民族建筑', 0);
+INSERT INTO `tags` VALUES ('2031691553200062473', '非遗保护', 2);
+INSERT INTO `tags` VALUES ('2031691553200062474', '文化传承', 3);
+INSERT INTO `tags` VALUES ('2031691553200062475', '传统礼仪', 0);
+INSERT INTO `tags` VALUES ('2031691553200062476', '民族乐器', 0);
+INSERT INTO `tags` VALUES ('2031691553200062477', '民族文学', 3);
+INSERT INTO `tags` VALUES ('2031691553200062478', '民族艺术', 4);
+INSERT INTO `tags` VALUES ('2031691553200062479', '民俗文化', 2);
+INSERT INTO `tags` VALUES ('2031691553200062480', '民族历史', 3);
+INSERT INTO `tags` VALUES ('2031691553200062481', '民族语言', 0);
+INSERT INTO `tags` VALUES ('2031691553200062482', '民族医药', 0);
+INSERT INTO `tags` VALUES ('2031691553200062483', '民族体育', 2);
+INSERT INTO `tags` VALUES ('2031691553200062484', '民族服饰设计', 0);
 
 -- ----------------------------
 -- Table structure for user
@@ -742,7 +792,14 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2026152657965563906', 'zhangsan', 'Satou', '123456', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/194aa008-471d-4bf1-8bf8-ba9287702df4.jpg', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/43738411-7d36-4ed1-beb3-80436ddf821d.jpg', '12231234@qq.com', '13246576', '无', '汉', '辽宁省', '大连市', '[\"汉服\", \"qwrew\", \"12123\"]', '', '', '2026-02-24 12:30:12', '2026-03-17 11:31:24');
-INSERT INTO `user` VALUES ('2026186367314202626', 'lisi', '李四', 'lisi', 'Https://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/71bcd20f-679b-4940-bc7f-2fdd66fc4efd.webp', NULL, '114514@qq.com', '123456789', '无', '蒙古族', '辽宁省', '大连市', '[\"12123\"]', '', '', '2026-02-24 14:44:09', '2026-03-14 12:15:05');
+INSERT INTO `user` VALUES ('2026186367314202626', 'zhangsan', '汉服爱好者', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/5db77835-63e5-4f31-865f-4a4d28ec6710.jpeg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/03e022f6-ec0f-458d-ba39-25138b53f437.jpg', 'zhangsan@example.com', '13812345678', '热爱汉服文化，喜欢传统文化', '汉族', '江苏省', '南京市', '[\"汉服\", \"传统服饰\", \"礼仪文化\", \"古典文学\"]', '您的小学名称是？', '实验小学', '2026-01-05 10:00:00', '2026-03-28 09:36:15');
+INSERT INTO `user` VALUES ('2026198765432109876', 'lisi', '草原之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6e573d2f-c56d-40b9-a797-a3f5d8d86cf0.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/d7968222-a886-4099-934a-0942f0762f05.jpg', 'lisi@example.com', '13987654321', '来自内蒙古的蒙古族小伙，热爱草原文化', '蒙古族', '内蒙古自治区', '呼和浩特市', '[\"草原文化\", \"马头琴\", \"那达慕\", \"蒙古族服饰\"]', '您的出生城市是？', '呼和浩特', '2026-01-10 09:00:00', '2026-03-28 10:17:26');
+INSERT INTO `user` VALUES ('2026209876543218765', 'wangwu', '雪域高原', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/f576b113-1fe6-403f-8411-9b9b77a60971.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/a21e52fe-5f98-4cc4-b8a0-ca663b86b8fb.webp', 'wangwu@example.com', '13765432198', '藏族文化爱好者，喜欢唐卡艺术', '藏族', '西藏自治区', '拉萨市', '[\"唐卡\", \"藏传佛教\", \"藏族服饰\", \"锅庄舞\"]', '您的兴趣爱好是什么？', '唐卡绘画', '2026-01-15 11:00:00', '2026-03-28 10:15:30');
+INSERT INTO `user` VALUES ('2026210987654327654', 'zhaoliu', '天山来客', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/36247fb1-6ccc-4030-8032-5022a2e1c8ce.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/cd0dcc32-de24-412a-98a3-4e28a9c4e3ab.webp', 'zhaoliu@example.com', '13654321987', '维吾尔族文化传播者，擅长木卡姆艺术', '维吾尔族', '新疆维吾尔自治区', '乌鲁木齐市', '[\"木卡姆\", \"维吾尔族舞蹈\", \"民族音乐\", \"新疆美食\"]', '您最喜欢的民族乐器是？', '热瓦普', '2026-01-20 14:00:00', '2026-03-28 10:11:44');
+INSERT INTO `user` VALUES ('2026221098765436543', 'sunqi', '苗家姑娘', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/1aa4ecc2-d576-4ece-97c5-5d0810f38ffb.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bd76b288-d524-4431-a1bd-9fac7774acde.webp', 'sunqi@example.com', '13543219876', '苗族银饰工艺传承人，喜欢民族舞蹈', '苗族', '贵州省', '黔东南苗族侗族自治州', '[\"苗族银饰\", \"苗族刺绣\", \"芦笙舞\", \"民族节日\"]', '您的家乡是哪里？', '黔东南', '2026-01-25 16:00:00', '2026-03-28 10:09:02');
+INSERT INTO `user` VALUES ('2026232109876545432', 'liuba', '壮乡儿女', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/be2e42cd-4287-4205-a48b-937bd15f73a8.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/b69c391f-c7a7-4277-b482-c0058f093f0b.webp', 'liuba@example.com', '13432198765', '壮族文化爱好者，喜欢铜鼓艺术', '壮族', '广西壮族自治区', '南宁市', '[\"铜鼓文化\", \"壮族山歌\", \"民族建筑\", \"壮锦\"]', '您最喜欢的民族节日是？', '三月三', '2026-01-30 10:00:00', '2026-03-28 10:01:14');
+INSERT INTO `user` VALUES ('2026243210987654321', 'zhangjiu', '彝族小伙', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/141ca49c-a20e-4b83-80a4-ef9842a9572a.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/302d2205-b9e1-4bd1-8e34-2a17153a1c77.jpg', 'zhangjiu@example.com', '13321987654', '彝族文化研究者，专注火把节文化', '彝族', '云南省', '楚雄彝族自治州', '[\"火把节\", \"彝族服饰\", \"彝族音乐\", \"民族工艺\"]', '您的民族是什么？', '彝族', '2026-02-05 13:00:00', '2026-03-28 09:58:16');
+INSERT INTO `user` VALUES ('2026254321098763210', 'wangshi', '长白之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bad03538-81a3-4613-ba7b-78fdcfbaf5fd.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/23066664-4f75-4910-ba83-7df730b25640.webp', 'wangshi@example.com', '13219876543', '朝鲜族文化爱好者，喜欢阿里郎舞蹈', '朝鲜族', '吉林省', '延边朝鲜族自治州', '[\"朝鲜族舞蹈\", \"朝鲜民族音乐\", \"朝鲜族美食\", \"民族服饰\"]', '您最喜欢的民族舞蹈是？', '阿里郎', '2026-02-10 15:00:00', '2026-03-28 09:55:43');
+INSERT INTO `user` VALUES ('2026265432109872109', 'lishen', '孔雀之乡', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6889bdfd-da69-48dc-86b1-d9bd0335c142.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/4ca419cb-c555-4986-ac23-b3946ed40501.jpg', 'lishen@example.com', '13198765432', '傣族文化传播者，擅长孔雀舞', '傣族', '云南省', '西双版纳傣族自治州', '[\"泼水节\", \"孔雀舞\", \"傣族服饰\", \"民族建筑\"]', '您的家乡是哪里？', '西双版纳', '2026-02-15 09:00:00', '2026-03-28 09:48:10');
 
 SET FOREIGN_KEY_CHECKS = 1;

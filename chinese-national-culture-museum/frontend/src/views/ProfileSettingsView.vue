@@ -121,7 +121,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, computed } from 'vue';
+import { ref, reactive, onMounted, onActivated, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { userApi } from '@/api/user';
@@ -332,6 +332,15 @@ const changePassword = async () => {
 // 页面加载时获取用户信息
 onMounted(() => {
   loadUserProfile();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
+  // 清除用户信息缓存，确保获取最新数据
+  import('@/api/request').then(({ default: request }) => {
+    request.clearCache('/user');
+    loadUserProfile();
+  });
 });
 </script>
 

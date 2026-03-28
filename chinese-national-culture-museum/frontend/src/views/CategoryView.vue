@@ -174,7 +174,12 @@ onMounted(() => {
 
 // 每次激活组件时重新获取数据
 onActivated(() => {
-  fetchTags();
+  // 清除标签和帖子缓存，确保获取最新数据
+  import('@/api/request').then(({ default: request }) => {
+    request.clearCache('/tags');
+    request.clearCache('/posts');
+    fetchTags();
+  });
 });
 </script>
 

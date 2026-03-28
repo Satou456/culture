@@ -165,7 +165,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, onActivated, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { friendApi } from '@/api/friend';
 import { userApi } from '@/api/user';
@@ -344,6 +344,16 @@ const formatTime = (time) => {
 
 onMounted(() => {
   loadFriends();
+});
+
+// 每次激活组件时重新获取数据
+onActivated(() => {
+  // 清除好友列表缓存，确保获取最新数据
+  import('@/api/request').then(({ default: request }) => {
+    request.clearCache('/friends');
+    request.clearCache('/friend-requests');
+    loadFriends();
+  });
 });
 
 // 监听弹窗显示状态，当弹窗打开时加载好友申请列表

@@ -123,7 +123,11 @@ onMounted(() => {
 
 // 每次激活组件时重新获取数据
 onActivated(() => {
-  fetchMyPosts();
+  // 清除我的帖子列表缓存，确保获取最新数据
+  import('@/api/request').then(({ default: request }) => {
+    request.clearCache('/posts');
+    fetchMyPosts();
+  });
 });
 </script>
 
