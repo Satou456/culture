@@ -25,6 +25,7 @@
 │   ├── styles.css          # 样式文件
 │   ├── ethnic_groups.json  # 民族数据
 │   ├── video_data.json     # 视频数据
+│   ├── start.sh            # 启动脚本
 │   └── README.md           # 项目说明文档
 ├── ai_chat/                # AI 文化对话系统
 │   ├── app/                # 后端应用
@@ -36,6 +37,7 @@
 │   │   └── index.html      # 前端页面
 │   ├── .env.example        # 环境变量示例
 │   ├── pyproject.toml      # 项目依赖配置
+│   ├── start.sh            # 启动脚本
 │   └── README.md           # 项目说明文档
 ├── chinese-national-culture-museum/  # 中华民族文化博物馆
 │   ├── backend/            # 后端服务
@@ -54,6 +56,12 @@
 │   │   ├── package.json    # 项目配置
 │   │   └── vite.config.js  # Vite配置
 │   └── cultural_museum.sql # 数据库脚本
+├── .env.example            # 环境变量示例
+├── docker-compose.yml      # Docker配置
+├── Dockerfile.ai_chat      # AI对话系统Dockerfile
+├── Dockerfile.index        # 文化遗产数据库管理系统Dockerfile
+├── Dockerfile.chinese-national-culture-museum-backend # 博物馆后端Dockerfile
+├── Dockerfile.chinese-national-culture-museum-frontend # 博物馆前端Dockerfile
 └── README.md               # 整体项目说明文档
 ```
 
@@ -77,6 +85,7 @@
 - `index/styles.css`：样式文件，定义页面样式
 - `index/ethnic_groups.json`：民族数据文件
 - `index/video_data.json`：视频数据文件
+- `index/start.sh`：启动脚本，注入环境变量并启动服务
 
 ### 2. AI 文化对话系统
 
@@ -92,6 +101,7 @@
 - `ai_chat/app/llm.py`：语言模型接口，处理图片识别和对话功能
 - `ai_chat/app/translation.py`：翻译功能，支持少数民族语言翻译
 - `ai_chat/static/index.html`：前端页面，提供用户交互界面
+- `ai_chat/start.sh`：启动脚本，注入环境变量并启动服务
 
 ### 3. 中华民族文化博物馆
 
@@ -131,6 +141,7 @@
 | Vite        | 前端构建工具     | 论坛                    |
 | GLM-4.1V    | AI对话       | AI 文化对话系统             |
 | Heimori API | 少数民族语言翻译   | AI 文化对话系统             |
+| Docker      | 容器化部署      | 所有子项目                 |
 
 ## 环境要求
 
@@ -201,14 +212,19 @@ HEIMORI_AUTH_PREFIX=Bearer
 # 阿里云OSS配置
 OSS_ACCESS_KEY_ID=your_access_key_id
 OSS_ACCESS_KEY_SECRET=your_access_key_secret
-OSS_ENDPOINT=oss-cn-beijing.aliyuncs.com
+OSS_ENDPOINT=your_oss_endpoint
+OSS_REGION=your_region
 OSS_BUCKET_NAME=your_bucket_name
+
+# 服务器IP地址配置
+SERVER_IP=your_server_ip
 ```
 
 **注意**：
 
 - 需要修改`BIGMODEL_API_KEY`和`HEIMORI_API_KEY`为您的真实API Key
 - 需要修改`OSS_ACCESS_KEY_ID`、`OSS_ACCESS_KEY_SECRET`和`OSS_BUCKET_NAME`为您的阿里云OSS配置
+- 需要修改`SERVER_IP`为您的服务器IP地址
 - 其他配置项保持默认值即可
 
 #### 4. 构建和启动容器
@@ -234,16 +250,17 @@ docker compose ps
 - mysql-db: MySQL数据库服务
 - index-service: 文化遗产数据库管理系统
 - ai-chat-service: AI文化对话系统
-- chinese-national-culture-museum-service: 中华民族文化博物馆
+- chinese-national-culture-museum-backend-service: 中华民族文化博物馆后端
+- chinese-national-culture-museum-frontend-service: 中华民族文化博物馆前端
 
 #### 6. 访问服务
 
 部署完成后，您可以通过以下URL访问各个服务：
 
-- 文化遗产数据库管理系统：`http://服务器IP:5000`
-- AI文化对话系统：`http://服务器IP:8000`
-- 中华民族文化博物馆前端：`http://服务器IP:5173`
-- 中华民族文化博物馆后端：`http://服务器IP:8080`
+- 文化遗产数据库管理系统：`http://${SERVER_IP}:5000`
+- AI文化对话系统：`http://${SERVER_IP}:8000`
+- 中华民族文化博物馆前端：`http://${SERVER_IP}:5173`
+- 中华民族文化博物馆后端：`http://${SERVER_IP}:8080`
 
 ### 本地开发（可选）
 
@@ -267,7 +284,7 @@ docker compose ps
 
 #### 2. 启动AI文化对话系统
 
-1. 进入ai\_chat目录：
+1. 进入ai_chat目录：
    ```bash
    cd ai_chat
    ```
@@ -326,18 +343,21 @@ docker compose ps
 
 - **前端展示**：文化数据可视化、民族文化展示、地区文化分布、文化搜索
 - **数据库管理**：数据导入导出、批量数据操作、表结构查看、数据编辑、记录管理
+- **动态配置**：支持通过环境变量配置服务器IP地址，实现灵活部署
 
 ### AI 文化对话系统
 
 - **图片文化识别**：识别图片内容与民族文化信息，生成文化背景故事
 - **文化对话**：基于识别出的文化信息进行AI对话
 - **少数民族语言翻译**：支持多语言翻译功能
+- **动态配置**：支持通过环境变量配置服务器IP地址，实现灵活部署
 
 ### 中华民族文化博物馆
 
 - **文化论坛**：提供文化交流和讨论的平台
 - **文化展示**：展示中华民族的文化遗产和特色
 - **社区互动**：用户可以发布帖子、评论和分享文化内容
+- **动态配置**：支持通过环境变量配置服务器IP地址，实现灵活部署
 
 ## 数据管理
 
@@ -366,7 +386,7 @@ docker compose ps
 ### 1. Docker容器启动失败
 
 - 检查Docker和Docker Compose版本是否符合要求
-- 确保端口3306、5000、8000、8080没有被其他进程占用
+- 确保端口3306、5000、8000、8080、5173没有被其他进程占用
 - 检查容器日志中的错误信息：`docker-compose logs 服务名`
 
 ### 2. 数据库连接失败
@@ -401,7 +421,7 @@ docker compose ps
 - 检查Java版本是否符合要求
 - 确保项目构建成功：`mvn clean package`
 - 检查数据库连接配置是否正确
-- 查看容器日志：`docker-compose logs chinese-national-culture-museum-service`
+- 查看容器日志：`docker-compose logs chinese-national-culture-museum-backend-service`
 
 ### 7. 本地开发问题
 
@@ -423,6 +443,14 @@ docker compose ps
 
 - 智谱API Key和Heimori API Key是否正确配置
 - API Key是否有效
+
+### 9. 环境变量配置问题
+
+如果服务无法正确获取环境变量，请检查：
+
+- `.env`文件是否正确创建
+- 环境变量格式是否正确
+- 服务是否重新启动以加载新的环境变量
 
 ## 开发指南
 

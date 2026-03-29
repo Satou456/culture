@@ -94,6 +94,7 @@
 import { ref, onMounted, watch, nextTick, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { messageApi } from '@/api';
+import request from '@/api/request';
 
 const route = useRoute();
 const router = useRouter();
@@ -133,6 +134,8 @@ const loadRecent = async () => {
 const loadConversation = async () => {
   if (!friendUsername.value) return;
   try {
+    // 清除消息缓存，确保获取最新数据
+    request.clearCache('/message');
     messages.value = await messageApi.getConversation(friendUsername.value);
     
     // 从消息中提取对方信息设置currentFriend
@@ -178,8 +181,16 @@ const sendMessage = async () => {
       receiverUsername: friendUsername.value,
       content: newMessage.value.trim()
     });
-    // 重新加载聊天记录（或手动添加一条以提升体验）
+    
+    // 清除消息相关缓存
+    request.clearCache('/message');
+    
+    // 重新加载聊天记录
     await loadConversation();
+    
+    // 重新加载最近联系人列表
+    await loadRecent();
+    
     newMessage.value = '';
   } catch (error) {
     alert(error.message);
@@ -197,6 +208,9 @@ const formatTime = (timeStr) => {
 };
 
 onMounted(() => {
+  // 清除消息缓存，确保获取最新数据
+  request.clearCache('/message');
+  
   loadRecent(); // 始终加载最近联系人列表
   if (friendUsername.value) {
     loadConversation();
