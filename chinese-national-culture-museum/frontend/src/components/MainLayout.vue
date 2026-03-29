@@ -298,40 +298,46 @@ const validateToken = async () => {
   
   if (token && userId) {
     try {
-      // 并行获取用户信息、好友数量和作品数量
-      const [userInfo, friends, posts] = await Promise.all([
-        userApi.getUserInfo(userId),
-        friendApi.getFriends(userId),
-        postApi.getPosts({ userId })
-      ]);
-      
-      // 处理用户信息
-      if (userInfo) {
-        if (userInfo.avatar) {
-          userAvatar.value = userInfo.avatar;
-          // 保存头像到本地存储，以便其他组件使用
-          localStorage.setItem('userAvatar', userInfo.avatar);
+      // 分别获取用户信息、好友数量和作品数量，任何一个失败都不影响其他
+      // 获取用户信息
+      try {
+        const userInfo = await userApi.getUserInfo(userId);
+        if (userInfo) {
+          if (userInfo.avatar) {
+            userAvatar.value = userInfo.avatar;
+            // 保存头像到本地存储，以便其他组件使用
+            localStorage.setItem('userAvatar', userInfo.avatar);
+          }
+          if (userInfo.nickname) {
+            nickname.value = userInfo.nickname;
+          }
         }
-        if (userInfo.nickname) {
-          nickname.value = userInfo.nickname;
-        }
+      } catch (err) {
+        console.warn('获取用户信息失败:', err);
+        // 不清除登录信息，继续尝试其他请求
       }
       
-      // 处理好友数量
-      friendCount.value = friends ? friends.length : 0;
+      // 获取好友数量
+      try {
+        const friends = await friendApi.getFriends(userId);
+        friendCount.value = friends ? friends.length : 0;
+      } catch (err) {
+        console.warn('获取好友数量失败:', err);
+        // 不清除登录信息，继续尝试其他请求
+      }
       
-      // 处理作品数量
-      postCount.value = posts ? posts.length : 0;
+      // 获取作品数量
+      try {
+        const posts = await postApi.getPosts({ userId });
+        postCount.value = posts ? posts.length : 0;
+      } catch (err) {
+        console.warn('获取作品数量失败:', err);
+        // 不清除登录信息，继续尝试其他请求
+      }
     } catch (error) {
-      // token无效，清除登录信息
-      clearLoginInfo();
-      errorHandler.showError('登录已过期，请重新登录');
-      
-      // 自动跳转到登录页面
-      const currentPath = window.location.pathname;
-      if (!currentPath.includes('/login') && !currentPath.includes('/register')) {
-        router.push('/login');
-      }
+      console.warn('验证token时发生错误:', error);
+      // 不清除登录信息，只显示警告
+      errorHandler.showError('获取用户信息失败，但登录状态保持');
     }
   }
   return Promise.resolve(); // 确保函数返回Promise

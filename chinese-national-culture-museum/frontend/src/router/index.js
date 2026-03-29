@@ -36,7 +36,26 @@ const router = createRouter({
 
 // 全局前置守卫
 router.beforeEach((to, from, next) => {
-    // 直接放行，数据加载在组件内部处理
+    // 检查登录状态
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+    
+    // 白名单页面：登录和注册
+    const whiteList = ['/login', '/register'];
+    
+    // 如果访问的是白名单页面，直接放行
+    if (whiteList.includes(to.path)) {
+        next();
+        return;
+    }
+    
+    // 如果没有登录，跳转到登录页面
+    if (!token || !username) {
+        next('/login');
+        return;
+    }
+    
+    // 已登录，放行
     next();
 });
 

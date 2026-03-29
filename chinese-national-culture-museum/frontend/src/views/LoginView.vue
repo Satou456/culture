@@ -30,6 +30,7 @@
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { userApi } from '@/api/user';
+import request from '@/api/request';
 import backgroundImage from '@/assets/background.jpg';
 
 const router = useRouter();
@@ -67,32 +68,31 @@ const handleLogin = async () => {
   try {
     const res = await userApi.login(form.username, form.password);
     if (res) {
+      // 确保res对象包含必要的属性
+      if (!res.token || !res.id || !res.username) {
+        throw new Error('登录响应数据不完整');
+      }
+      
+      // 保存登录信息到本地存储
       localStorage.setItem('token', res.token);
       localStorage.setItem('userId', res.id);
       localStorage.setItem('username', res.username);
       
       // 处理记住密码功能
-      console.log('Handling remember me...');
-      console.log('form.remember:', form.remember);
-      console.log('form.username:', form.username);
-      console.log('form.password:', form.password);
-      
       if (form.remember) {
         localStorage.setItem('rememberMe', 'true');
-        localStorage.setItem('username', form.username);
         localStorage.setItem('password', form.password);
-        console.log('Saved to localStorage:', {
-          rememberMe: localStorage.getItem('rememberMe'),
-          username: localStorage.getItem('username'),
-          password: localStorage.getItem('password')
-        });
       } else {
         localStorage.removeItem('rememberMe');
-        localStorage.removeItem('username');
         localStorage.removeItem('password');
-        console.log('Removed from localStorage');
       }
+      // 保留登录用户的username，用于登录状态检查
+      // 注意：这里不覆盖之前设置的username，因为res.username可能与form.username不同（例如使用邮箱登录）
       
+      // 清除用户相关缓存，确保新登录用户看到正确数据
+      request.clearCache('/user');
+      
+      // 跳转到主页
       router.push('/');
     }
   } catch (err) {
