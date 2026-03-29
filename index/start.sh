@@ -9,7 +9,7 @@ if [ -f "index.html" ]; then
     cat > "$temp_file" << EOF
 <script>
 window.ENV_CONFIG = {
-    SERVER_IP: '${SERVER_IP:-20.196.138.17}'
+    SERVER_IP: '${SERVER_IP}'
 };
 </script>
 EOF
@@ -29,7 +29,7 @@ if [ -f "mz_screen/index.html" ]; then
     cat > "$temp_file" << EOF
 <script>
 window.ENV_CONFIG = {
-    SERVER_IP: '${SERVER_IP:-20.196.138.17}'
+    SERVER_IP: '${SERVER_IP}'
 };
 </script>
 EOF

@@ -7,15 +7,6 @@
   <title>Document</title>
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index.css" />
-  <script>
-    // 从环境变量或默认值获取IP地址
-    const SERVER_IP = (window.ENV_CONFIG && window.ENV_CONFIG.SERVER_IP) || '20.196.138.17';
-    
-    // 构建完整的URL配置
-    const CONFIG = {
-      INDEX_BASE_URL: `http://${SERVER_IP}:5000`
-    };
-  </script>
 </head>
 
 <body>
@@ -227,6 +218,14 @@
   <script>
     // 确保DOM加载完成后绑定事件
     document.addEventListener('DOMContentLoaded', function () {
+      // 从环境变量或默认值获取IP地址
+      const SERVER_IP = (window.ENV_CONFIG && window.ENV_CONFIG.SERVER_IP) || '20.196.138.17';
+      
+      // 构建完整的URL配置
+      const CONFIG = {
+        INDEX_BASE_URL: `http://${SERVER_IP}:5000`
+      };
+
       // 返回按钮点击事件
       var backBtn = document.getElementById('backBtn');
       if (backBtn) {
