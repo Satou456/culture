@@ -5,6 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 文化对话系统</title>
+  <script>
+    // 从环境变量或默认值获取IP地址
+    const SERVER_IP = (window.ENV_CONFIG && window.ENV_CONFIG.SERVER_IP) || '20.196.138.17';
+
+    // 构建完整的URL配置
+    const CONFIG = {
+      INDEX_BASE_URL: `http://${SERVER_IP}:5000`
+    };
+  </script>
   <style>
     @font-face {
       font-family: 'MLD8102';
@@ -696,7 +705,7 @@
       <div class="dock-subtitle" data-i18n="dockSubtitle">AI Cultural Dialogue System</div>
     </div>
     <div class="dock-nav">
-      <div class="dock-item" onclick="window.location.href='http://20.196.138.17:5000'">
+      <div class="dock-item" id="back-to-home">
         <span class="dock-item-icon">←</span>
         <span class="dock-item-text" data-i18n="navBack">返回主页</span>
       </div>
@@ -819,6 +828,16 @@
   </main>
 
   <script>
+    // 动态设置返回主页按钮的URL
+    document.addEventListener('DOMContentLoaded', function () {
+      const backToHomeBtn = document.getElementById('back-to-home');
+      if (backToHomeBtn) {
+        backToHomeBtn.addEventListener('click', function () {
+          window.location.href = CONFIG.INDEX_BASE_URL;
+        });
+      }
+    });
+
     let latestProfile = null;
     let chatHistory = [];
 
@@ -1105,7 +1124,7 @@
       item.addEventListener('click', function () {
         // 跳过第一个返回主页的项目
         if (index === 0) return;
-        
+
         // 移除所有激活状态
         dockItems.forEach(i => i.classList.remove('active'));
         // 添加当前激活状态

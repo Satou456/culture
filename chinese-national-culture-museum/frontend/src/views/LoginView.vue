@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <form @submit.prevent="handleLogin" class="auth-form">
-      <a href="http://20.196.138.17:5000/" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
+      <a :href="componentData.INDEX_BASE_URL" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
       <h2>登录</h2>
       <div class="input-field">
         <input v-model="form.username" type="text" placeholder="请输入用户名或邮箱" required>
@@ -40,6 +40,12 @@ const form = reactive({
   username: '',
   password: '',
   remember: false
+});
+
+const INDEX_BASE_URL = import.meta.env.VITE_INDEX_BASE_URL || 'http://20.196.138.17:5000';
+
+const componentData = reactive({
+  INDEX_BASE_URL
 });
 
 // 组件初始化时，从本地存储中读取记住的用户名和密码

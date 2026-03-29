@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" :style="{ backgroundImage: `url(${backgroundImage})` }">
     <form @submit.prevent="handleRegister" class="auth-form">
-      <a href="http://20.196.138.17:5000/" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
+      <a :href="componentData.INDEX_BASE_URL" class="back-home-link"><i class="fas fa-arrow-left"></i></a>
       <h2>注册</h2>
       <div class="input-field">
         <input v-model="form.username" type="text" placeholder="请输入用户名" required>
@@ -43,6 +43,12 @@ const form = reactive({
   email: '',
   password: '',
   checkPass: '',
+});
+
+const INDEX_BASE_URL = import.meta.env.VITE_INDEX_BASE_URL || 'http://20.196.138.17:5000';
+
+const componentData = reactive({
+  INDEX_BASE_URL
 });
 
 const handleRegister = async () => {

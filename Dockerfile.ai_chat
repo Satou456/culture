@@ -11,8 +11,14 @@ COPY ai_chat/ .
 RUN pip install --no-cache-dir uv
 RUN uv sync
 
+# 复制启动脚本
+COPY ai_chat/start.sh .
+
+# 给启动脚本添加执行权限
+RUN chmod +x start.sh
+
 # 暴露端口
 EXPOSE 8000
 
 # 启动应用
-CMD ["uv", "run", "uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["./start.sh"]

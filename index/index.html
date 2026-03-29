@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+    <script>
+        // 从环境变量或默认值获取IP地址
+        const SERVER_IP = (window.ENV_CONFIG && window.ENV_CONFIG.SERVER_IP) || '20.196.138.17';
+        
+        // 构建完整的URL配置
+        const CONFIG = {
+            FORUM_BASE_URL: `http://${SERVER_IP}:5173`,
+            AI_CHAT_BASE_URL: `http://${SERVER_IP}:8000`,
+            MZ_SCREEN_BASE_URL: `http://${SERVER_IP}:5000/mz_screen`
+        };
+    </script>
 </head>
 
 <body>
@@ -387,7 +398,8 @@
                             <p>支持多种少数民族语言的识别和回复，让不同民族的用户都能通过自己的母语与AI助手交流，感受中华文化的多样性。</p>
                         </div>
                     </div>
-                    <a href="http://20.196.138.17:8000" class="btn btn-primary ai-start-btn">启动AI对话系统</a>
+                    <a id="ai-start-btn" href="http://20.196.138.17:8000"
+                        class="btn btn-primary ai-start-btn">启动AI对话系统</a>
                 </div>
                 <div class="content-right">
                     <div class="ai-visual">
@@ -457,7 +469,8 @@
                         </div>
                     </div>
                     <div class="community-buttons">
-                        <a href="http://20.196.138.17:5173/" class="btn btn-primary community-join-btn">加入论坛</a>
+                        <a id="community-join-btn" href="http://20.196.138.17:5173/"
+                            class="btn btn-primary community-join-btn">加入论坛</a>
                     </div>
                 </div>
                 <div class="content-right">
@@ -521,6 +534,20 @@
     </main>
 
     <!-- JavaScript -->
+    <script>
+        // 动态设置URL
+        document.addEventListener('DOMContentLoaded', function () {
+            const aiStartBtn = document.getElementById('ai-start-btn');
+            const communityJoinBtn = document.getElementById('community-join-btn');
+
+            if (aiStartBtn) {
+                aiStartBtn.href = CONFIG.AI_CHAT_BASE_URL;
+            }
+            if (communityJoinBtn) {
+                communityJoinBtn.href = CONFIG.FORUM_BASE_URL;
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 
