@@ -1,17 +1,17 @@
 /*
  Navicat Premium Dump SQL
 
- Source Server         : 服务器
+ Source Server         : mysql
  Source Server Type    : MySQL
- Source Server Version : 80045 (8.0.45)
- Source Host           : 20.196.138.17:3306
+ Source Server Version : 90300 (9.3.0)
+ Source Host           : localhost:3306
  Source Schema         : cultural_museum
 
  Target Server Type    : MySQL
- Target Server Version : 80045 (8.0.45)
+ Target Server Version : 90300 (9.3.0)
  File Encoding         : 65001
 
- Date: 28/03/2026 18:20:11
+ Date: 19/04/2026 10:17:10
 */
 
 SET NAMES utf8mb4;
@@ -216,6 +216,27 @@ INSERT INTO `interaction` VALUES (20, '2026186367314202626', '203235552283954381
 INSERT INTO `interaction` VALUES (21, '2026186367314202626', '2032355522839543818', 1, 1, '2026-03-28 10:18:52');
 
 -- ----------------------------
+-- Table structure for interesting_tags
+-- ----------------------------
+DROP TABLE IF EXISTS `interesting_tags`;
+CREATE TABLE `interesting_tags`  (
+  `id` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '主键ID',
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '' COMMENT '标签名称',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name` ASC) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户兴趣标签表' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of interesting_tags
+-- ----------------------------
+INSERT INTO `interesting_tags` VALUES ('2031691553200062601', '服装');
+INSERT INTO `interesting_tags` VALUES ('2031691553200062604', '舞蹈');
+INSERT INTO `interesting_tags` VALUES ('2031691553200062606', '艺术');
+INSERT INTO `interesting_tags` VALUES ('2031691553200062605', '节日');
+INSERT INTO `interesting_tags` VALUES ('2031691553200062603', '音乐');
+INSERT INTO `interesting_tags` VALUES ('2031691553200062602', '饮食');
+
+-- ----------------------------
 -- Table structure for message
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
@@ -292,32 +313,52 @@ CREATE TABLE `post_tag`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `tag_id`(`tag_id` ASC) USING BTREE,
   INDEX `topic_id`(`post_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '作品-标签 中间表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '作品-标签 中间表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of post_tag
 -- ----------------------------
 INSERT INTO `post_tag` VALUES (20, '2031691553200062474', '2032355522839543819');
 INSERT INTO `post_tag` VALUES (21, '2031691553200062480', '2032355522839543819');
-INSERT INTO `post_tag` VALUES (22, '2031676102780780546', '2032355522839543810');
-INSERT INTO `post_tag` VALUES (23, '2031691553200062466', '2032355522839543810');
-INSERT INTO `post_tag` VALUES (24, '2031691553200062474', '2032355522839543810');
-INSERT INTO `post_tag` VALUES (25, '2031691553200062469', '2032355522839543818');
-INSERT INTO `post_tag` VALUES (26, '2031691553200062468', '2032355522839543818');
-INSERT INTO `post_tag` VALUES (29, '2031691553200062467', '2032355522839543817');
-INSERT INTO `post_tag` VALUES (30, '2031691553200062477', '2032355522839543817');
-INSERT INTO `post_tag` VALUES (31, '2031691553200062469', '2032355522839543816');
-INSERT INTO `post_tag` VALUES (32, '2031691553200062479', '2032355522839543816');
-INSERT INTO `post_tag` VALUES (33, '2031691553200062471', '2032355522839543815');
-INSERT INTO `post_tag` VALUES (34, '2031691553200062480', '2032355522839543815');
-INSERT INTO `post_tag` VALUES (35, '2031691553200062471', '2032355522839543814');
-INSERT INTO `post_tag` VALUES (36, '2031691553200062478', '2032355522839543814');
-INSERT INTO `post_tag` VALUES (37, '2031691553200062467', '2032355522839543813');
-INSERT INTO `post_tag` VALUES (38, '2031691553200062473', '2032355522839543813');
-INSERT INTO `post_tag` VALUES (39, '2031691553200062478', '2032355522839543812');
-INSERT INTO `post_tag` VALUES (40, '2031691553200062471', '2032355522839543812');
-INSERT INTO `post_tag` VALUES (41, '2031691553200062469', '2032355522839543811');
-INSERT INTO `post_tag` VALUES (42, '2031691553200062483', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (46, '2031691553200062469', '2045446688092454913');
+INSERT INTO `post_tag` VALUES (47, '2031691553200062471', '2045446688092454913');
+INSERT INTO `post_tag` VALUES (52, '2031676102780780546', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (53, '2031691553200062466', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (54, '2031691553200062474', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (55, '2031691553200062610', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (56, '2031691553200062499', '2032355522839543810');
+INSERT INTO `post_tag` VALUES (57, '2031691553200062469', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (58, '2031691553200062483', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (59, '2031691553200062500', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (60, '2031691553200062612', '2032355522839543811');
+INSERT INTO `post_tag` VALUES (61, '2031691553200062478', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (62, '2031691553200062471', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (63, '2045464449892069378', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (64, '2031691553200062502', '2032355522839543812');
+INSERT INTO `post_tag` VALUES (65, '2031691553200062467', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (66, '2031691553200062473', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (67, '2031691553200062507', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (68, '2031691553200062613', '2032355522839543813');
+INSERT INTO `post_tag` VALUES (69, '2031691553200062471', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (70, '2031691553200062478', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (71, '2031691553200062508', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (72, '2045464449892069378', '2032355522839543814');
+INSERT INTO `post_tag` VALUES (73, '2031691553200062471', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (74, '2031691553200062480', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (75, '2031691553200062506', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (76, '2045464449892069378', '2032355522839543815');
+INSERT INTO `post_tag` VALUES (77, '2031691553200062469', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (78, '2031691553200062479', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (79, '2031691553200062504', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (80, '2031691553200062612', '2032355522839543816');
+INSERT INTO `post_tag` VALUES (81, '2031691553200062467', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (82, '2031691553200062477', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (83, '2031691553200062510', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (84, '2031691553200062613', '2032355522839543817');
+INSERT INTO `post_tag` VALUES (85, '2031691553200062469', '2032355522839543818');
+INSERT INTO `post_tag` VALUES (86, '2031691553200062468', '2032355522839543818');
+INSERT INTO `post_tag` VALUES (87, '2031691553200062516', '2032355522839543818');
+INSERT INTO `post_tag` VALUES (88, '2031691553200062611', '2032355522839543818');
 
 -- ----------------------------
 -- Table structure for region_age_distribution
@@ -739,26 +780,98 @@ CREATE TABLE `tags`  (
 -- ----------------------------
 -- Records of tags
 -- ----------------------------
-INSERT INTO `tags` VALUES ('2031676102780780546', '汉服', 2);
-INSERT INTO `tags` VALUES ('2031691553200062466', '民族服饰', 2);
-INSERT INTO `tags` VALUES ('2031691553200062467', '民族音乐', 5);
-INSERT INTO `tags` VALUES ('2031691553200062468', '民族舞蹈', 2);
-INSERT INTO `tags` VALUES ('2031691553200062469', '民族节日', 6);
+INSERT INTO `tags` VALUES ('2031676102780780546', '汉服', 5);
+INSERT INTO `tags` VALUES ('2031691553200062466', '民族服饰', 5);
+INSERT INTO `tags` VALUES ('2031691553200062467', '民族音乐', 7);
+INSERT INTO `tags` VALUES ('2031691553200062468', '民族舞蹈', 3);
+INSERT INTO `tags` VALUES ('2031691553200062469', '民族节日', 10);
 INSERT INTO `tags` VALUES ('2031691553200062470', '民族美食', 0);
-INSERT INTO `tags` VALUES ('2031691553200062471', '民族工艺', 6);
+INSERT INTO `tags` VALUES ('2031691553200062471', '民族工艺', 10);
 INSERT INTO `tags` VALUES ('2031691553200062472', '民族建筑', 0);
-INSERT INTO `tags` VALUES ('2031691553200062473', '非遗保护', 2);
-INSERT INTO `tags` VALUES ('2031691553200062474', '文化传承', 3);
+INSERT INTO `tags` VALUES ('2031691553200062473', '非遗保护', 3);
+INSERT INTO `tags` VALUES ('2031691553200062474', '文化传承', 6);
 INSERT INTO `tags` VALUES ('2031691553200062475', '传统礼仪', 0);
 INSERT INTO `tags` VALUES ('2031691553200062476', '民族乐器', 0);
-INSERT INTO `tags` VALUES ('2031691553200062477', '民族文学', 3);
-INSERT INTO `tags` VALUES ('2031691553200062478', '民族艺术', 4);
-INSERT INTO `tags` VALUES ('2031691553200062479', '民俗文化', 2);
-INSERT INTO `tags` VALUES ('2031691553200062480', '民族历史', 3);
+INSERT INTO `tags` VALUES ('2031691553200062477', '民族文学', 4);
+INSERT INTO `tags` VALUES ('2031691553200062478', '民族艺术', 6);
+INSERT INTO `tags` VALUES ('2031691553200062479', '民俗文化', 3);
+INSERT INTO `tags` VALUES ('2031691553200062480', '民族历史', 4);
 INSERT INTO `tags` VALUES ('2031691553200062481', '民族语言', 0);
 INSERT INTO `tags` VALUES ('2031691553200062482', '民族医药', 0);
-INSERT INTO `tags` VALUES ('2031691553200062483', '民族体育', 2);
+INSERT INTO `tags` VALUES ('2031691553200062483', '民族体育', 3);
 INSERT INTO `tags` VALUES ('2031691553200062484', '民族服饰设计', 0);
+INSERT INTO `tags` VALUES ('2031691553200062499', '汉族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062500', '蒙古族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062501', '满族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062502', '藏族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062503', '回族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062504', '彝族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062505', '白族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062506', '壮族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062507', '维吾尔族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062508', '苗族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062509', '布依族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062510', '朝鲜族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062511', '侗族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062512', '瑶族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062513', '土家族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062514', '哈尼族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062515', '哈萨克族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062516', '傣族', 1);
+INSERT INTO `tags` VALUES ('2031691553200062517', '黎族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062518', '僳僳族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062519', '佤族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062520', '畲族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062521', '高山族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062522', '拉祜族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062523', '水族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062524', '东乡族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062525', '纳西族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062526', '景颇族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062527', '柯尔克孜族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062528', '土族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062529', '达斡尔族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062530', '仫佬族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062531', '羌族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062532', '布朗族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062533', '撒拉族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062534', '毛南族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062535', '仡佬族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062536', '锡伯族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062537', '阿昌族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062538', '普米族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062539', '塔吉克族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062540', '怒族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062541', '乌孜别克族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062542', '俄罗斯族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062543', '鄂温克族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062544', '德昂族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062545', '保安族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062546', '裕固族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062547', '京族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062548', '塔塔尔族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062549', '独龙族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062550', '鄂伦春族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062551', '赫哲族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062552', '门巴族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062553', '珞巴族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062554', '基诺族', 0);
+INSERT INTO `tags` VALUES ('2031691553200062555', '汉族传统服饰', 0);
+INSERT INTO `tags` VALUES ('2031691553200062556', '蒙古族马头琴艺术', 0);
+INSERT INTO `tags` VALUES ('2031691553200062557', '藏族唐卡艺术', 0);
+INSERT INTO `tags` VALUES ('2031691553200062558', '苗族银饰工艺', 0);
+INSERT INTO `tags` VALUES ('2031691553200062559', '维吾尔族木卡姆艺术', 0);
+INSERT INTO `tags` VALUES ('2031691553200062560', '汉族传统建筑', 0);
+INSERT INTO `tags` VALUES ('2031691553200062561', '彝族火把节', 0);
+INSERT INTO `tags` VALUES ('2031691553200062562', '满族旗袍', 0);
+INSERT INTO `tags` VALUES ('2031691553200062563', '壮族铜鼓文化', 0);
+INSERT INTO `tags` VALUES ('2031691553200062564', '藏族锅庄舞', 0);
+INSERT INTO `tags` VALUES ('2031691553200062610', '服装', 2);
+INSERT INTO `tags` VALUES ('2031691553200062611', '舞蹈', 1);
+INSERT INTO `tags` VALUES ('2031691553200062612', '节日', 2);
+INSERT INTO `tags` VALUES ('2031691553200062613', '音乐', 2);
+INSERT INTO `tags` VALUES ('2031691553200062614', '美食', 0);
+INSERT INTO `tags` VALUES ('2045464449892069378', '艺术', 3);
 
 -- ----------------------------
 -- Table structure for user
@@ -792,14 +905,14 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('2026186367314202626', 'zhangsan', '汉服爱好者', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/5db77835-63e5-4f31-865f-4a4d28ec6710.jpeg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/03e022f6-ec0f-458d-ba39-25138b53f437.jpg', 'zhangsan@example.com', '13812345678', '热爱汉服文化，喜欢传统文化', '汉族', '江苏省', '南京市', '[\"汉服\", \"传统服饰\", \"礼仪文化\", \"古典文学\"]', '您的小学名称是？', '实验小学', '2026-01-05 10:00:00', '2026-03-28 09:36:15');
-INSERT INTO `user` VALUES ('2026198765432109876', 'lisi', '草原之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6e573d2f-c56d-40b9-a797-a3f5d8d86cf0.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/d7968222-a886-4099-934a-0942f0762f05.jpg', 'lisi@example.com', '13987654321', '来自内蒙古的蒙古族小伙，热爱草原文化', '蒙古族', '内蒙古自治区', '呼和浩特市', '[\"草原文化\", \"马头琴\", \"那达慕\", \"蒙古族服饰\"]', '您的出生城市是？', '呼和浩特', '2026-01-10 09:00:00', '2026-03-28 10:17:26');
-INSERT INTO `user` VALUES ('2026209876543218765', 'wangwu', '雪域高原', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/f576b113-1fe6-403f-8411-9b9b77a60971.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/a21e52fe-5f98-4cc4-b8a0-ca663b86b8fb.webp', 'wangwu@example.com', '13765432198', '藏族文化爱好者，喜欢唐卡艺术', '藏族', '西藏自治区', '拉萨市', '[\"唐卡\", \"藏传佛教\", \"藏族服饰\", \"锅庄舞\"]', '您的兴趣爱好是什么？', '唐卡绘画', '2026-01-15 11:00:00', '2026-03-28 10:15:30');
-INSERT INTO `user` VALUES ('2026210987654327654', 'zhaoliu', '天山来客', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/36247fb1-6ccc-4030-8032-5022a2e1c8ce.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/cd0dcc32-de24-412a-98a3-4e28a9c4e3ab.webp', 'zhaoliu@example.com', '13654321987', '维吾尔族文化传播者，擅长木卡姆艺术', '维吾尔族', '新疆维吾尔自治区', '乌鲁木齐市', '[\"木卡姆\", \"维吾尔族舞蹈\", \"民族音乐\", \"新疆美食\"]', '您最喜欢的民族乐器是？', '热瓦普', '2026-01-20 14:00:00', '2026-03-28 10:11:44');
-INSERT INTO `user` VALUES ('2026221098765436543', 'sunqi', '苗家姑娘', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/1aa4ecc2-d576-4ece-97c5-5d0810f38ffb.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bd76b288-d524-4431-a1bd-9fac7774acde.webp', 'sunqi@example.com', '13543219876', '苗族银饰工艺传承人，喜欢民族舞蹈', '苗族', '贵州省', '黔东南苗族侗族自治州', '[\"苗族银饰\", \"苗族刺绣\", \"芦笙舞\", \"民族节日\"]', '您的家乡是哪里？', '黔东南', '2026-01-25 16:00:00', '2026-03-28 10:09:02');
-INSERT INTO `user` VALUES ('2026232109876545432', 'liuba', '壮乡儿女', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/be2e42cd-4287-4205-a48b-937bd15f73a8.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/b69c391f-c7a7-4277-b482-c0058f093f0b.webp', 'liuba@example.com', '13432198765', '壮族文化爱好者，喜欢铜鼓艺术', '壮族', '广西壮族自治区', '南宁市', '[\"铜鼓文化\", \"壮族山歌\", \"民族建筑\", \"壮锦\"]', '您最喜欢的民族节日是？', '三月三', '2026-01-30 10:00:00', '2026-03-28 10:01:14');
-INSERT INTO `user` VALUES ('2026243210987654321', 'zhangjiu', '彝族小伙', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/141ca49c-a20e-4b83-80a4-ef9842a9572a.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/302d2205-b9e1-4bd1-8e34-2a17153a1c77.jpg', 'zhangjiu@example.com', '13321987654', '彝族文化研究者，专注火把节文化', '彝族', '云南省', '楚雄彝族自治州', '[\"火把节\", \"彝族服饰\", \"彝族音乐\", \"民族工艺\"]', '您的民族是什么？', '彝族', '2026-02-05 13:00:00', '2026-03-28 09:58:16');
-INSERT INTO `user` VALUES ('2026254321098763210', 'wangshi', '长白之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bad03538-81a3-4613-ba7b-78fdcfbaf5fd.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/23066664-4f75-4910-ba83-7df730b25640.webp', 'wangshi@example.com', '13219876543', '朝鲜族文化爱好者，喜欢阿里郎舞蹈', '朝鲜族', '吉林省', '延边朝鲜族自治州', '[\"朝鲜族舞蹈\", \"朝鲜民族音乐\", \"朝鲜族美食\", \"民族服饰\"]', '您最喜欢的民族舞蹈是？', '阿里郎', '2026-02-10 15:00:00', '2026-03-28 09:55:43');
-INSERT INTO `user` VALUES ('2026265432109872109', 'lishen', '孔雀之乡', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6889bdfd-da69-48dc-86b1-d9bd0335c142.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/4ca419cb-c555-4986-ac23-b3946ed40501.jpg', 'lishen@example.com', '13198765432', '傣族文化传播者，擅长孔雀舞', '傣族', '云南省', '西双版纳傣族自治州', '[\"泼水节\", \"孔雀舞\", \"傣族服饰\", \"民族建筑\"]', '您的家乡是哪里？', '西双版纳', '2026-02-15 09:00:00', '2026-03-28 09:48:10');
+INSERT INTO `user` VALUES ('2026186367314202626', 'zhangsan', '汉服爱好者', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/5db77835-63e5-4f31-865f-4a4d28ec6710.jpeg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/03e022f6-ec0f-458d-ba39-25138b53f437.jpg', 'zhangsan@example.com', '13812345678', '热爱汉服文化，喜欢传统文化', '汉族', '江苏省', '南京市', '[\"服装\"]', '您的小学名称是？', '实验小学', '2026-01-05 10:00:00', '2026-04-18 19:42:20');
+INSERT INTO `user` VALUES ('2026198765432109876', 'lisi', '草原之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6e573d2f-c56d-40b9-a797-a3f5d8d86cf0.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/d7968222-a886-4099-934a-0942f0762f05.jpg', 'lisi@example.com', '13987654321', '来自内蒙古的蒙古族小伙，热爱草原文化', '蒙古族', '内蒙古自治区', '呼和浩特市', '[\"节日\"]', '您的出生城市是？', '呼和浩特', '2026-01-10 09:00:00', '2026-04-18 19:44:04');
+INSERT INTO `user` VALUES ('2026209876543218765', 'wangwu', '雪域高原', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/f576b113-1fe6-403f-8411-9b9b77a60971.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/a21e52fe-5f98-4cc4-b8a0-ca663b86b8fb.webp', 'wangwu@example.com', '13765432198', '藏族文化爱好者，喜欢唐卡艺术', '藏族', '西藏自治区', '拉萨市', '[\"艺术\"]', '您的兴趣爱好是什么？', '唐卡绘画', '2026-01-15 11:00:00', '2026-04-18 19:53:24');
+INSERT INTO `user` VALUES ('2026210987654327654', 'zhaoliu', '天山来客', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/36247fb1-6ccc-4030-8032-5022a2e1c8ce.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/cd0dcc32-de24-412a-98a3-4e28a9c4e3ab.webp', 'zhaoliu@example.com', '13654321987', '维吾尔族文化传播者，擅长木卡姆艺术', '维吾尔族', '新疆维吾尔自治区', '乌鲁木齐市', '[\"音乐\"]', '您最喜欢的民族乐器是？', '热瓦普', '2026-01-20 14:00:00', '2026-04-18 19:55:01');
+INSERT INTO `user` VALUES ('2026221098765436543', 'sunqi', '苗家姑娘', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/1aa4ecc2-d576-4ece-97c5-5d0810f38ffb.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bd76b288-d524-4431-a1bd-9fac7774acde.webp', 'sunqi@example.com', '13543219876', '苗族银饰工艺传承人，喜欢民族舞蹈', '苗族', '贵州省', '黔东南苗族侗族自治州', '[\"艺术\"]', '您的家乡是哪里？', '黔东南', '2026-01-25 16:00:00', '2026-04-18 19:55:40');
+INSERT INTO `user` VALUES ('2026232109876545432', 'liuba', '壮乡儿女', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/be2e42cd-4287-4205-a48b-937bd15f73a8.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/b69c391f-c7a7-4277-b482-c0058f093f0b.webp', 'liuba@example.com', '13432198765', '壮族文化爱好者，喜欢铜鼓艺术', '壮族', '广西壮族自治区', '南宁市', '[\"艺术\"]', '您最喜欢的民族节日是？', '三月三', '2026-01-30 10:00:00', '2026-04-18 19:56:18');
+INSERT INTO `user` VALUES ('2026243210987654321', 'zhangjiu', '彝族小伙', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/141ca49c-a20e-4b83-80a4-ef9842a9572a.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/302d2205-b9e1-4bd1-8e34-2a17153a1c77.jpg', 'zhangjiu@example.com', '13321987654', '彝族文化研究者，专注火把节文化', '彝族', '云南省', '楚雄彝族自治州', '[\"节日\"]', '您的民族是什么？', '彝族', '2026-02-05 13:00:00', '2026-04-18 19:56:53');
+INSERT INTO `user` VALUES ('2026254321098763210', 'wangshi', '长白之子', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/bad03538-81a3-4613-ba7b-78fdcfbaf5fd.jpg', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/23066664-4f75-4910-ba83-7df730b25640.webp', 'wangshi@example.com', '13219876543', '朝鲜族文化爱好者，喜欢阿里郎舞蹈', '朝鲜族', '吉林省', '延边朝鲜族自治州', '[\"音乐\"]', '您最喜欢的民族舞蹈是？', '阿里郎', '2026-02-10 15:00:00', '2026-04-18 19:57:30');
+INSERT INTO `user` VALUES ('2026265432109872109', 'lishen', '孔雀之乡', '123456', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/6889bdfd-da69-48dc-86b1-d9bd0335c142.webp', 'http://teststorage1.oss-cn-beijing.aliyuncs.com/2026/03/4ca419cb-c555-4986-ac23-b3946ed40501.jpg', 'lishen@example.com', '13198765432', '傣族文化传播者，擅长孔雀舞', '傣族', '云南省', '西双版纳傣族自治州', '[\"舞蹈\"]', '您的家乡是哪里？', '西双版纳', '2026-02-15 09:00:00', '2026-04-18 19:58:03');
 
 SET FOREIGN_KEY_CHECKS = 1;
