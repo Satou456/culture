@@ -61,6 +61,14 @@ public class PostController {
         return Result.success(list);
     }
 
+    @GetMapping("/recommend")
+    @Operation(summary = "获取推荐文章列表", description = "调用推荐逻辑获取首页推荐文章")
+    public Result<List<PostDetailVO>> recommend() {
+        log.info("获取推荐文章列表");
+        List<PostDetailVO> list = postService.recommendPost();
+        return Result.success(list);
+    }
+
     @DeleteMapping
     @Operation(summary = "删除文章", description = "删除文章接口")
     @Parameter(name = "id", description = "文章id", in = ParameterIn.QUERY)

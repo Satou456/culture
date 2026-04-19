@@ -1,6 +1,11 @@
 import request from './request';
 
 export const postApi = {
+  // 获取推荐文章列表（首页）
+  getRecommendPosts() {
+    return request.get('/posts/recommend');
+  },
+
   // 获取文章列表
   getPosts(params) {
     return request.get('/posts', { params });

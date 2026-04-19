@@ -3,6 +3,8 @@ package satou.community.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import satou.community.domain.entity.InterestingTags;
 import satou.community.domain.entity.Tags;
 import satou.community.domain.vo.PostDetailVO;
 
@@ -20,4 +22,10 @@ public interface TagMapper extends BaseMapper<Tags> {
      */
     List<PostDetailVO> selectPostsByTag(@Param("tagName") String tagName, @Param("offset") int offset, @Param("limit") int limit);
 
+    /**
+     * 获取用户兴趣标签列表
+     * @return 兴趣标签列表
+     */
+    @Select("SELECT * FROM interesting_tags")
+    List<InterestingTags> selectInterestingTags();
 }

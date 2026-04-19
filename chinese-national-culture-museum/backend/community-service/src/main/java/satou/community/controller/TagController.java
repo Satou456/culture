@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import satou.community.domain.entity.InterestingTags;
 import satou.community.domain.entity.Tags;
 import satou.community.domain.result.Result;
 import satou.community.domain.vo.PostDetailVO;
@@ -27,6 +28,19 @@ public class TagController {
         log.info("获取标签列表");
         List<Tags> tags = tagService.getTags();
         return Result.success(tags);
+    }
+
+    @GetMapping("/interesting-tags")
+    @Operation(summary = "获取兴趣标签列表", description = "从 interesting_tags 表获取用户兴趣标签")
+    public Result<List<InterestingTags>> getInterestingTags() {
+        log.info("获取兴趣标签列表");
+        try {
+            List<InterestingTags> tags = tagService.getInterestingTags();
+            return Result.success(tags);
+        } catch (Exception e) {
+            log.error("获取兴趣标签列表失败", e);
+            return Result.error("获取兴趣标签失败");
+        }
     }
 
     @GetMapping("/{tagName}/posts")

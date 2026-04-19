@@ -127,31 +127,38 @@ const fetchPosts = async (isLoadMore = false) => {
   error.value = null;
 
   try {
-    const params = {
-      page: isLoadMore ? page.value : 1,
-      size: size,
-      sortType: currentTab.value === 'all' ? 'latest' : currentTab.value
-    };
-    // 如果有搜索关键词，可以尝试传递，但接口未支持，暂留空
-    if (searchKeyword.value) {
-      params.keyword = searchKeyword.value; // 后端可能支持，但文档未提及
-    }
+    if (currentTab.value === 'all') {
+      const data = await postApi.getRecommendPosts();
 
-    const data = await postApi.getPosts(params);
-    
-    if (isLoadMore) {
-      posts.value = [...posts.value, ...data];
-      page.value++;
-    } else {
-      posts.value = data;
-      page.value = 2; // 下次加载从第2页开始
-    }
-    
-    // 如果返回数据少于 size，说明没有更多
-    if (data.length < size) {
+      if (!isLoadMore) {
+        posts.value = data;
+        page.value = 2;
+      }
+
+      // 推荐接口当前无分页能力
       noMoreData.value = true;
     } else {
-      noMoreData.value = false;
+      const params = {
+        page: isLoadMore ? page.value : 1,
+        size,
+        sortType: currentTab.value
+      };
+
+      if (searchKeyword.value) {
+        params.keyword = searchKeyword.value;
+      }
+
+      const data = await postApi.getPosts(params);
+
+      if (isLoadMore) {
+        posts.value = [...posts.value, ...data];
+        page.value++;
+      } else {
+        posts.value = data;
+        page.value = 2;
+      }
+
+      noMoreData.value = data.length < size;
     }
   } catch (err) {
     error.value = err.message || '加载失败，请检查网络连接';

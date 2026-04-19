@@ -18,4 +18,8 @@ public interface PostService extends IService<Post> {
     void deletePost(String postId);
 
     void updatePost(String postId, PostCreateDTO dto);
+
+    List<PostDetailVO> recommendPost();
+
+    List<PostDetailVO> recommendPosts();
 }

@@ -7,16 +7,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import satou.community.domain.dto.PostCreateDTO;
-import satou.community.domain.entity.Tags;
+import satou.community.domain.entity.*;
 import satou.community.domain.vo.PostDetailVO;
-import satou.community.domain.entity.Friend;
-import satou.community.domain.entity.Post;
-import satou.community.domain.entity.PostTag;
 import satou.community.exception.BusinessException;
 import satou.community.mapper.*;
 import satou.community.service.PostService;
-import java.util.ArrayList;
-import java.util.List;
+import satou.community.utils.BeanCopyUtils;
+
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -24,11 +26,14 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     private final TagMapper tagMapper;
     private final PostTagMapper postTagMapper;
     private final FriendMapper friendMapper;
+    private final UserMapper userMapper;
+    private final PostMapper postMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void createPost(PostCreateDTO dto) {
         String currentUserId = StpUtil.getLoginIdAsString();
+        User user = userMapper.selectById(currentUserId);
 
         // 1. 构建 Post 实体
         Post post = Post.builder()
@@ -36,8 +41,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 .content(dto.getContent())
                 .fileUrl(dto.getFileUrl())
                 .userId(currentUserId)
-                .ethnicGroup(dto.getEthnicGroup())
-                .region(dto.getRegion())
+                .ethnicGroup(user.getEthnicGroup())
+                .region(user.getProvince() + user.getCity())
                 .visibility(dto.getVisibility())
                 .likeCount(0)
                 .comments(0)
@@ -146,7 +151,6 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         // 删除关联的 PostTag
         postTagMapper.delete(new LambdaQueryWrapper<PostTag>().eq(PostTag::getPostId, postId));
 
-
         // 删除作品
         this.removeById(postId);
     }
@@ -155,6 +159,7 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
     @Transactional(rollbackFor = Exception.class)
     public void updatePost(String postId, PostCreateDTO dto) {
         String currentUserId = StpUtil.getLoginIdAsString();
+        User user = userMapper.selectById(currentUserId);
 
         Post post = this.getById(postId);
 
@@ -170,8 +175,8 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
         post.setTitle(dto.getTitle());
         post.setContent(dto.getContent());
         post.setFileUrl(dto.getFileUrl());
-        post.setEthnicGroup(dto.getEthnicGroup());
-        post.setRegion(dto.getRegion());
+        post.setEthnicGroup(user.getEthnicGroup());
+        post.setRegion(user.getProvince() + user.getCity());
         post.setVisibility(dto.getVisibility());
 
         this.updateById(post);
@@ -209,6 +214,39 @@ public class PostServiceImpl extends ServiceImpl<PostMapper, Post> implements Po
                 }
             }
         }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public List<PostDetailVO> recommendPost() {
+        return recommendPosts();
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public List<PostDetailVO> recommendPosts() {
+        String currentUserId = StpUtil.getLoginIdAsString();
+        User user = userMapper.selectById(currentUserId);
+        List<PostDetailVO> posts = postMapper.selectAllPost();
+        List<PostDetailVO> posts1 = posts.stream().filter(post -> post.getEthnicGroup().equals(user.getEthnicGroup())).toList();
+        List<PostDetailVO> posts2 = posts.stream().filter(
+                post -> post.getRegion().equals(user.getProvince() + user.getCity())).toList();
+
+        List<String> userInterestTags = user.getInterestTags();
+        List<PostDetailVO> posts3 = postMapper.selectByTags(userInterestTags.get(0));
+
+        List<PostDetailVO> mergedList = Stream.of(posts1, posts2, posts3)
+                .flatMap(List::stream)
+                // 核心代码：根据 ID 去重
+                .filter(distinctByKey(PostDetailVO::getId))
+                .toList();
+
+        return mergedList;
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, Object> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
     }
 
 }
